@@ -45,12 +45,21 @@ object Form1: TForm1
     OnClick = Button3Click
   end
   object Button4: TButton
-    Left = 376
+    Left = 365
     Top = 8
-    Width = 113
+    Width = 105
     Height = 34
     Caption = 'Zeshoeken'
     TabOrder = 3
     OnClick = Button4Click
+  end
+  object Button5: TButton
+    Left = 476
+    Top = 8
+    Width = 117
+    Height = 34
+    Caption = 'Diagonalen n=hoek'
+    TabOrder = 4
+    OnClick = Button5Click
   end
 end
