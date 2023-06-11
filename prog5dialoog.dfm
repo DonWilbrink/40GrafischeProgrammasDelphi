@@ -51,7 +51,7 @@ object Form2: TForm2
     Top = 112
     Width = 78
     Height = 24
-    MaxValue = 150
+    MaxValue = 200
     MinValue = 50
     TabOrder = 1
     Value = 50

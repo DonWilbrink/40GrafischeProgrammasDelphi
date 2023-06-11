@@ -4,21 +4,24 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Menus;
 
 type
   TForm1 = class(TForm)
     pbMain: TPaintBox;
-    Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
-    Button4: TButton;
-    Button5: TButton;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
-    procedure Button4Click(Sender: TObject);
-    procedure Button5Click(Sender: TObject);
+    MainMenu1: TMainMenu;
+    Programma1101: TMenuItem;
+    Diagonaalweb1: TMenuItem;
+    Moireeeffect1: TMenuItem;
+    Moireeeffect2: TMenuItem;
+    Zeshoeken1: TMenuItem;
+    Diagonalenhoeken1: TMenuItem;
+    Panel1: TPanel;
+    procedure Diagonaalweb1Click(Sender: TObject);
+    procedure Moireeeffect1Click(Sender: TObject);
+    procedure Moireeeffect2Click(Sender: TObject);
+    procedure Zeshoeken1Click(Sender: TObject);
+    procedure Diagonalenhoeken1Click(Sender: TObject);
   private
     { Private declarations }
     procedure Clear;
@@ -35,7 +38,12 @@ implementation
 
 uses prog5dialoog;
 
-procedure TForm1.Button1Click(Sender: TObject);
+procedure TForm1.Clear;
+begin
+  pbMain.Canvas.FillRect(rect(0,0,pbMain.Width,pbMain.Height));
+end;
+
+procedure TForm1.Diagonaalweb1Click(Sender: TObject);
 var
   a, b, i, j, y1, y2: Integer;
 begin
@@ -54,10 +62,40 @@ begin
       pbMain.Canvas.LineTo(b,y2);
     end;
   end;
-
 end;
 
-procedure TForm1.Button2Click(Sender: TObject);
+procedure TForm1.Diagonalenhoeken1Click(Sender: TObject);
+var
+  a, b, n, i, j, u, v: Integer;
+  w, w1: real;
+  x, y: Array of Integer;
+begin
+  Clear;
+  Form2.ShowModal;
+  a := Form2.SpinEdit1.Value;
+  b := Form2.SpinEdit2.Value;
+  n := Form2.SpinEdit3.Value-1;
+  SetLength(x,n);
+  SetLength(y,n);
+  u := 300; v := 200;
+  w := (360/n)*Pi/180;
+  for j := 1 to n do
+  begin
+    w1 := (j-1)*w;
+    x[j-1] := Trunc(u+a*Cos(w1));
+    y[j-1] := Trunc(v-b*Sin(w1));
+  end;
+  for i := 1 to n-1 do
+  begin
+    for j := i+1 to n do
+    begin
+      pbMain.Canvas.MoveTo(x[i-1],y[i-1]);
+      pbMain.Canvas.LineTo(x[j-1],y[j-1]);
+    end;
+  end;
+end;
+
+procedure TForm1.Moireeeffect1Click(Sender: TObject);
 var
   a, j: Integer;
 begin
@@ -86,7 +124,7 @@ begin
   end;
 end;
 
-procedure TForm1.Button3Click(Sender: TObject);
+procedure TForm1.Moireeeffect2Click(Sender: TObject);
 var
   j, k, x0, y0: Integer;
   a, b, x, y: Array[1..3] of Integer;
@@ -100,8 +138,8 @@ begin
   b[3] := -6;
   x0 := 0;
   y0 := 139;
-  k := 1;
-  repeat
+  for k := 1 to 22 do
+  begin
     for j:=1 to 3 do
     begin
       x[j] := x0 + k * a[j];
@@ -111,11 +149,10 @@ begin
     pbMain.Canvas.LineTo(x[2],y[2]);
     pbMain.Canvas.LineTo(x[3],y[3]);
     pbMain.Canvas.LineTo(x[1],y[1]);
-    k := k + 1;
-  until k >= 22;
+  end;
 end;
 
-procedure TForm1.Button4Click(Sender: TObject);
+procedure TForm1.Zeshoeken1Click(Sender: TObject);
 var
   x, y, a, b: Array[1..7] of Integer;
   u, v, r, j, k, n: Integer;
@@ -152,42 +189,6 @@ begin
       y[j] := b[j];
     end;
   end;
-end;
-
-procedure TForm1.Button5Click(Sender: TObject);
-var
-  a, b, n, i, j, u, v: Integer;
-  w, w1: real;
-  x, y: Array of Integer;
-begin
-  Clear;
-  Form2.ShowModal;
-  a := Form2.SpinEdit1.Value;
-  b := Form2.SpinEdit2.Value;
-  n := Form2.SpinEdit3.Value-1;
-  SetLength(x,n);
-  SetLength(y,n);
-  u := 300; v := 150;
-  w := (360/n)*Pi/180;
-  for j := 1 to n do
-  begin
-    w1 := (j-1)*w;
-    x[j-1] := Trunc(u+a*Cos(w1));
-    y[j-1] := Trunc(v-b*Sin(w1));
-  end;
-  for i := 1 to n-1 do
-  begin
-    for j := i+1 to n do
-    begin
-      pbMain.Canvas.MoveTo(x[i-1],y[i-1]);
-      pbMain.Canvas.LineTo(x[j-1],y[j-1]);
-    end;
-  end;
-end;
-
-procedure TForm1.Clear;
-begin
-  pbMain.Canvas.FillRect(rect(0,0,pbMain.Width,pbMain.Height));
 end;
 
 end.

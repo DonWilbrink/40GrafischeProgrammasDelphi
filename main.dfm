@@ -10,7 +10,11 @@ object Form1: TForm1
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Menu = MainMenu1
   OldCreateOrder = True
+  DesignSize = (
+    628
+    442)
   PixelsPerInch = 96
   TextHeight = 15
   object pbMain: TPaintBox
@@ -18,50 +22,50 @@ object Form1: TForm1
     Top = 64
     Width = 561
     Height = 361
+    Anchors = [akLeft, akTop, akRight, akBottom]
   end
-  object Button1: TButton
-    Left = 32
-    Top = 8
-    Width = 105
-    Height = 34
-    Caption = 'Diagonaalweb'
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 628
+    Height = 49
+    Align = alTop
+    Caption = 
+      '40 grafische programma'#39's vertaald uit ZXSpectrum basic naar Delp' +
+      'hi'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 0
-    OnClick = Button1Click
   end
-  object Button2: TButton
-    Left = 143
+  object MainMenu1: TMainMenu
+    Left = 16
     Top = 8
-    Width = 105
-    Height = 34
-    Caption = 'Moiree effect'
-    TabOrder = 1
-    OnClick = Button2Click
-  end
-  object Button3: TButton
-    Left = 254
-    Top = 8
-    Width = 105
-    Height = 34
-    Caption = 'Driehoeken'
-    TabOrder = 2
-    OnClick = Button3Click
-  end
-  object Button4: TButton
-    Left = 365
-    Top = 8
-    Width = 105
-    Height = 34
-    Caption = 'Zeshoeken'
-    TabOrder = 3
-    OnClick = Button4Click
-  end
-  object Button5: TButton
-    Left = 476
-    Top = 8
-    Width = 117
-    Height = 34
-    Caption = 'Diagonalen n-hoek'
-    TabOrder = 4
-    OnClick = Button5Click
+    object Programma1101: TMenuItem
+      Caption = 'Programma 1-10'
+      object Diagonaalweb1: TMenuItem
+        Caption = 'Diagonaal web'
+        OnClick = Diagonaalweb1Click
+      end
+      object Moireeeffect1: TMenuItem
+        Caption = 'Moiree effect'
+        OnClick = Moireeeffect1Click
+      end
+      object Moireeeffect2: TMenuItem
+        Caption = 'Driehoeken'
+        OnClick = Moireeeffect2Click
+      end
+      object Zeshoeken1: TMenuItem
+        Caption = 'Zeshoeken'
+        OnClick = Zeshoeken1Click
+      end
+      object Diagonalenhoeken1: TMenuItem
+        Caption = 'Diagonale n-hoeken'
+        OnClick = Diagonalenhoeken1Click
+      end
+    end
   end
 end
