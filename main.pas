@@ -164,8 +164,25 @@ begin
   Form2.ShowModal;
   a := Form2.SpinEdit1.Value;
   b := Form2.SpinEdit2.Value;
-  n := Form2.SpinEdit3.Value;
-  ShowMessage('a='+a.ToString+' b='+b.ToString+' n='+n.ToString);
+  n := Form2.SpinEdit3.Value-1;
+  SetLength(x,n);
+  SetLength(y,n);
+  u := 300; v := 150;
+  w := (360/n)*Pi/180;
+  for j := 1 to n do
+  begin
+    w1 := (j-1)*w;
+    x[j-1] := Trunc(u+a*Cos(w1));
+    y[j-1] := Trunc(v-b*Sin(w1));
+  end;
+  for i := 1 to n-1 do
+  begin
+    for j := i+1 to n do
+    begin
+      pbMain.Canvas.MoveTo(x[i-1],y[i-1]);
+      pbMain.Canvas.LineTo(x[j-1],y[j-1]);
+    end;
+  end;
 end;
 
 procedure TForm1.Clear;

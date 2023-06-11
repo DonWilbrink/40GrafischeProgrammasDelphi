@@ -11,7 +11,9 @@ object Form2: TForm2
   Font.Name = 'Segoe UI'
   Font.Style = []
   FormStyle = fsStayOnTop
+  OldCreateOrder = True
   Position = poMainFormCenter
+  PixelsPerInch = 96
   TextHeight = 15
   object Label1: TLabel
     Left = 16
@@ -35,24 +37,24 @@ object Form2: TForm2
     Caption = 'Hoeveel hoekpunten:'
   end
   object SpinEdit1: TSpinEdit
-    Left = 16
+    Left = 8
     Top = 37
     Width = 78
     Height = 24
-    MaxValue = 127
-    MinValue = 1
+    MaxValue = 300
+    MinValue = 50
     TabOrder = 0
-    Value = 1
+    Value = 50
   end
   object SpinEdit2: TSpinEdit
-    Left = 16
+    Left = 8
     Top = 112
     Width = 78
     Height = 24
-    MaxValue = 57
-    MinValue = 1
+    MaxValue = 150
+    MinValue = 50
     TabOrder = 1
-    Value = 1
+    Value = 50
   end
   object SpinEdit3: TSpinEdit
     Left = 16
