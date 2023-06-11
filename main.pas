@@ -17,11 +17,14 @@ type
     Zeshoeken1: TMenuItem;
     Diagonalenhoeken1: TMenuItem;
     Panel1: TPanel;
+    Ingeschrevenvierkanten1: TMenuItem;
+    Memo1: TMemo;
     procedure Diagonaalweb1Click(Sender: TObject);
     procedure Moireeeffect1Click(Sender: TObject);
     procedure Moireeeffect2Click(Sender: TObject);
     procedure Zeshoeken1Click(Sender: TObject);
     procedure Diagonalenhoeken1Click(Sender: TObject);
+    procedure Ingeschrevenvierkanten1Click(Sender: TObject);
   private
     { Private declarations }
     procedure Clear;
@@ -36,7 +39,7 @@ implementation
 
 {$R *.dfm}
 
-uses prog5dialoog;
+uses prog5dialoog, prog6dialoog;
 
 procedure TForm1.Clear;
 begin
@@ -93,6 +96,42 @@ begin
       pbMain.Canvas.LineTo(x[j-1],y[j-1]);
     end;
   end;
+end;
+
+procedure TForm1.Ingeschrevenvierkanten1Click(Sender: TObject);
+var
+  j, k, n: Integer;
+  a, b, x, y: Array[1..5] of Integer;
+begin
+  Clear;
+  Memo1.Clear;
+  Form3.ShowModal;
+  x[1] := 40; x[2] := 400; x[3] := 400; x[4] := 40; x[5] := 40;
+  y[1] := 40; y[2] := 40; y[3] := 400; y[4] := 400; y[5] := 40;
+  k := Form3.SpinEdit1.Value;
+  for n:= 1 to 40 do
+  begin
+    pbMain.Canvas.MoveTo(x[1],y[1]);
+    for j := 2 to 4 do
+      pbMain.Canvas.LineTo(x[j],y[j]);
+    pbMain.Canvas.LineTo(x[1],y[1]);
+    for j := 1 to 4 do
+    begin
+      a[j] := x[j] + Trunc((x[j+1]-x[j])/k);
+      b[j] := y[j] + Trunc((y[j+1]-y[j])/k);
+    end;
+    for j := 1 to 4 do
+    begin
+      x[j] := a[j]; Memo1.Lines.Add('x['+j.ToString+']='+IntToStr(x[j]));
+      y[j] := b[j]; Memo1.Lines.Add('y['+j.ToString+']='+IntToStr(y[j]));
+    end;
+    for j := 1 to 4 do
+    begin
+      x[5] := x[1];
+      y[5] := y[1];
+    end;
+  end;
+
 end;
 
 procedure TForm1.Moireeeffect1Click(Sender: TObject);

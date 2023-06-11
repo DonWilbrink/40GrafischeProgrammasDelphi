@@ -3,7 +3,8 @@ program GrafProg;
 uses
   Vcl.Forms,
   main in 'main.pas' {Form1},
-  prog5dialoog in 'prog5dialoog.pas' {Form2};
+  prog5dialoog in 'prog5dialoog.pas' {Form2},
+  prog6dialoog in 'prog6dialoog.pas' {Form3};
 
 {$R *.res}
 
@@ -12,5 +13,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TForm1, Form1);
   Application.CreateForm(TForm2, Form2);
+  Application.CreateForm(TForm3, Form3);
   Application.Run;
 end.
