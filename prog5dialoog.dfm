@@ -57,14 +57,14 @@ object Form2: TForm2
     Value = 50
   end
   object SpinEdit3: TSpinEdit
-    Left = 16
+    Left = 8
     Top = 192
     Width = 81
     Height = 24
     MaxValue = 25
-    MinValue = 3
+    MinValue = 4
     TabOrder = 2
-    Value = 3
+    Value = 4
   end
   object BitBtn1: TBitBtn
     Left = 16

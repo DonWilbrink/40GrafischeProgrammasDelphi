@@ -60,7 +60,7 @@ object Form1: TForm1
     Top = 8
     Width = 117
     Height = 34
-    Caption = 'Diagonalen n=hoek'
+    Caption = 'Diagonalen n-hoek'
     TabOrder = 4
     OnClick = Button5Click
   end

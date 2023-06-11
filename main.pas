@@ -41,15 +41,15 @@ var
 begin
   Clear;
   y1 := 0;
-  y2 := 300;
+  y2 := 400;
   a := 0;
   b := 0;
   for i := 0 to 7 do
   begin
-    a := i * 36;
+    a := i * 50;
     for j := 0 to 7 do
     begin
-      b := j * 36;
+      b := j * 50;
       pbMain.Canvas.MoveTo(a,y1);
       pbMain.Canvas.LineTo(b,y2);
     end;
@@ -62,26 +62,26 @@ var
   a, j: Integer;
 begin
   Clear;
-  for j := 0 to 25 do
+  for j := 0 to 40 do
   begin
     a := j * 10;
     with pbMain.Canvas do
     begin
-      MoveTo(0,250);
+      MoveTo(0,400);
       LineTo(a,0);
-      MoveTo(0,250);
-      LineTo(250,a);
+      MoveTo(0,400);
+      LineTo(400,a);
     end;
   end;
-  for j := 0 to 25 do
+  for j := 0 to 40 do
   begin
     a := j * 10;
     with pbMain.Canvas do
     begin
-      MoveTo(250,0);
+      MoveTo(400,0);
       LineTo(0,a);
-      MoveTo(250,0);
-      LineTo(a,250);
+      MoveTo(400,0);
+      LineTo(a,400);
     end;
   end;
 end;
