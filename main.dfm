@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = '40 Grafische Programma'#39's'
-  ClientHeight = 442
+  ClientHeight = 520
   ClientWidth = 880
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -14,15 +14,16 @@ object Form1: TForm1
   OldCreateOrder = True
   DesignSize = (
     880
-    442)
+    520)
   PixelsPerInch = 96
   TextHeight = 15
   object pbMain: TPaintBox
     Left = 32
     Top = 64
     Width = 605
-    Height = 361
+    Height = 439
     Anchors = [akLeft, akTop, akBottom]
+    ExplicitHeight = 361
   end
   object Panel1: TPanel
     Left = 0
@@ -40,16 +41,24 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    ExplicitWidth = 628
-  end
-  object Memo1: TMemo
-    Left = 664
-    Top = 64
-    Width = 185
-    Height = 361
-    ScrollBars = ssVertical
-    TabOrder = 1
-    Visible = False
+    object lblN: TLabel
+      Left = 60
+      Top = 14
+      Width = 23
+      Height = 21
+      Caption = 'N='
+    end
+    object edN: TSpinEdit
+      Left = 89
+      Top = 11
+      Width = 57
+      Height = 31
+      MaxValue = 16
+      MinValue = 8
+      TabOrder = 0
+      Value = 8
+      OnChange = Diagonaalweb1Click
+    end
   end
   object MainMenu1: TMainMenu
     Left = 16
@@ -60,13 +69,13 @@ object Form1: TForm1
         Caption = 'Diagonaal web'
         OnClick = Diagonaalweb1Click
       end
-      object Moireeeffect1: TMenuItem
+      object Moireeeffect: TMenuItem
         Caption = 'Moiree effect'
-        OnClick = Moireeeffect1Click
+        OnClick = MoireeeffectClick
       end
-      object Moireeeffect2: TMenuItem
+      object Driehoeken: TMenuItem
         Caption = 'Driehoeken'
-        OnClick = Moireeeffect2Click
+        OnClick = DriehoekenClick
       end
       object Zeshoeken1: TMenuItem
         Caption = 'Zeshoeken'
@@ -79,6 +88,14 @@ object Form1: TForm1
       object Ingeschrevenvierkanten1: TMenuItem
         Caption = 'Ingeschreven vierkanten'
         OnClick = Ingeschrevenvierkanten1Click
+      end
+      object Grafiekvaneencontinuefunctie1: TMenuItem
+        Caption = 'Grafiek van een continue functie'
+        OnClick = Grafiekvaneencontinuefunctie1Click
+      end
+      object Sinuskrommen1: TMenuItem
+        Caption = 'Sinuskrommen'
+        OnClick = Sinuskrommen1Click
       end
     end
   end

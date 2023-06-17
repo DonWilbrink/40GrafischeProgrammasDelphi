@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Menus;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Menus,
+  Vcl.Samples.Spin;
 
 type
   TForm1 = class(TForm)
@@ -12,22 +13,28 @@ type
     MainMenu1: TMainMenu;
     Programma1101: TMenuItem;
     Diagonaalweb1: TMenuItem;
-    Moireeeffect1: TMenuItem;
-    Moireeeffect2: TMenuItem;
+    Moireeeffect: TMenuItem;
+    Driehoeken: TMenuItem;
     Zeshoeken1: TMenuItem;
     Diagonalenhoeken1: TMenuItem;
     Panel1: TPanel;
     Ingeschrevenvierkanten1: TMenuItem;
-    Memo1: TMemo;
+    Grafiekvaneencontinuefunctie1: TMenuItem;
+    edN: TSpinEdit;
+    lblN: TLabel;
+    Sinuskrommen1: TMenuItem;
     procedure Diagonaalweb1Click(Sender: TObject);
-    procedure Moireeeffect1Click(Sender: TObject);
-    procedure Moireeeffect2Click(Sender: TObject);
+    procedure MoireeeffectClick(Sender: TObject);
+    procedure DriehoekenClick(Sender: TObject);
     procedure Zeshoeken1Click(Sender: TObject);
     procedure Diagonalenhoeken1Click(Sender: TObject);
     procedure Ingeschrevenvierkanten1Click(Sender: TObject);
+    procedure Grafiekvaneencontinuefunctie1Click(Sender: TObject);
+    procedure Sinuskrommen1Click(Sender: TObject);
   private
     { Private declarations }
     procedure Clear;
+    procedure Formule(x: Double; var y:Double);
   public
     { Public declarations }
   end;
@@ -39,7 +46,7 @@ implementation
 
 {$R *.dfm}
 
-uses prog5dialoog, prog6dialoog;
+uses prog5dialoog, prog6dialoog, prog7dialoog, prog7adialoog;
 
 procedure TForm1.Clear;
 begin
@@ -48,17 +55,19 @@ end;
 
 procedure TForm1.Diagonaalweb1Click(Sender: TObject);
 var
-  a, b, i, j, y1, y2: Integer;
+  a, b, h, i, j, n, y1, y2: Integer;
 begin
   Clear;
+  h := pbMain.Height;
   y1 := 0;
-  y2 := 400;
+  y2 := h-5;
   a := 0;
   b := 0;
-  for i := 0 to 7 do
+  n := edN.Value;
+  for i := 0 to n-1 do
   begin
     a := i * 50;
-    for j := 0 to 7 do
+    for j := 0 to n-1 do
     begin
       b := j * 50;
       pbMain.Canvas.MoveTo(a,y1);
@@ -82,11 +91,11 @@ begin
   SetLength(y,n);
   u := 300; v := 200;
   w := (360/n)*Pi/180;
-  for j := 1 to n do
+  for j := 0 to n-1 do
   begin
-    w1 := (j-1)*w;
-    x[j-1] := Trunc(u+a*Cos(w1));
-    y[j-1] := Trunc(v-b*Sin(w1));
+    w1 := (j)*w;
+    x[j] := Trunc(u+a*Cos(w1));
+    y[j] := Trunc(v-b*Sin(w1));
   end;
   for i := 1 to n-1 do
   begin
@@ -98,13 +107,93 @@ begin
   end;
 end;
 
+procedure TForm1.Formule(x: Double; var y: Double);
+begin
+  y := Exp(-0.1*x)*Cos(x);
+end;
+
+procedure TForm1.Grafiekvaneencontinuefunctie1Click(Sender: TObject);
+var
+  a, b, c, xx, yy, x1, x2, y1, y2: Integer;
+  x, y, hp, lp, dx, kx, ky: Double;
+begin
+  Clear;
+  Form4.ShowModal;
+  a := Form4.SpinEdit1.Value;
+  b := Form4.SpinEdit2.Value;
+  if a>b then
+  begin
+    c := a;
+    a := b;
+    b := c;
+  end;
+  hp := -100000;
+  lp := 100000;
+  dx := (b-a)/128;
+  x := a;
+  repeat
+    Formule(x,y);
+    if y>hp then hp := y;
+    if y<lp then lp := y;
+    x := x+dx;
+  until x=b;
+  Form5.Label1.Caption := 'Grootste y-waarde: ' + hp.ToString;
+  Form5.Label2.Caption := 'Kleinste y-waarde: ' + lp.ToString;
+  Form5.SpinEdit1.Value := Trunc(hp);
+  Form5.SpinEdit2.Value := Trunc(lp);
+  Form5.ShowModal;
+  hp := Form5.SpinEdit1.Value;
+  lp := Form5.SpinEdit2.Value;
+  if a=b then b := b+1;
+  kx := 500/(b-a);
+  ky := 400/(hp-lp);
+  x := a;
+  repeat
+    Formule(x,y);
+    xx := Trunc(kx*(x-a));
+    yy := Trunc(ky*(hp-y));
+    if x=a then
+    begin
+      x1 := xx;
+      y1 := yy;
+    end
+    else
+    begin
+      x2 := xx;
+      y2 := yy;
+      pbMain.Canvas.MoveTo(x1,y1);
+      pbMain.Canvas.LineTo(x2,y2);
+      x1 := x2;
+      y1 := y2;
+    end;
+    x := x+dx;
+  until x=b;
+  x1 := 0;
+  y1 := Trunc(ky*hp);
+  x2 := 500;
+  y2 := y1;
+  if (y1 >= 0) and (y1 <= 400) then
+  begin
+    pbMain.Canvas.MoveTo(x1,y1);
+    pbMain.Canvas.LineTo(x2,y2);
+  end;
+  x1 := Trunc(kx*-a);
+  y1 := 0;
+  x2 := x1;
+  y2 := 400;
+  if (x1 >= 0) and (x1 <= 500) then
+  begin
+    pbMain.Canvas.MoveTo(x1,y1);
+    pbMain.Canvas.LineTo(x2,y2);
+  end;
+end;
+
 procedure TForm1.Ingeschrevenvierkanten1Click(Sender: TObject);
 var
   j, k, n: Integer;
   a, b, x, y: Array[1..5] of Integer;
 begin
   Clear;
-  Memo1.Clear;
   Form3.ShowModal;
   x[1] := 40; x[2] := 400; x[3] := 400; x[4] := 40; x[5] := 40;
   y[1] := 40; y[2] := 40; y[3] := 400; y[4] := 400; y[5] := 40;
@@ -122,8 +211,8 @@ begin
     end;
     for j := 1 to 4 do
     begin
-      x[j] := a[j]; Memo1.Lines.Add('x['+j.ToString+']='+IntToStr(x[j]));
-      y[j] := b[j]; Memo1.Lines.Add('y['+j.ToString+']='+IntToStr(y[j]));
+      x[j] := a[j];
+      y[j] := b[j];
     end;
     for j := 1 to 4 do
     begin
@@ -134,36 +223,72 @@ begin
 
 end;
 
-procedure TForm1.Moireeeffect1Click(Sender: TObject);
+procedure TForm1.MoireeeffectClick(Sender: TObject);
 var
-  a, j: Integer;
+  a, h, j: Integer;
 begin
   Clear;
-  for j := 0 to 40 do
+  h := pbMain.Height;
+  for j := 0 to Trunc(h/10) do
   begin
     a := j * 10;
     with pbMain.Canvas do
     begin
-      MoveTo(0,400);
+      MoveTo(0,h);
       LineTo(a,0);
-      MoveTo(0,400);
-      LineTo(400,a);
+      MoveTo(0,h);
+      LineTo(h,a);
     end;
   end;
-  for j := 0 to 40 do
+  for j := 0 to Trunc(h/10) do
   begin
     a := j * 10;
     with pbMain.Canvas do
     begin
-      MoveTo(400,0);
+      MoveTo(h,0);
       LineTo(0,a);
-      MoveTo(400,0);
-      LineTo(a,400);
+      MoveTo(h,0);
+      LineTo(a,h);
     end;
   end;
 end;
 
-procedure TForm1.Moireeeffect2Click(Sender: TObject);
+procedure TForm1.Sinuskrommen1Click(Sender: TObject);
+var
+  f, j, k, n, v, x1, x2, y, y1, y2: Integer;
+  c, p, x: Double;
+begin
+  Clear;
+  v := 200;
+  k := 200;
+  p := pi/9;
+  c := 2*pi/255;
+  for n := 0 to 9 do
+  begin
+    j := 0;
+    repeat
+      x := j*c;
+      y := Trunc(v-k*Sin(x+n*p));
+      if j=0 then
+      begin
+        x1 := j;
+        y1 := y;
+      end
+      else
+      begin
+        x2 := j;
+        y2 := y;
+        pbMain.Canvas.MoveTo(x1,y1);
+        pbMain.Canvas.LineTo(x2,y2);
+        x1 := x2;
+        y1 := y2;
+      end;
+      j := j + 5;
+    until  j>=255;
+  end;
+end;
+
+procedure TForm1.DriehoekenClick(Sender: TObject);
 var
   j, k, x0, y0: Integer;
   a, b, x, y: Array[1..3] of Integer;
