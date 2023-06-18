@@ -1,2 +1,2 @@
 # 40GrafischeProgrammas
- 40 Grafische programma's vertaalt uit ZXSpectrum basic naar Delphi.
+Grafisch programma geschreven in Pascal met Lazarus aan de hand van het boek "40 Grafische programma's in ZX Spectrum Basic" van Marcel Sutter. Alle Basic listings omgezet naar Pascal en samengevoegd in een programma.
