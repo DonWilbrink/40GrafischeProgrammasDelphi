@@ -51,6 +51,8 @@ uses prog5dialoog, prog6dialoog, prog7dialoog, prog7adialoog;
 procedure TForm1.Clear;
 begin
   pbMain.Canvas.FillRect(rect(0,0,pbMain.Width,pbMain.Height));
+  lblN.Visible:=False;
+  edN.Visible:=False;
 end;
 
 procedure TForm1.Diagonaalweb1Click(Sender: TObject);
@@ -58,6 +60,8 @@ var
   a, b, h, i, j, n, y1, y2: Integer;
 begin
   Clear;
+  lblN.Visible:=True;
+  edN.Visible:=True;
   h := pbMain.Height;
   y1 := 0;
   y2 := h-5;
@@ -86,16 +90,16 @@ begin
   Form2.ShowModal;
   a := Form2.SpinEdit1.Value;
   b := Form2.SpinEdit2.Value;
-  n := Form2.SpinEdit3.Value-1;
+  n := Form2.SpinEdit3.Value;
   SetLength(x,n);
   SetLength(y,n);
   u := 300; v := 200;
   w := (360/n)*Pi/180;
-  for j := 0 to n-1 do
+  for j := 1 to n do
   begin
     w1 := (j)*w;
-    x[j] := Trunc(u+a*Cos(w1));
-    y[j] := Trunc(v-b*Sin(w1));
+    x[j-1] := Trunc(u+a*Cos(w1));
+    y[j-1] := Trunc(v-b*Sin(w1));
   end;
   for i := 1 to n-1 do
   begin
@@ -262,7 +266,7 @@ begin
   v := 200;
   k := 200;
   p := pi/9;
-  c := 2*pi/255;
+  c := 2*pi/pbMain.Width;
   for n := 0 to 9 do
   begin
     j := 0;
@@ -284,7 +288,7 @@ begin
         y1 := y2;
       end;
       j := j + 5;
-    until  j>=255;
+    until  j>=pbMain.Width;
   end;
 end;
 
@@ -302,7 +306,7 @@ begin
   b[3] := -6;
   x0 := 0;
   y0 := 139;
-  for k := 1 to 22 do
+  for k := 1 to 24 do
   begin
     for j:=1 to 3 do
     begin
@@ -323,9 +327,9 @@ var
   h, w, w1: real;
 begin
   Clear;
-  u := 200;
-  v := 200;
-  r := 200;
+  u := Trunc(pbMain.Width/2);
+  v := Trunc(pbMain.Height/2);
+  r := v;
   w := 60*pi/180;
   for j := 1 to 7 do
   begin

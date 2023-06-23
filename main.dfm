@@ -3,7 +3,7 @@ object Form1: TForm1
   Top = 0
   Caption = '40 Grafische Programma'#39's'
   ClientHeight = 520
-  ClientWidth = 880
+  ClientWidth = 781
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,22 +13,21 @@ object Form1: TForm1
   Menu = MainMenu1
   OldCreateOrder = True
   DesignSize = (
-    880
+    781
     520)
   PixelsPerInch = 96
   TextHeight = 15
   object pbMain: TPaintBox
     Left = 32
-    Top = 64
-    Width = 605
+    Top = 73
+    Width = 721
     Height = 439
     Anchors = [akLeft, akTop, akBottom]
-    ExplicitHeight = 361
   end
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 880
+    Width = 781
     Height = 49
     Align = alTop
     Caption = 
@@ -41,22 +40,25 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 0
+    ExplicitWidth = 880
     object lblN: TLabel
       Left = 60
       Top = 14
       Width = 23
       Height = 21
       Caption = 'N='
+      Visible = False
     end
     object edN: TSpinEdit
       Left = 89
       Top = 11
       Width = 57
-      Height = 31
-      MaxValue = 16
+      Height = 32
+      MaxValue = 19
       MinValue = 8
       TabOrder = 0
       Value = 8
+      Visible = False
       OnChange = Diagonaalweb1Click
     end
   end

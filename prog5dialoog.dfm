@@ -38,9 +38,10 @@ object Form2: TForm2
   end
   object SpinEdit1: TSpinEdit
     Left = 8
-    Top = 37
+    Top = 29
     Width = 78
     Height = 24
+    Increment = 10
     MaxValue = 300
     MinValue = 50
     TabOrder = 0
@@ -51,6 +52,7 @@ object Form2: TForm2
     Top = 112
     Width = 78
     Height = 24
+    Increment = 10
     MaxValue = 200
     MinValue = 50
     TabOrder = 1
