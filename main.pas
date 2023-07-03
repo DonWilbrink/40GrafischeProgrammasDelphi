@@ -8,7 +8,7 @@ uses
   Vcl.Samples.Spin;
 
 type
-  TForm1 = class(TForm)
+  TfrmMain = class(TForm)
     pbMain: TPaintBox;
     MainMenu1: TMainMenu;
     Programma1101: TMenuItem;
@@ -17,12 +17,25 @@ type
     Driehoeken: TMenuItem;
     Zeshoeken1: TMenuItem;
     Diagonalenhoeken1: TMenuItem;
-    Panel1: TPanel;
+    pnlTop: TPanel;
     Ingeschrevenvierkanten1: TMenuItem;
     Grafiekvaneencontinuefunctie1: TMenuItem;
     edN: TSpinEdit;
     lblN: TLabel;
     Sinuskrommen1: TMenuItem;
+    pnlSide: TPanel;
+    pnlDiagWeb: TPanel;
+    pnlDiagNHoek: TPanel;
+    lblBreed: TLabel;
+    seBreed: TSpinEdit;
+    lblHoog: TLabel;
+    seHoog: TSpinEdit;
+    lblHoek: TLabel;
+    seHoek: TSpinEdit;
+    pnlIngeschreven: TPanel;
+    lblK: TLabel;
+    seK: TSpinEdit;
+    ParaboolStelsel: TMenuItem;
     procedure Diagonaalweb1Click(Sender: TObject);
     procedure MoireeeffectClick(Sender: TObject);
     procedure DriehoekenClick(Sender: TObject);
@@ -31,37 +44,39 @@ type
     procedure Ingeschrevenvierkanten1Click(Sender: TObject);
     procedure Grafiekvaneencontinuefunctie1Click(Sender: TObject);
     procedure Sinuskrommen1Click(Sender: TObject);
+    procedure ParaboolStelselClick(Sender: TObject);
   private
     { Private declarations }
     procedure Clear;
     procedure Formule(x: Double; var y:Double);
+    procedure Swap(a, b: Integer);
   public
     { Public declarations }
   end;
 
 var
-  Form1: TForm1;
+  frmMain: TfrmMain;
 
 implementation
 
 {$R *.dfm}
 
-uses prog5dialoog, prog6dialoog, prog7dialoog, prog7adialoog;
+uses prog7dialoog, prog7adialoog;
 
-procedure TForm1.Clear;
+procedure TfrmMain.Clear;
 begin
   pbMain.Canvas.FillRect(rect(0,0,pbMain.Width,pbMain.Height));
-  lblN.Visible:=False;
-  edN.Visible:=False;
+  pnlDiagWeb.Visible := False;
+  pnlDiagNHoek.Visible := False;
+  pnlIngeschreven.Visible := False;
 end;
 
-procedure TForm1.Diagonaalweb1Click(Sender: TObject);
+procedure TfrmMain.Diagonaalweb1Click(Sender: TObject);
 var
   a, b, h, i, j, n, y1, y2: Integer;
 begin
   Clear;
-  lblN.Visible:=True;
-  edN.Visible:=True;
+  pnlDiagWeb.Visible := True;
   h := pbMain.Height;
   y1 := 0;
   y2 := h-5;
@@ -80,20 +95,23 @@ begin
   end;
 end;
 
-procedure TForm1.Diagonalenhoeken1Click(Sender: TObject);
+procedure TfrmMain.Diagonalenhoeken1Click(Sender: TObject);
 var
   a, b, n, i, j, u, v: Integer;
   w, w1: real;
   x, y: Array of Integer;
 begin
   Clear;
-  Form2.ShowModal;
-  a := Form2.SpinEdit1.Value;
-  b := Form2.SpinEdit2.Value;
-  n := Form2.SpinEdit3.Value;
+  pnlDiagNHoek.Visible := True;
+  seBreed.MaxValue := Trunc(pbMain.Width/2) - 40;
+  seHoog.MaxValue := Trunc(pbMain.Height/2) - 40;
+  a := seBreed.Value;
+  b := seHoog.Value;
+  n := seHoek.Value;
   SetLength(x,n);
   SetLength(y,n);
-  u := 300; v := 200;
+  u := Trunc(pbMain.Width/2);
+  v := Trunc(pbMain.Height/2);
   w := (360/n)*Pi/180;
   for j := 1 to n do
   begin
@@ -111,26 +129,21 @@ begin
   end;
 end;
 
-procedure TForm1.Formule(x: Double; var y: Double);
+procedure TfrmMain.Formule(x: Double; var y: Double);
 begin
   y := Exp(-0.1*x)*Cos(x);
 end;
 
-procedure TForm1.Grafiekvaneencontinuefunctie1Click(Sender: TObject);
+procedure TfrmMain.Grafiekvaneencontinuefunctie1Click(Sender: TObject);
 var
-  a, b, c, xx, yy, x1, x2, y1, y2: Integer;
+  a, b, xx, yy, x1, x2, y1, y2: Integer;
   x, y, hp, lp, dx, kx, ky: Double;
 begin
   Clear;
   Form4.ShowModal;
   a := Form4.SpinEdit1.Value;
   b := Form4.SpinEdit2.Value;
-  if a>b then
-  begin
-    c := a;
-    a := b;
-    b := c;
-  end;
+  if a>b then  Swap(a,b);
   hp := -100000;
   lp := 100000;
   dx := (b-a)/128;
@@ -149,8 +162,8 @@ begin
   hp := Form5.SpinEdit1.Value;
   lp := Form5.SpinEdit2.Value;
   if a=b then b := b+1;
-  kx := 500/(b-a);
-  ky := 400/(hp-lp);
+  kx := pbMain.Width/(b-a);
+  ky := pbMain.Height/(hp-lp);
   x := a;
   repeat
     Formule(x,y);
@@ -174,9 +187,9 @@ begin
   until x=b;
   x1 := 0;
   y1 := Trunc(ky*hp);
-  x2 := 500;
+  x2 := pbMain.Width;
   y2 := y1;
-  if (y1 >= 0) and (y1 <= 400) then
+  if (y1 >= 0) and (y1 <= pbMain.Height) then
   begin
     pbMain.Canvas.MoveTo(x1,y1);
     pbMain.Canvas.LineTo(x2,y2);
@@ -184,24 +197,26 @@ begin
   x1 := Trunc(kx*-a);
   y1 := 0;
   x2 := x1;
-  y2 := 400;
-  if (x1 >= 0) and (x1 <= 500) then
+  y2 := pbMain.Height;
+  if (x1 >= 0) and (x1 <= pbMain.Width) then
   begin
     pbMain.Canvas.MoveTo(x1,y1);
     pbMain.Canvas.LineTo(x2,y2);
   end;
 end;
 
-procedure TForm1.Ingeschrevenvierkanten1Click(Sender: TObject);
+procedure TfrmMain.Ingeschrevenvierkanten1Click(Sender: TObject);
 var
-  j, k, n: Integer;
+  h, j, k, n: Integer;
   a, b, x, y: Array[1..5] of Integer;
 begin
   Clear;
-  Form3.ShowModal;
-  x[1] := 40; x[2] := 400; x[3] := 400; x[4] := 40; x[5] := 40;
-  y[1] := 40; y[2] := 40; y[3] := 400; y[4] := 400; y[5] := 40;
-  k := Form3.SpinEdit1.Value;
+  pnlIngeschreven.Visible := True;
+  seK.SetFocus;
+  h := pbMain.Height - 40;
+  x[1] := 40; x[2] := h; x[3] := h; x[4] := 40; x[5] := 40;
+  y[1] := 40; y[2] := 40; y[3] := h; y[4] := h; y[5] := 40;
+  k := seK.Value;
   for n:= 1 to 40 do
   begin
     pbMain.Canvas.MoveTo(x[1],y[1]);
@@ -224,10 +239,9 @@ begin
       y[5] := y[1];
     end;
   end;
-
 end;
 
-procedure TForm1.MoireeeffectClick(Sender: TObject);
+procedure TfrmMain.MoireeeffectClick(Sender: TObject);
 var
   a, h, j: Integer;
 begin
@@ -257,13 +271,48 @@ begin
   end;
 end;
 
-procedure TForm1.Sinuskrommen1Click(Sender: TObject);
+procedure TfrmMain.ParaboolStelselClick(Sender: TObject);
+var
+  k, u, v, x, xx, x1, x2, y, y1, y2: Integer;
+  yy: Double;
+begin
+  Clear;
+  u := Trunc(pbMain.Width/2);
+  v := Trunc(pbMain.Height/2);
+  k := -v;
+  repeat
+    x := -110;
+    repeat
+      xx := Trunc(u+x*4);
+      y:= Trunc(-k*x*x/6400+k);
+      y := v-y;
+      if x = -110 then
+      begin
+        x1 := xx;
+        y1 := y;
+      end
+      else
+      begin
+        x2 := xx;
+        y2 := y;
+        pbMain.Canvas.MoveTo(x1,y1);
+        pbMain.Canvas.LineTo(x2,y2);
+        x1 := x2;
+        y1 := y2;
+      end;
+      x := x + 5;
+    until x >= 110;
+    k := k + 10;
+  until k>=v;
+end;
+
+procedure TfrmMain.Sinuskrommen1Click(Sender: TObject);
 var
   f, j, k, n, v, x1, x2, y, y1, y2: Integer;
   c, p, x: Double;
 begin
   Clear;
-  v := 200;
+  v := 300;
   k := 200;
   p := pi/9;
   c := 2*pi/pbMain.Width;
@@ -292,7 +341,16 @@ begin
   end;
 end;
 
-procedure TForm1.DriehoekenClick(Sender: TObject);
+procedure TfrmMain.Swap(a, b: Integer);
+var
+  c: Integer;
+begin
+  c := a;
+  a := b;
+  b := c;
+end;
+
+procedure TfrmMain.DriehoekenClick(Sender: TObject);
 var
   j, k, x0, y0: Integer;
   a, b, x, y: Array[1..3] of Integer;
@@ -305,8 +363,8 @@ begin
   b[2] := 9;
   b[3] := -6;
   x0 := 0;
-  y0 := 139;
-  for k := 1 to 24 do
+  y0 := Trunc(pbMain.Height/3);
+  for k := 1 to 30 do
   begin
     for j:=1 to 3 do
     begin
@@ -320,7 +378,7 @@ begin
   end;
 end;
 
-procedure TForm1.Zeshoeken1Click(Sender: TObject);
+procedure TfrmMain.Zeshoeken1Click(Sender: TObject);
 var
   x, y, a, b: Array[1..7] of Integer;
   u, v, r, j, k, n: Integer;

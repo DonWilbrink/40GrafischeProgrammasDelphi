@@ -99,15 +99,7 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="main.pas">
-            <Form>Form1</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="prog5dialoog.pas">
-            <Form>Form2</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="prog6dialoog.pas">
-            <Form>Form3</Form>
+            <Form>frmMain</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="prog7dialoog.pas">

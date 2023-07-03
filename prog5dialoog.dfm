@@ -17,9 +17,9 @@ object Form2: TForm2
   TextHeight = 15
   object Label1: TLabel
     Left = 16
-    Top = 8
+    Top = 10
     Width = 78
-    Height = 15
+    Height = 16
     Caption = 'Halve grote as:'
   end
   object Label2: TLabel

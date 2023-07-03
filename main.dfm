@@ -1,9 +1,9 @@
-object Form1: TForm1
+object frmMain: TfrmMain
   Left = 0
   Top = 0
   Caption = '40 Grafische Programma'#39's'
-  ClientHeight = 520
-  ClientWidth = 781
+  ClientHeight = 569
+  ClientWidth = 875
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,22 +12,21 @@ object Form1: TForm1
   Font.Style = []
   Menu = MainMenu1
   OldCreateOrder = True
-  DesignSize = (
-    781
-    520)
   PixelsPerInch = 96
   TextHeight = 15
   object pbMain: TPaintBox
-    Left = 32
-    Top = 73
-    Width = 721
-    Height = 439
-    Anchors = [akLeft, akTop, akBottom]
+    Left = 185
+    Top = 49
+    Width = 690
+    Height = 520
+    Align = alClient
+    ExplicitLeft = 190
+    ExplicitTop = 55
   end
-  object Panel1: TPanel
+  object pnlTop: TPanel
     Left = 0
     Top = 0
-    Width = 781
+    Width = 875
     Height = 49
     Align = alTop
     Caption = 
@@ -40,26 +39,148 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    ExplicitWidth = 880
-    object lblN: TLabel
-      Left = 60
-      Top = 14
-      Width = 23
-      Height = 21
-      Caption = 'N='
-      Visible = False
-    end
-    object edN: TSpinEdit
-      Left = 89
-      Top = 11
-      Width = 57
-      Height = 32
-      MaxValue = 19
-      MinValue = 8
+    ExplicitWidth = 867
+  end
+  object pnlSide: TPanel
+    Left = 0
+    Top = 49
+    Width = 185
+    Height = 520
+    Align = alLeft
+    TabOrder = 1
+    ExplicitHeight = 512
+    object pnlDiagWeb: TPanel
+      Left = 1
+      Top = 1
+      Width = 183
+      Height = 518
+      Align = alClient
       TabOrder = 0
-      Value = 8
       Visible = False
-      OnChange = Diagonaalweb1Click
+      ExplicitLeft = -4
+      ExplicitTop = 6
+      ExplicitHeight = 510
+      object lblN: TLabel
+        Left = 28
+        Top = 24
+        Width = 17
+        Height = 15
+        Caption = 'N='
+      end
+      object edN: TSpinEdit
+        Left = 55
+        Top = 21
+        Width = 57
+        Height = 24
+        MaxValue = 19
+        MinValue = 8
+        TabOrder = 0
+        Value = 8
+        OnChange = Diagonaalweb1Click
+      end
+    end
+    object pnlDiagNHoek: TPanel
+      Left = 1
+      Top = 1
+      Width = 183
+      Height = 518
+      Align = alClient
+      TabOrder = 1
+      Visible = False
+      ExplicitLeft = -4
+      ExplicitTop = 6
+      ExplicitHeight = 510
+      object lblBreed: TLabel
+        Left = 8
+        Top = 8
+        Width = 78
+        Height = 15
+        Caption = 'Halve grote as:'
+      end
+      object lblHoog: TLabel
+        Left = 8
+        Top = 80
+        Width = 81
+        Height = 15
+        Caption = 'Halve kleine as:'
+      end
+      object lblHoek: TLabel
+        Left = 8
+        Top = 160
+        Width = 113
+        Height = 15
+        Caption = 'Hoeveel hoekpunten:'
+      end
+      object seBreed: TSpinEdit
+        Left = 8
+        Top = 37
+        Width = 78
+        Height = 24
+        Increment = 10
+        MaxValue = 300
+        MinValue = 50
+        TabOrder = 0
+        Value = 50
+        OnChange = Diagonalenhoeken1Click
+      end
+      object seHoog: TSpinEdit
+        Left = 8
+        Top = 112
+        Width = 78
+        Height = 24
+        Increment = 10
+        MaxValue = 200
+        MinValue = 50
+        TabOrder = 1
+        Value = 50
+        OnChange = Diagonalenhoeken1Click
+      end
+      object seHoek: TSpinEdit
+        Left = 8
+        Top = 192
+        Width = 81
+        Height = 24
+        MaxValue = 25
+        MinValue = 4
+        TabOrder = 2
+        Value = 4
+        OnChange = Diagonalenhoeken1Click
+      end
+    end
+    object pnlIngeschreven: TPanel
+      Left = 1
+      Top = 1
+      Width = 183
+      Height = 518
+      Align = alClient
+      TabOrder = 2
+      Visible = False
+      ExplicitLeft = -4
+      ExplicitTop = 6
+      object lblK: TLabel
+        Left = 8
+        Top = 16
+        Width = 101
+        Height = 15
+        Caption = 'Geef k op (2<k<20)'
+      end
+      object seK: TSpinEdit
+        Left = 8
+        Top = 51
+        Width = 41
+        Height = 26
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        MaxValue = 20
+        MinValue = 2
+        ParentFont = False
+        TabOrder = 0
+        Value = 2
+        OnChange = Ingeschrevenvierkanten1Click
+      end
     end
   end
   object MainMenu1: TMainMenu
@@ -98,6 +219,10 @@ object Form1: TForm1
       object Sinuskrommen1: TMenuItem
         Caption = 'Sinuskrommen'
         OnClick = Sinuskrommen1Click
+      end
+      object ParaboolStelsel: TMenuItem
+        Caption = 'ParaboolStelsel'
+        OnClick = ParaboolStelselClick
       end
     end
   end

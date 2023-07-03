@@ -14,7 +14,7 @@ object Form3: TForm3
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 16
+    Left = 8
     Top = 16
     Width = 96
     Height = 13
