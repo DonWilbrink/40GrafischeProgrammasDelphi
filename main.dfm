@@ -20,7 +20,7 @@ object frmMain: TfrmMain
     Width = 690
     Height = 520
     Align = alClient
-    ExplicitLeft = 190
+    ExplicitLeft = 201
     ExplicitTop = 55
   end
   object pnlTop: TPanel
@@ -39,7 +39,6 @@ object frmMain: TfrmMain
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    ExplicitWidth = 867
   end
   object pnlSide: TPanel
     Left = 0
@@ -48,7 +47,6 @@ object frmMain: TfrmMain
     Height = 520
     Align = alLeft
     TabOrder = 1
-    ExplicitHeight = 512
     object pnlDiagWeb: TPanel
       Left = 1
       Top = 1
@@ -57,9 +55,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 0
       Visible = False
-      ExplicitLeft = -4
-      ExplicitTop = 6
-      ExplicitHeight = 510
       object lblN: TLabel
         Left = 28
         Top = 24
@@ -87,9 +82,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 1
       Visible = False
-      ExplicitLeft = -4
-      ExplicitTop = 6
-      ExplicitHeight = 510
       object lblBreed: TLabel
         Left = 8
         Top = 8
@@ -155,8 +147,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 2
       Visible = False
-      ExplicitLeft = -4
-      ExplicitTop = 6
       object lblK: TLabel
         Left = 8
         Top = 16
@@ -180,6 +170,105 @@ object frmMain: TfrmMain
         TabOrder = 0
         Value = 2
         OnChange = Ingeschrevenvierkanten1Click
+      end
+    end
+    object pnlContFunctie: TPanel
+      Left = 1
+      Top = 1
+      Width = 183
+      Height = 518
+      Align = alClient
+      TabOrder = 3
+      Visible = False
+      ExplicitLeft = -4
+      ExplicitTop = 6
+      object lblLinker: TLabel
+        Left = 8
+        Top = 5
+        Width = 108
+        Height = 15
+        Caption = 'Linker-interval grens'
+      end
+      object lblRechter: TLabel
+        Left = 8
+        Top = 67
+        Width = 116
+        Height = 15
+        Caption = 'Rechter-interval grens'
+      end
+      object lblBoven: TLabel
+        Left = 8
+        Top = 121
+        Width = 98
+        Height = 15
+        Caption = 'Bovengrens voor y'
+      end
+      object lblOnder: TLabel
+        Left = 8
+        Top = 181
+        Width = 98
+        Height = 15
+        Caption = 'Ondergrens voor y'
+      end
+      object seLinker: TSpinEdit
+        Left = 8
+        Top = 88
+        Width = 73
+        Height = 24
+        MaxValue = 20
+        MinValue = -15
+        TabOrder = 0
+        Value = -15
+        OnChange = Grafiekvaneencontinuefunctie1Click
+      end
+      object seRechter: TSpinEdit
+        Left = 8
+        Top = 29
+        Width = 73
+        Height = 24
+        MaxValue = 15
+        MinValue = -15
+        TabOrder = 1
+        Value = 15
+        OnChange = Grafiekvaneencontinuefunctie1Click
+      end
+      object seBoven: TSpinEdit
+        Left = 8
+        Top = 142
+        Width = 73
+        Height = 24
+        MaxValue = 20
+        MinValue = 1
+        TabOrder = 2
+        Value = 4
+        OnChange = Grafiekvaneencontinuefunctie1Click
+      end
+      object seOnder: TSpinEdit
+        Left = 8
+        Top = 202
+        Width = 73
+        Height = 24
+        MaxValue = -1
+        MinValue = -20
+        TabOrder = 3
+        Value = -4
+        OnChange = Grafiekvaneencontinuefunctie1Click
+      end
+      object rgFormules: TRadioGroup
+        Left = 17
+        Top = 232
+        Width = 161
+        Height = 129
+        Caption = 'Formules'
+        ItemIndex = 0
+        Items.Strings = (
+          '1 : y=Exp(-0.1*x)*Cos(x)'
+          '2 : y=Sin(x)'
+          '3 : y=x*x'
+          '4 : y=Exp(x)'
+          '5 : y=x*x*x-2*x*x-x')
+        TabOrder = 4
+        OnClick = Grafiekvaneencontinuefunctie1Click
       end
     end
   end
@@ -223,6 +312,10 @@ object frmMain: TfrmMain
       object ParaboolStelsel: TMenuItem
         Caption = 'ParaboolStelsel'
         OnClick = ParaboolStelselClick
+      end
+      object miOppKromme: TMenuItem
+        Caption = 'Oppervlakte onder kromme'
+        OnClick = miOppKrommeClick
       end
     end
   end

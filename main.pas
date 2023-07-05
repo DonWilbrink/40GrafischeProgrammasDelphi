@@ -36,6 +36,17 @@ type
     lblK: TLabel;
     seK: TSpinEdit;
     ParaboolStelsel: TMenuItem;
+    pnlContFunctie: TPanel;
+    lblLinker: TLabel;
+    seLinker: TSpinEdit;
+    lblRechter: TLabel;
+    seRechter: TSpinEdit;
+    lblBoven: TLabel;
+    seBoven: TSpinEdit;
+    lblOnder: TLabel;
+    seOnder: TSpinEdit;
+    rgFormules: TRadioGroup;
+    miOppKromme: TMenuItem;
     procedure Diagonaalweb1Click(Sender: TObject);
     procedure MoireeeffectClick(Sender: TObject);
     procedure DriehoekenClick(Sender: TObject);
@@ -45,11 +56,13 @@ type
     procedure Grafiekvaneencontinuefunctie1Click(Sender: TObject);
     procedure Sinuskrommen1Click(Sender: TObject);
     procedure ParaboolStelselClick(Sender: TObject);
+    procedure miOppKrommeClick(Sender: TObject);
   private
     { Private declarations }
     procedure Clear;
-    procedure Formule(x: Double; var y:Double);
+    procedure Formule(i: Integer; x: Double; var y:Double);
     procedure Swap(a, b: Integer);
+    function OppKromme(x: Double): Double;
   public
     { Public declarations }
   end;
@@ -61,14 +74,13 @@ implementation
 
 {$R *.dfm}
 
-uses prog7dialoog, prog7adialoog;
-
 procedure TfrmMain.Clear;
 begin
   pbMain.Canvas.FillRect(rect(0,0,pbMain.Width,pbMain.Height));
   pnlDiagWeb.Visible := False;
   pnlDiagNHoek.Visible := False;
   pnlIngeschreven.Visible := False;
+  pnlContFunctie.Visible := False;
 end;
 
 procedure TfrmMain.Diagonaalweb1Click(Sender: TObject);
@@ -129,44 +141,50 @@ begin
   end;
 end;
 
-procedure TfrmMain.Formule(x: Double; var y: Double);
+procedure TfrmMain.Formule(i: Integer; x: Double; var y: Double);
 begin
-  y := Exp(-0.1*x)*Cos(x);
+  case i of
+    0:  y := Exp(-0.1*x)*Cos(x);
+    1:  y := Sin(x);
+    2:  y := x*x;
+    3:  y := Exp(x);
+    4:  y := x*x*x-2*x*x-x;
+  end;
 end;
 
 procedure TfrmMain.Grafiekvaneencontinuefunctie1Click(Sender: TObject);
 var
-  a, b, xx, yy, x1, x2, y1, y2: Integer;
+  a, b, i, xx, yy, x1, x2, y1, y2: Integer;
   x, y, hp, lp, dx, kx, ky: Double;
 begin
   Clear;
-  Form4.ShowModal;
-  a := Form4.SpinEdit1.Value;
-  b := Form4.SpinEdit2.Value;
+  pnlContFunctie.Visible := True;
+  a := seLinker.Value;
+  b := seRechter.Value;
   if a>b then  Swap(a,b);
   hp := -100000;
   lp := 100000;
   dx := (b-a)/128;
   x := a;
+  i := rgFormules.ItemIndex;
   repeat
-    Formule(x,y);
+    Formule(i,x,y);
     if y>hp then hp := y;
     if y<lp then lp := y;
     x := x+dx;
   until x=b;
-  Form5.Label1.Caption := 'Grootste y-waarde: ' + hp.ToString;
-  Form5.Label2.Caption := 'Kleinste y-waarde: ' + lp.ToString;
-  Form5.SpinEdit1.Value := Trunc(hp);
-  Form5.SpinEdit2.Value := Trunc(lp);
-  Form5.ShowModal;
-  hp := Form5.SpinEdit1.Value;
-  lp := Form5.SpinEdit2.Value;
+  lblBoven.Caption := 'Grootste y-waarde: ' + hp.ToString;
+  lblOnder.Caption := 'Kleinste y-waarde: ' + lp.ToString;
+  //seBoven.Value := Trunc(hp);
+  //seOnder.Value := Trunc(lp);
+  hp := seBoven.Value;
+  lp := seOnder.Value;
   if a=b then b := b+1;
   kx := pbMain.Width/(b-a);
   ky := pbMain.Height/(hp-lp);
   x := a;
   repeat
-    Formule(x,y);
+    Formule(i,x,y);
     xx := Trunc(kx*(x-a));
     yy := Trunc(ky*(hp-y));
     if x=a then
@@ -268,6 +286,30 @@ begin
       MoveTo(h,0);
       LineTo(a,h);
     end;
+  end;
+end;
+
+function TfrmMain.OppKromme(x: Double): Double;
+begin
+  Result := Cos(x) - Cos(3*x)/3 + Cos(5*x)/5 - Cos(7*x)/7;
+end;
+
+procedure TfrmMain.miOppKrommeClick(Sender: TObject);
+var
+  j, k, v, y: Integer;
+  c, x: Double;
+begin
+  Clear;
+  v := pbMain.Width div 4;
+  k := pbMain.Height div 4;
+  c := 2*pi/pbMain.Height;
+  for j := 0 to pbMain.Height do
+  begin
+    x := j*c-pi;
+    //yy := Trunc(Cos(x) - (Cos(3*x)/3) + (Cos(5*x)/5) - (Cos(7*x)/7));
+    y := Trunc(v - k * OppKromme(x));
+    pbMain.Canvas.MoveTo(j,v);
+    pbMain.Canvas.LineTo(j,y);
   end;
 end;
 
