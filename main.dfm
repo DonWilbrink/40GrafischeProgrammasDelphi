@@ -180,8 +180,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 3
       Visible = False
-      ExplicitLeft = -4
-      ExplicitTop = 6
       object lblLinker: TLabel
         Left = 8
         Top = 5
@@ -271,6 +269,89 @@ object frmMain: TfrmMain
         OnClick = Grafiekvaneencontinuefunctie1Click
       end
     end
+    object pnlWillekFunc: TPanel
+      Left = 1
+      Top = 1
+      Width = 183
+      Height = 518
+      Align = alClient
+      TabOrder = 4
+      Visible = False
+      ExplicitLeft = -4
+      ExplicitTop = 6
+      object lblLinkergrensX: TLabel
+        Left = 28
+        Top = 45
+        Width = 98
+        Height = 15
+        Caption = 'Linkergrens voor X'
+      end
+      object lblRechtergrensX: TLabel
+        Left = 28
+        Top = 109
+        Width = 106
+        Height = 15
+        Caption = 'Rechtergrens voor X'
+      end
+      object lblBovengrensY: TLabel
+        Left = 28
+        Top = 181
+        Width = 99
+        Height = 15
+        Caption = 'Bovengrens voor Y'
+      end
+      object lblOndergrensY: TLabel
+        Left = 28
+        Top = 251
+        Width = 99
+        Height = 15
+        Caption = 'Ondergrens voor Y'
+      end
+      object seLinkergrensX: TSpinEdit
+        Left = 28
+        Top = 67
+        Width = 53
+        Height = 24
+        MaxValue = 0
+        MinValue = -5
+        TabOrder = 0
+        Value = -5
+        OnChange = miWillekeurigeFunctieClick
+      end
+      object seRechtergrensX: TSpinEdit
+        Left = 28
+        Top = 130
+        Width = 53
+        Height = 24
+        MaxValue = 5
+        MinValue = 0
+        TabOrder = 1
+        Value = 5
+        OnChange = miWillekeurigeFunctieClick
+      end
+      object seBovengrensY: TSpinEdit
+        Left = 28
+        Top = 202
+        Width = 53
+        Height = 24
+        MaxValue = 10
+        MinValue = 0
+        TabOrder = 2
+        Value = 10
+        OnChange = miWillekeurigeFunctieClick
+      end
+      object seOndergrensY: TSpinEdit
+        Left = 28
+        Top = 272
+        Width = 53
+        Height = 24
+        MaxValue = 0
+        MinValue = -10
+        TabOrder = 3
+        Value = -10
+        OnChange = miWillekeurigeFunctieClick
+      end
+    end
   end
   object MainMenu1: TMainMenu
     Left = 16
@@ -316,6 +397,13 @@ object frmMain: TfrmMain
       object miOppKromme: TMenuItem
         Caption = 'Oppervlakte onder kromme'
         OnClick = miOppKrommeClick
+      end
+    end
+    object Programma1120: TMenuItem
+      Caption = 'Programma 11-20'
+      object miWillekeurigeFunctie: TMenuItem
+        Caption = 'Grafiek van een willekeurige functie'
+        OnClick = miWillekeurigeFunctieClick
       end
     end
   end

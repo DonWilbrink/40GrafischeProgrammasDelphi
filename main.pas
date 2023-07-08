@@ -47,6 +47,17 @@ type
     seOnder: TSpinEdit;
     rgFormules: TRadioGroup;
     miOppKromme: TMenuItem;
+    Programma1120: TMenuItem;
+    miWillekeurigeFunctie: TMenuItem;
+    pnlWillekFunc: TPanel;
+    seLinkergrensX: TSpinEdit;
+    seRechtergrensX: TSpinEdit;
+    seBovengrensY: TSpinEdit;
+    seOndergrensY: TSpinEdit;
+    lblLinkergrensX: TLabel;
+    lblRechtergrensX: TLabel;
+    lblBovengrensY: TLabel;
+    lblOndergrensY: TLabel;
     procedure Diagonaalweb1Click(Sender: TObject);
     procedure MoireeeffectClick(Sender: TObject);
     procedure DriehoekenClick(Sender: TObject);
@@ -57,12 +68,14 @@ type
     procedure Sinuskrommen1Click(Sender: TObject);
     procedure ParaboolStelselClick(Sender: TObject);
     procedure miOppKrommeClick(Sender: TObject);
+    procedure miWillekeurigeFunctieClick(Sender: TObject);
   private
     { Private declarations }
     procedure Clear;
     procedure Formule(i: Integer; x: Double; var y:Double);
     procedure Swap(a, b: Integer);
     function OppKromme(x: Double): Double;
+    procedure fn(x: Double; lp: Integer; hp: Integer; var y: Double; var fz: Integer);
   public
     { Public declarations }
   end;
@@ -81,6 +94,7 @@ begin
   pnlDiagNHoek.Visible := False;
   pnlIngeschreven.Visible := False;
   pnlContFunctie.Visible := False;
+  pnlWillekFunc.Visible := False;
 end;
 
 procedure TfrmMain.Diagonaalweb1Click(Sender: TObject);
@@ -88,9 +102,10 @@ var
   a, b, h, i, j, n, y1, y2: Integer;
 begin
   Clear;
+  edN.MaxValue := Trunc(pbMain.Width/50) + 1;
   pnlDiagWeb.Visible := True;
   h := pbMain.Height;
-  y1 := 0;
+  y1 := 5;
   y2 := h-5;
   a := 0;
   b := 0;
@@ -162,8 +177,8 @@ begin
   a := seLinker.Value;
   b := seRechter.Value;
   if a>b then  Swap(a,b);
-  hp := -100000;
-  lp := 100000;
+  hp := 100000;
+  lp := -100000;
   dx := (b-a)/128;
   x := a;
   i := rgFormules.ItemIndex;
@@ -313,6 +328,69 @@ begin
   end;
 end;
 
+procedure TfrmMain.miWillekeurigeFunctieClick(Sender: TObject);
+var
+  a, b, ch, cw, fa, fz, hp, lp, x1, x2, y1, y2: Integer;
+  dx, kx, ky, x, y: Double;
+begin
+  Clear;
+  pnlWillekFunc.Visible:=True;
+  ch := pbMain.Height;
+  cw := pbMain.Width;
+  a := seLinkergrensX.Value;
+  b := seRechtergrensX.Value;
+  hp := seBovengrensY.Value;
+  lp := seOndergrensY.Value;
+  if a>b then Swap(a,b);
+  kx := cw/(b-a);
+  ky := ch/(hp-lp);
+  dx := (b-a)/cw;
+  fa := 1;
+  x := a;
+  repeat
+    x2 := Trunc(kx*(x-a));
+    fn(x,lp,hp,y,fz);
+    if fz=1 then
+    begin
+      fa := 1;
+    end
+    else
+    begin
+      if fa=1 then
+      begin
+        x1 := x2;
+        fa := 0;
+        y1 := Trunc(ky*(hp-y));
+      end
+      else
+      begin
+        y2 := Trunc(ky*(hp-y));
+        pbMain.Canvas.MoveTo(x1,y1);
+        pbMain.Canvas.LineTo(x2,y2);
+        x1 := x2;
+        y1 := y2;
+      end;
+    end;
+    x := x + dx;
+  until x >= b;
+  x1 := 0;
+  y1 := Trunc(ky*hp);
+  x2 := cw;
+  y2 := y1;
+  if (y1>0) and (y1<ch) then
+    pbMain.Canvas.MoveTo(x1,y1);
+    pbMain.Canvas.LineTo(x2,y2);
+  x1 := Trunc(kx*(-a));
+  y1 := 0;
+  x2 := x1;
+  y2 := ch;
+  if (x1>0) and (x1<cw) then
+  begin
+    pbMain.Canvas.MoveTo(x1,y1);
+    pbMain.Canvas.LineTo(x2,y2);
+  end;
+end;
+
 procedure TfrmMain.ParaboolStelselClick(Sender: TObject);
 var
   k, u, v, x, xx, x1, x2, y, y1, y2: Integer;
@@ -418,6 +496,23 @@ begin
     pbMain.Canvas.LineTo(x[3],y[3]);
     pbMain.Canvas.LineTo(x[1],y[1]);
   end;
+end;
+
+procedure TfrmMain.fn(x: Double; lp, hp: Integer; var y: Double;
+  var fz: Integer);
+var
+  n : Double;
+begin
+//subroutine functiewaarde berekenen
+  n := x*x-x-6;
+  if n=0 then
+    fz := 1
+  else
+    y := (x*x+3)/n;
+  if (y<lp) or (y>hp) then
+    fz := 1
+  else
+    fz := 0;
 end;
 
 procedure TfrmMain.Zeshoeken1Click(Sender: TObject);
