@@ -277,8 +277,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 4
       Visible = False
-      ExplicitLeft = -4
-      ExplicitTop = 6
       object lblLinkergrensX: TLabel
         Left = 28
         Top = 45
@@ -352,6 +350,109 @@ object frmMain: TfrmMain
         OnChange = miWillekeurigeFunctieClick
       end
     end
+    object pnlBloem: TPanel
+      Left = 1
+      Top = 1
+      Width = 183
+      Height = 518
+      Align = alClient
+      TabOrder = 5
+      Visible = False
+      object rgFormule: TRadioGroup
+        Left = 17
+        Top = 21
+        Width = 161
+        Height = 380
+        Caption = 'Formules bloem'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ItemIndex = 0
+        Items.Strings = (
+          'Cos(4 * P)'
+          'Cos(5 * P)'
+          'Cos(4 * Sin(5 * P))'
+          'Sin(4 * Cos(5 * P))'
+          'Cos(3 * Tan(5 * P))'
+          'Sin(3 * Tan(5 * P))'
+          'Sin(4 * P)'
+          'Sin(5 * P)'
+          'Sin(5 * Cos(2 * Sin(3 * Cos(4 * P))))'
+          'COS(14 * P)'
+          'SIN(3 * SIN(2 * P))'
+          'SIN(5 * COS(2 * P))'
+          'COS(4 * SIN(2 * P))'
+          'COS(4 * SIN(3 * P))'
+          'Cos(6 * p)')
+        ParentFont = False
+        TabOrder = 0
+        WordWrap = True
+        OnClick = miBloemClick
+      end
+    end
+    object pnlSpiralen: TPanel
+      Left = 1
+      Top = 1
+      Width = 183
+      Height = 518
+      Align = alClient
+      TabOrder = 6
+      Visible = False
+      ExplicitLeft = -4
+      ExplicitTop = 6
+      object lblGrootte: TLabel
+        Left = 40
+        Top = 40
+        Width = 77
+        Height = 15
+        Caption = 'Grootte spiraal'
+      end
+      object lblCenter: TLabel
+        Left = 40
+        Top = 97
+        Width = 65
+        Height = 15
+        Caption = 'Straal center'
+      end
+      object seGrootte: TSpinEdit
+        Left = 40
+        Top = 61
+        Width = 49
+        Height = 24
+        MaxValue = 7
+        MinValue = 1
+        TabOrder = 0
+        Value = 1
+        OnChange = miSpiralenClick
+      end
+      object seCenter: TSpinEdit
+        Left = 40
+        Top = 118
+        Width = 49
+        Height = 24
+        Increment = 5
+        MaxValue = 100
+        MinValue = 5
+        TabOrder = 1
+        Value = 5
+        OnChange = miSpiralenClick
+      end
+      object rgSpiralen: TRadioGroup
+        Left = 17
+        Top = 172
+        Width = 133
+        Height = 105
+        Caption = 'Soort spiraal'
+        ItemIndex = 0
+        Items.Strings = (
+          'Normaal'
+          'Logaritmisch')
+        TabOrder = 2
+        OnClick = miSpiralenClick
+      end
+    end
   end
   object MainMenu1: TMainMenu
     Left = 16
@@ -404,6 +505,26 @@ object frmMain: TfrmMain
       object miWillekeurigeFunctie: TMenuItem
         Caption = 'Grafiek van een willekeurige functie'
         OnClick = miWillekeurigeFunctieClick
+      end
+      object miBloem: TMenuItem
+        Caption = 'Bloem'
+        OnClick = miBloemClick
+      end
+      object miBloem2: TMenuItem
+        Caption = 'Bloem 2'
+        OnClick = miBloem2Click
+      end
+      object miBloem3: TMenuItem
+        Caption = 'Bloem 3'
+        OnClick = miBloem3Click
+      end
+      object miBloem4: TMenuItem
+        Caption = 'Bloem 4'
+        OnClick = miBloem4Click
+      end
+      object miSpiralen: TMenuItem
+        Caption = 'Spiralen'
+        OnClick = miSpiralenClick
       end
     end
   end

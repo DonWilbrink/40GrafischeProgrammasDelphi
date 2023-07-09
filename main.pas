@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Menus,
-  Vcl.Samples.Spin;
+  Vcl.Samples.Spin, System.Math;
 
 type
   TfrmMain = class(TForm)
@@ -58,6 +58,19 @@ type
     lblRechtergrensX: TLabel;
     lblBovengrensY: TLabel;
     lblOndergrensY: TLabel;
+    miBloem: TMenuItem;
+    pnlBloem: TPanel;
+    rgFormule: TRadioGroup;
+    miBloem2: TMenuItem;
+    miBloem3: TMenuItem;
+    miBloem4: TMenuItem;
+    miSpiralen: TMenuItem;
+    pnlSpiralen: TPanel;
+    lblGrootte: TLabel;
+    lblCenter: TLabel;
+    seGrootte: TSpinEdit;
+    seCenter: TSpinEdit;
+    rgSpiralen: TRadioGroup;
     procedure Diagonaalweb1Click(Sender: TObject);
     procedure MoireeeffectClick(Sender: TObject);
     procedure DriehoekenClick(Sender: TObject);
@@ -69,6 +82,11 @@ type
     procedure ParaboolStelselClick(Sender: TObject);
     procedure miOppKrommeClick(Sender: TObject);
     procedure miWillekeurigeFunctieClick(Sender: TObject);
+    procedure miBloemClick(Sender: TObject);
+    procedure miBloem2Click(Sender: TObject);
+    procedure miBloem3Click(Sender: TObject);
+    procedure miBloem4Click(Sender: TObject);
+    procedure miSpiralenClick(Sender: TObject);
   private
     { Private declarations }
     procedure Clear;
@@ -76,6 +94,11 @@ type
     procedure Swap(a, b: Integer);
     function OppKromme(x: Double): Double;
     procedure fn(x: Double; lp: Integer; hp: Integer; var y: Double; var fz: Integer);
+    function FormuleBloem(I: Integer; p: Double): Double;
+    function FormuleBloem2(i: Integer; k: Integer; p: Double): Double;
+    procedure Teken(I: Integer);
+    procedure Teken2(i: Integer);
+    procedure Teken3(i: Integer);
   public
     { Public declarations }
   end;
@@ -95,6 +118,7 @@ begin
   pnlIngeschreven.Visible := False;
   pnlContFunctie.Visible := False;
   pnlWillekFunc.Visible := False;
+  pnlBloem.Visible := False;
 end;
 
 procedure TfrmMain.Diagonaalweb1Click(Sender: TObject);
@@ -164,6 +188,35 @@ begin
     2:  y := x*x;
     3:  y := Exp(x);
     4:  y := x*x*x-2*x*x-x;
+  end;
+end;
+
+function TfrmMain.FormuleBloem(I: Integer; p: Double): Double;
+begin
+  Case I of
+    1 : Result := Cos(4 * p);
+    2 : Result := Cos(5 * p);
+    3 : Result := Cos(4 * Sin(5 * p));
+    4 : Result := Sin(4 * Cos(5 * p));
+    5 : Result := Cos(3 * Tan(5 * p));
+    6 : Result := Sin(3 * Tan(5 * p));
+    7 : Result := Sin(4 * p);
+    8 : Result := Sin(5 * p);
+    9 : Result := Sin(5 * Cos(2 * Sin(3 * Cos(4 * p))));
+    10 : Result := Cos(14 * P);
+    11 : Result := SIN(3 * SIN(2 * P));
+    12 : Result := SIN(5 * COS(2 * P));
+    13 : Result := COS(4 * SIN(2 * P));
+    14 : Result := COS(4 * SIN(3 * P));
+    15 : Result := Cos(6 * p);
+  end;
+end;
+
+function TfrmMain.FormuleBloem2(i, k: Integer; p: Double): Double;
+begin
+  case i of
+    1 : Result := k * Cos(4 * Sin(2 * p));
+    2 : Result := Trunc(pbMain.Height/4) + 2*k * Sin(4 * p);
   end;
 end;
 
@@ -309,6 +362,81 @@ begin
   Result := Cos(x) - Cos(3*x)/3 + Cos(5*x)/5 - Cos(7*x)/7;
 end;
 
+procedure TfrmMain.miBloem2Click(Sender: TObject);
+var
+  i: Integer;
+begin
+  i := 1;
+  Teken2(i);
+end;
+
+procedure TfrmMain.miBloem3Click(Sender: TObject);
+var
+  i: Integer;
+begin
+  i := 2;
+  Teken3(i);
+end;
+
+procedure TfrmMain.miBloem4Click(Sender: TObject);
+var
+  j, k, n, u, v, w, x, x1, x2, y, y1, y2: Integer;
+  c, p, p1, r, rd: Double;
+begin
+  Clear;
+  u := Trunc(pbMain.Width/2);
+  v := Trunc(pbMain.Height/2);
+  n := 4;
+  c := 0.25;
+  rd := pi/180;
+  k := 30;
+  while k<v-60 do
+  begin
+    for w := 0 to 360 do
+    begin
+      p := w * rd;
+      r := k * (1 + c * abs(sin(n * p)));
+      x := Trunc(u+r*Cos(p));
+      y := Trunc(v-r*Sin(p));
+      if p=0 then
+      begin
+        x1 := x;
+        y1 := y;
+      end
+      else
+      begin
+        x2 := x;
+        y2 := y;
+        pbMain.Canvas.MoveTo(x1,y1);
+        pbMain.Canvas.LineTo(x2,y2);
+        x1 := x2;
+        y1 := y2;
+      end;
+    end;
+    k := k + 10;
+  end;
+  r := 30;
+  p1 := 180 / n * rd;
+  for j := 1 to n do
+  begin
+    p := j * p1;
+    x1 := Trunc(u+r*Cos(p));
+    y1 := Trunc(v-r*Sin(p));
+    x2 := Trunc(u+r*Cos(p+pi));
+    y2 := Trunc(v-r*Sin(p+pi));
+    pbMain.Canvas.MoveTo(x1,y1);
+    pbMain.Canvas.LineTo(x2,y2);
+  end;
+end;
+
+procedure TfrmMain.miBloemClick(Sender: TObject);
+var
+  I : Integer;
+begin
+  I := rgFormule.ItemIndex + 1;
+  Teken(I);
+end;
+
 procedure TfrmMain.miOppKrommeClick(Sender: TObject);
 var
   j, k, v, y: Integer;
@@ -325,6 +453,66 @@ begin
     y := Trunc(v - k * OppKromme(x));
     pbMain.Canvas.MoveTo(j,v);
     pbMain.Canvas.LineTo(j,y);
+  end;
+end;
+
+procedure TfrmMain.miSpiralenClick(Sender: TObject);
+var
+  q, u, v, w, x, x1, x2, y, y1, y2: Integer;
+  c, p, r, rd: Double;
+begin
+  Clear;
+  pnlSpiralen.Visible := True;
+  u := Trunc(pbMain.Width/2);
+  v := Trunc(pbMain.Height/2);
+  rd := Pi/180;
+  if rgSpiralen.ItemIndex = 0 then
+  begin
+    seCenter.Visible:=False;
+    lblCenter.Visible:=False;
+    seGrootte.Visible:=True;
+    lblGrootte.Visible:=True;
+    c := seGrootte.Value;
+  end
+  else
+  begin
+    seCenter.Visible:=True;
+    lblCenter.Visible:=True;
+    seGrootte.Visible:=False;
+    lblGrootte.Visible:=False;
+    c := 0.1;
+    q := seCenter.Value;
+  end;
+  for w := 0 to 3000 do
+  begin
+    p := w * rd;
+    if rgSpiralen.ItemIndex = 0 then
+    begin
+      //c := c * 2;
+      r := c * p
+    end
+    else
+    begin
+      r := q * Exp(c * p);
+      if r > v then Break;
+    end;
+    x := Trunc(u + r * Cos(p));
+    y := Trunc(v - r * Sin(p));
+    //if x = 0 or x >= pbMain.Width or y = 0 or y >= pbMain.Height then Break;
+    if p = 0 then
+    begin
+      x1 := x;
+      y1 := y;
+    end
+    else
+    begin
+      x2 := x;
+      y2 := y;
+      pbMain.Canvas.MoveTo(x1,y1);
+      pbMain.Canvas.LineTo(x2,y2);
+      x1 := x2;
+      y1 := y2;
+    end;
   end;
 end;
 
@@ -468,6 +656,113 @@ begin
   c := a;
   a := b;
   b := c;
+end;
+
+procedure TfrmMain.Teken(I: Integer);
+var
+  RD, P, R: Single;
+  K, U, V, W, X1, X2, Y1, Y2: Integer;
+
+begin
+  Clear;
+  pnlBloem.Visible:=True;
+  U := Trunc(pbMain.Width/2);
+  V := Trunc(pbMain.Height/2);
+  K := V;
+  RD := Pi/180;
+  P := 0;
+  R := FormuleBloem(I,P);
+  X1 := Trunc(U + K * R * Cos(P));
+  Y1 := Trunc(V - K * R * Sin(P));
+  W := 1;
+  while W <= 360 do
+  begin
+    P := W * RD;
+    R := FormuleBloem(I,P);
+    X2 := Trunc(U + K * R * Cos(P));
+    Y2 := Trunc(V - K * R * Sin(P));
+    pbMain.Canvas.MoveTo(x1,y1);
+    pbMain.Canvas.LineTo(x2,y2);
+    X1 := X2;
+    Y1 := Y2;
+    W := W + 1;
+  end;
+end;
+
+procedure TfrmMain.Teken2(i: Integer);
+var
+  k, v, u, w, x, x1, x2, y, y1, y2: Integer;
+  rd, p, r: Double;
+begin
+  Clear;
+  u := Trunc(pbMain.Width/2);
+  v := Trunc(pbMain.Height/2);
+  //u := 200;
+  //v := 200;
+  rd := pi/180;
+  w := 0;
+  k := 2;
+  repeat
+    repeat
+      p := w * rd;
+      r := FormuleBloem2(i, k, p);
+      x := Trunc(u + k * r * Cos(p));
+      y := Trunc(v - k * r * Sin(p));
+      if p = 0 then
+      begin
+        x1 := x;
+        y1 := y;
+      end
+      else
+      begin
+        x2 := x;
+        y2 := y;
+        pbMain.Canvas.MoveTo(x1,y1);
+        pbMain.Canvas.LineTo(x2,y2);
+        x1 := x2;
+        y1 := y2;
+      end;
+      w := w + 1;
+    until w = 361;
+    w := 0;
+    k := k + 1;
+  until k >= 20;
+end;
+
+procedure TfrmMain.Teken3(i: Integer);
+var
+  k, u, v, w, x, x1, x2, y, y1, y2: Integer;
+  p, r, rd: Double;
+begin
+  Clear;
+  u := Trunc(pbMain.Width/2);
+  v := Trunc(pbMain.Height/2);
+  rd := pi/180;
+  k := -80;
+  repeat
+    for w := 0 to 360 do
+    begin
+      p := w * rd;
+      r := FormuleBloem2(i, k, p);
+      x := Trunc(u + r * Cos(p));
+      y := Trunc(v - r * Sin(p));
+      if p = 0 then
+      begin
+        x1 := x;
+        y1 := y;
+      end
+      else
+      begin
+        x2 := x;
+        y2 := y;
+        pbMain.Canvas.MoveTo(x1,y1);
+        pbMain.Canvas.LineTo(x2,y2);
+        x1 := x2;
+        y1 := y2;
+      end;
+    end;
+    k := k + 20;
+  until k > 80;
 end;
 
 procedure TfrmMain.DriehoekenClick(Sender: TObject);
