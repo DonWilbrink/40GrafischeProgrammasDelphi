@@ -15,13 +15,14 @@ object frmMain: TfrmMain
   PixelsPerInch = 96
   TextHeight = 15
   object pbMain: TPaintBox
-    Left = 185
+    Left = 275
     Top = 49
-    Width = 690
+    Width = 600
     Height = 520
     Align = alClient
-    ExplicitLeft = 201
+    ExplicitLeft = 185
     ExplicitTop = 55
+    ExplicitWidth = 690
   end
   object pnlTop: TPanel
     Left = 0
@@ -43,14 +44,14 @@ object frmMain: TfrmMain
   object pnlSide: TPanel
     Left = 0
     Top = 49
-    Width = 185
+    Width = 275
     Height = 520
     Align = alLeft
     TabOrder = 1
     object pnlDiagWeb: TPanel
       Left = 1
       Top = 1
-      Width = 183
+      Width = 273
       Height = 518
       Align = alClient
       TabOrder = 0
@@ -77,7 +78,7 @@ object frmMain: TfrmMain
     object pnlDiagNHoek: TPanel
       Left = 1
       Top = 1
-      Width = 183
+      Width = 273
       Height = 518
       Align = alClient
       TabOrder = 1
@@ -142,7 +143,7 @@ object frmMain: TfrmMain
     object pnlIngeschreven: TPanel
       Left = 1
       Top = 1
-      Width = 183
+      Width = 273
       Height = 518
       Align = alClient
       TabOrder = 2
@@ -172,107 +173,10 @@ object frmMain: TfrmMain
         OnChange = Ingeschrevenvierkanten1Click
       end
     end
-    object pnlContFunctie: TPanel
-      Left = 1
-      Top = 1
-      Width = 183
-      Height = 518
-      Align = alClient
-      TabOrder = 3
-      Visible = False
-      object lblLinker: TLabel
-        Left = 8
-        Top = 5
-        Width = 108
-        Height = 15
-        Caption = 'Linker-interval grens'
-      end
-      object lblRechter: TLabel
-        Left = 8
-        Top = 67
-        Width = 116
-        Height = 15
-        Caption = 'Rechter-interval grens'
-      end
-      object lblBoven: TLabel
-        Left = 8
-        Top = 121
-        Width = 98
-        Height = 15
-        Caption = 'Bovengrens voor y'
-      end
-      object lblOnder: TLabel
-        Left = 8
-        Top = 181
-        Width = 98
-        Height = 15
-        Caption = 'Ondergrens voor y'
-      end
-      object seLinker: TSpinEdit
-        Left = 8
-        Top = 88
-        Width = 73
-        Height = 24
-        MaxValue = 20
-        MinValue = -15
-        TabOrder = 0
-        Value = -15
-        OnChange = Grafiekvaneencontinuefunctie1Click
-      end
-      object seRechter: TSpinEdit
-        Left = 8
-        Top = 29
-        Width = 73
-        Height = 24
-        MaxValue = 15
-        MinValue = -15
-        TabOrder = 1
-        Value = 15
-        OnChange = Grafiekvaneencontinuefunctie1Click
-      end
-      object seBoven: TSpinEdit
-        Left = 8
-        Top = 142
-        Width = 73
-        Height = 24
-        MaxValue = 20
-        MinValue = 1
-        TabOrder = 2
-        Value = 4
-        OnChange = Grafiekvaneencontinuefunctie1Click
-      end
-      object seOnder: TSpinEdit
-        Left = 8
-        Top = 202
-        Width = 73
-        Height = 24
-        MaxValue = -1
-        MinValue = -20
-        TabOrder = 3
-        Value = -4
-        OnChange = Grafiekvaneencontinuefunctie1Click
-      end
-      object rgFormules: TRadioGroup
-        Left = 17
-        Top = 232
-        Width = 161
-        Height = 129
-        Caption = 'Formules'
-        ItemIndex = 0
-        Items.Strings = (
-          '1 : y=Exp(-0.1*x)*Cos(x)'
-          '2 : y=Sin(x)'
-          '3 : y=x*x'
-          '4 : y=Exp(x)'
-          '5 : y=x*x*x-2*x*x-x')
-        TabOrder = 4
-        OnClick = Grafiekvaneencontinuefunctie1Click
-      end
-    end
     object pnlWillekFunc: TPanel
       Left = 1
       Top = 1
-      Width = 183
+      Width = 273
       Height = 518
       Align = alClient
       TabOrder = 4
@@ -310,7 +214,7 @@ object frmMain: TfrmMain
         Top = 67
         Width = 53
         Height = 24
-        MaxValue = 0
+        MaxValue = -1
         MinValue = -5
         TabOrder = 0
         Value = -5
@@ -353,7 +257,7 @@ object frmMain: TfrmMain
     object pnlBloem: TPanel
       Left = 1
       Top = 1
-      Width = 183
+      Width = 273
       Height = 518
       Align = alClient
       TabOrder = 5
@@ -395,13 +299,11 @@ object frmMain: TfrmMain
     object pnlSpiralen: TPanel
       Left = 1
       Top = 1
-      Width = 183
+      Width = 273
       Height = 518
       Align = alClient
       TabOrder = 6
       Visible = False
-      ExplicitLeft = -4
-      ExplicitTop = 6
       object lblGrootte: TLabel
         Left = 40
         Top = 40
@@ -451,6 +353,197 @@ object frmMain: TfrmMain
           'Logaritmisch')
         TabOrder = 2
         OnClick = miSpiralenClick
+      end
+    end
+    object pnlContFunctie: TPanel
+      Left = 1
+      Top = 1
+      Width = 273
+      Height = 518
+      Align = alClient
+      TabOrder = 3
+      Visible = False
+      object lblLinker: TLabel
+        Left = 8
+        Top = 5
+        Width = 108
+        Height = 15
+        Caption = 'Linker-interval grens'
+      end
+      object lblRechter: TLabel
+        Left = 8
+        Top = 67
+        Width = 116
+        Height = 15
+        Caption = 'Rechter-interval grens'
+      end
+      object lblBoven: TLabel
+        Left = 8
+        Top = 121
+        Width = 98
+        Height = 15
+        Caption = 'Bovengrens voor y'
+      end
+      object lblOnder: TLabel
+        Left = 8
+        Top = 181
+        Width = 98
+        Height = 15
+        Caption = 'Ondergrens voor y'
+      end
+      object seLinker: TSpinEdit
+        Left = 8
+        Top = 88
+        Width = 73
+        Height = 24
+        MaxValue = -1
+        MinValue = -20
+        TabOrder = 0
+        Value = -15
+        OnChange = Grafiekvaneencontinuefunctie1Click
+      end
+      object seRechter: TSpinEdit
+        Left = 8
+        Top = 29
+        Width = 73
+        Height = 24
+        MaxValue = 18
+        MinValue = 1
+        TabOrder = 1
+        Value = 15
+        OnChange = Grafiekvaneencontinuefunctie1Click
+      end
+      object seBoven: TSpinEdit
+        Left = 8
+        Top = 142
+        Width = 73
+        Height = 24
+        MaxValue = 20
+        MinValue = 1
+        TabOrder = 2
+        Value = 4
+        OnChange = Grafiekvaneencontinuefunctie1Click
+      end
+      object seOnder: TSpinEdit
+        Left = 8
+        Top = 202
+        Width = 73
+        Height = 24
+        MaxValue = -1
+        MinValue = -20
+        TabOrder = 3
+        Value = -4
+        OnChange = Grafiekvaneencontinuefunctie1Click
+      end
+      object rgFormules: TRadioGroup
+        Left = 17
+        Top = 232
+        Width = 161
+        Height = 129
+        Caption = 'Formules'
+        ItemIndex = 0
+        Items.Strings = (
+          '1 : y=Exp(-0.1*x)*Cos(x)'
+          '2 : y=Sin(x)'
+          '3 : y=x*x'
+          '4 : y=Exp(x)'
+          '5 : y=x*x*x-2*x*x-x')
+        TabOrder = 4
+        OnClick = Grafiekvaneencontinuefunctie1Click
+      end
+    end
+    object pnlFuncFPhi: TPanel
+      Left = 1
+      Top = 1
+      Width = 273
+      Height = 518
+      Align = alClient
+      TabOrder = 7
+      Visible = False
+      object lblA: TLabel
+        Left = 15
+        Top = 16
+        Width = 98
+        Height = 15
+        Caption = 'Linkergrens voor X'
+      end
+      object lblB: TLabel
+        Left = 14
+        Top = 76
+        Width = 106
+        Height = 15
+        Caption = 'Rechtergrens voor X'
+      end
+      object lblHP: TLabel
+        Left = 17
+        Top = 130
+        Width = 99
+        Height = 15
+        Caption = 'Bovengrens voor Y'
+      end
+      object lblLP: TLabel
+        Left = 17
+        Top = 181
+        Width = 99
+        Height = 15
+        Caption = 'Ondergrens voor Y'
+      end
+      object rgFuncFPhi: TRadioGroup
+        Left = 8
+        Top = 251
+        Width = 249
+        Height = 105
+        Caption = 'Formules'
+        ItemIndex = 0
+        Items.Strings = (
+          '(Sin(3*p/2))/(1-2*Cos(p))'
+          '(4*Sin(1.5*p+2)/(Cos(p)*(1+(Cos(3*p))/3) ')
+        TabOrder = 0
+        OnClick = miFuncFPhiClick
+      end
+      object seA: TSpinEdit
+        Left = 17
+        Top = 37
+        Width = 56
+        Height = 24
+        MaxValue = -1
+        MinValue = -10
+        TabOrder = 1
+        Value = -2
+        OnChange = miFuncFPhiClick
+      end
+      object seB: TSpinEdit
+        Left = 17
+        Top = 97
+        Width = 56
+        Height = 24
+        MaxValue = 10
+        MinValue = 1
+        TabOrder = 2
+        Value = 2
+        OnChange = miFuncFPhiClick
+      end
+      object seHP: TSpinEdit
+        Left = 17
+        Top = 151
+        Width = 56
+        Height = 24
+        MaxValue = 10
+        MinValue = 1
+        TabOrder = 3
+        Value = 2
+        OnChange = miFuncFPhiClick
+      end
+      object seLP: TSpinEdit
+        Left = 17
+        Top = 202
+        Width = 56
+        Height = 24
+        MaxValue = -1
+        MinValue = -10
+        TabOrder = 4
+        Value = -2
+        OnChange = miFuncFPhiClick
       end
     end
   end
@@ -525,6 +618,10 @@ object frmMain: TfrmMain
       object miSpiralen: TMenuItem
         Caption = 'Spiralen'
         OnClick = miSpiralenClick
+      end
+      object miFuncFPhi: TMenuItem
+        Caption = 'Grafiek van de functie R=f(Phi)'
+        OnClick = miFuncFPhiClick
       end
     end
   end

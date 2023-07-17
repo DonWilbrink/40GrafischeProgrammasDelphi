@@ -71,6 +71,17 @@ type
     seGrootte: TSpinEdit;
     seCenter: TSpinEdit;
     rgSpiralen: TRadioGroup;
+    pnlFuncFPhi: TPanel;
+    rgFuncFPhi: TRadioGroup;
+    lblA: TLabel;
+    lblB: TLabel;
+    lblHP: TLabel;
+    lblLP: TLabel;
+    seA: TSpinEdit;
+    seB: TSpinEdit;
+    seHP: TSpinEdit;
+    seLP: TSpinEdit;
+    miFuncFPhi: TMenuItem;
     procedure Diagonaalweb1Click(Sender: TObject);
     procedure MoireeeffectClick(Sender: TObject);
     procedure DriehoekenClick(Sender: TObject);
@@ -87,11 +98,12 @@ type
     procedure miBloem3Click(Sender: TObject);
     procedure miBloem4Click(Sender: TObject);
     procedure miSpiralenClick(Sender: TObject);
+    procedure miFuncFPhiClick(Sender: TObject);
   private
     { Private declarations }
-    procedure Clear;
+    procedure frmClear;
     procedure Formule(i: Integer; x: Double; var y:Double);
-    procedure Swap(a, b: Integer);
+    procedure Swap(var a, b: Integer);
     function OppKromme(x: Double): Double;
     procedure fn(x: Double; lp: Integer; hp: Integer; var y: Double; var fz: Integer);
     function FormuleBloem(I: Integer; p: Double): Double;
@@ -110,22 +122,11 @@ implementation
 
 {$R *.dfm}
 
-procedure TfrmMain.Clear;
-begin
-  pbMain.Canvas.FillRect(rect(0,0,pbMain.Width,pbMain.Height));
-  pnlDiagWeb.Visible := False;
-  pnlDiagNHoek.Visible := False;
-  pnlIngeschreven.Visible := False;
-  pnlContFunctie.Visible := False;
-  pnlWillekFunc.Visible := False;
-  pnlBloem.Visible := False;
-end;
-
 procedure TfrmMain.Diagonaalweb1Click(Sender: TObject);
 var
   a, b, h, i, j, n, y1, y2: Integer;
 begin
-  Clear;
+  frmClear;
   edN.MaxValue := Trunc(pbMain.Width/50) + 1;
   pnlDiagWeb.Visible := True;
   h := pbMain.Height;
@@ -152,7 +153,7 @@ var
   w, w1: real;
   x, y: Array of Integer;
 begin
-  Clear;
+  frmClear;
   pnlDiagNHoek.Visible := True;
   seBreed.MaxValue := Trunc(pbMain.Width/2) - 40;
   seHoog.MaxValue := Trunc(pbMain.Height/2) - 40;
@@ -220,18 +221,30 @@ begin
   end;
 end;
 
+procedure TfrmMain.frmClear;
+begin
+  pbMain.Canvas.FillRect(rect(0,0,pbMain.Width,pbMain.Height));
+  pnlDiagWeb.Visible := False;
+  pnlDiagNHoek.Visible := False;
+  pnlIngeschreven.Visible := False;
+  pnlContFunctie.Visible := False;
+  pnlWillekFunc.Visible := False;
+  pnlBloem.Visible := False;
+  pnlFuncFPhi.Visible := False;
+end;
+
 procedure TfrmMain.Grafiekvaneencontinuefunctie1Click(Sender: TObject);
 var
   a, b, i, xx, yy, x1, x2, y1, y2: Integer;
   x, y, hp, lp, dx, kx, ky: Double;
 begin
-  Clear;
+  frmClear;
   pnlContFunctie.Visible := True;
   a := seLinker.Value;
   b := seRechter.Value;
   if a>b then  Swap(a,b);
-  hp := 100000;
-  lp := -100000;
+  hp := -100000;
+  lp := 100000;
   dx := (b-a)/128;
   x := a;
   i := rgFormules.ItemIndex;
@@ -243,6 +256,8 @@ begin
   until x=b;
   lblBoven.Caption := 'Grootste y-waarde: ' + hp.ToString;
   lblOnder.Caption := 'Kleinste y-waarde: ' + lp.ToString;
+  seBoven.Value := Trunc(hp)+1;
+  seOnder.Value := Trunc(lp)-1;
   //seBoven.Value := Trunc(hp);
   //seOnder.Value := Trunc(lp);
   hp := seBoven.Value;
@@ -296,7 +311,7 @@ var
   h, j, k, n: Integer;
   a, b, x, y: Array[1..5] of Integer;
 begin
-  Clear;
+  frmClear;
   pnlIngeschreven.Visible := True;
   seK.SetFocus;
   h := pbMain.Height - 40;
@@ -331,7 +346,7 @@ procedure TfrmMain.MoireeeffectClick(Sender: TObject);
 var
   a, h, j: Integer;
 begin
-  Clear;
+  frmClear;
   h := pbMain.Height;
   for j := 0 to Trunc(h/10) do
   begin
@@ -383,7 +398,7 @@ var
   j, k, n, u, v, w, x, x1, x2, y, y1, y2: Integer;
   c, p, p1, r, rd: Double;
 begin
-  Clear;
+  frmClear;
   u := Trunc(pbMain.Width/2);
   v := Trunc(pbMain.Height/2);
   n := 4;
@@ -437,12 +452,84 @@ begin
   Teken(I);
 end;
 
+procedure TfrmMain.miFuncFPhiClick(Sender: TObject);
+var
+  a, b, cw, ch, fa, fz, i, lp, hp, w, wo, wn, x1, x2, y1, y2: Integer;
+  kx, ky, n, p, r, rd, t, x, y: Double;
+begin
+  frmClear;
+  pnlFuncFPhi.Visible := True;
+  cw := pbMain.Width;
+  ch := pbMain.Height;
+  a := seA.Value;
+  b := seB.Value;
+  lp := seLP.Value;
+  hp := seHP.Value;
+  wo := 0;
+  wn := 720;
+  kx := cw/(b-a);
+  ky := ch/(hp-lp);
+  rd := pi/180;
+  fa := 1;
+  i := rgFuncFPhi.ItemIndex + 1;
+  for w := wo to wn do
+  begin
+    p := w * rd;
+    case i of
+      1:
+        begin
+          t := Sin(3*p/2);
+          n := 1 - 2 * Cos(p);
+        end;
+      2:
+        begin
+          t := 4*Sin(3*p/2+2);
+          n := Cos(p)*(1+(Cos(3*p)/3));
+        end;
+    end;
+    if n=0 then
+      fz := 1
+    else
+    begin
+      r := t/n;
+      x := r * Cos(p);
+      y := r * Sin(p);
+      if (Trunc(x)<a) or (Trunc(x)>b) or (Trunc(y)<lp) or (Trunc(y)>hp) then
+        fz := 1
+      else
+        fz := 0;
+    end;
+      //if r<0 then
+        //fz := 1;
+    if fz=1 then
+      fa := 1
+    else
+    begin
+      if fa=1 then
+      begin
+        x1 := Trunc(kx*(x-a));
+        y1 := Trunc(ky*(hp-y));
+        fa := 0;
+      end
+      else
+      begin
+        x2 := Trunc(kx*(x-a));
+        y2 := Trunc(ky*(hp-y));
+        pbMain.Canvas.MoveTo(x1,y1);
+        pbMain.Canvas.LineTo(x2,y2);
+        x1 := x2;
+        y1 := y2;
+      end;
+    end;
+  end;
+end;
+
 procedure TfrmMain.miOppKrommeClick(Sender: TObject);
 var
   j, k, v, y: Integer;
   c, x: Double;
 begin
-  Clear;
+  frmClear;
   v := pbMain.Width div 4;
   k := pbMain.Height div 4;
   c := 2*pi/pbMain.Height;
@@ -461,7 +548,7 @@ var
   q, u, v, w, x, x1, x2, y, y1, y2: Integer;
   c, p, r, rd: Double;
 begin
-  Clear;
+  frmClear;
   pnlSpiralen.Visible := True;
   u := Trunc(pbMain.Width/2);
   v := Trunc(pbMain.Height/2);
@@ -521,7 +608,7 @@ var
   a, b, ch, cw, fa, fz, hp, lp, x1, x2, y1, y2: Integer;
   dx, kx, ky, x, y: Double;
 begin
-  Clear;
+  frmClear;
   pnlWillekFunc.Visible:=True;
   ch := pbMain.Height;
   cw := pbMain.Width;
@@ -584,7 +671,7 @@ var
   k, u, v, x, xx, x1, x2, y, y1, y2: Integer;
   yy: Double;
 begin
-  Clear;
+  frmClear;
   u := Trunc(pbMain.Width/2);
   v := Trunc(pbMain.Height/2);
   k := -v;
@@ -619,7 +706,7 @@ var
   f, j, k, n, v, x1, x2, y, y1, y2: Integer;
   c, p, x: Double;
 begin
-  Clear;
+  frmClear;
   v := 300;
   k := 200;
   p := pi/9;
@@ -649,7 +736,7 @@ begin
   end;
 end;
 
-procedure TfrmMain.Swap(a, b: Integer);
+procedure TfrmMain.Swap(var a, b: Integer);
 var
   c: Integer;
 begin
@@ -664,7 +751,7 @@ var
   K, U, V, W, X1, X2, Y1, Y2: Integer;
 
 begin
-  Clear;
+  frmClear;
   pnlBloem.Visible:=True;
   U := Trunc(pbMain.Width/2);
   V := Trunc(pbMain.Height/2);
@@ -694,7 +781,7 @@ var
   k, v, u, w, x, x1, x2, y, y1, y2: Integer;
   rd, p, r: Double;
 begin
-  Clear;
+  frmClear;
   u := Trunc(pbMain.Width/2);
   v := Trunc(pbMain.Height/2);
   //u := 200;
@@ -734,7 +821,7 @@ var
   k, u, v, w, x, x1, x2, y, y1, y2: Integer;
   p, r, rd: Double;
 begin
-  Clear;
+  frmClear;
   u := Trunc(pbMain.Width/2);
   v := Trunc(pbMain.Height/2);
   rd := pi/180;
@@ -770,7 +857,7 @@ var
   j, k, x0, y0: Integer;
   a, b, x, y: Array[1..3] of Integer;
 begin
-  Clear;
+  frmClear;
   a[1] := 6;
   a[2] := 20;
   a[3] := 12;
@@ -816,7 +903,7 @@ var
   u, v, r, j, k, n: Integer;
   h, w, w1: real;
 begin
-  Clear;
+  frmClear;
   u := Trunc(pbMain.Width/2);
   v := Trunc(pbMain.Height/2);
   r := v;
