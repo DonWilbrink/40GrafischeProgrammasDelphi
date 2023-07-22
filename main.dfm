@@ -546,6 +546,228 @@ object frmMain: TfrmMain
         OnChange = miFuncFPhiClick
       end
     end
+    object pnlLissajous: TPanel
+      Left = 1
+      Top = 1
+      Width = 273
+      Height = 518
+      Align = alClient
+      TabOrder = 8
+      Visible = False
+      ExplicitLeft = -4
+      ExplicitTop = 6
+      object lblK1: TLabel
+        Left = 17
+        Top = 16
+        Width = 13
+        Height = 15
+        Caption = 'K1'
+      end
+      object Label2: TLabel
+        Left = 144
+        Top = 16
+        Width = 12
+        Height = 15
+        Caption = 'F1'
+      end
+      object lblK2: TLabel
+        Left = 15
+        Top = 76
+        Width = 13
+        Height = 15
+        Caption = 'K2'
+      end
+      object Label4: TLabel
+        Left = 144
+        Top = 76
+        Width = 12
+        Height = 15
+        Caption = 'F2'
+      end
+      object lblK3: TLabel
+        Left = 17
+        Top = 148
+        Width = 13
+        Height = 15
+        Caption = 'K3'
+      end
+      object Label6: TLabel
+        Left = 144
+        Top = 151
+        Width = 12
+        Height = 15
+        Caption = 'F3'
+      end
+      object Label7: TLabel
+        Left = 17
+        Top = 230
+        Width = 13
+        Height = 15
+        Caption = 'K4'
+      end
+      object Label8: TLabel
+        Left = 144
+        Top = 230
+        Width = 12
+        Height = 15
+        Caption = 'F4'
+      end
+      object Label9: TLabel
+        Left = 17
+        Top = 302
+        Width = 13
+        Height = 15
+        Caption = 'P1'
+      end
+      object Label10: TLabel
+        Left = 144
+        Top = 302
+        Width = 13
+        Height = 15
+        Caption = 'P3'
+      end
+      object seK1: TSpinEdit
+        Left = 17
+        Top = 37
+        Width = 48
+        Height = 24
+        Increment = 10
+        MaxValue = 400
+        MinValue = 0
+        TabOrder = 0
+        Value = 100
+        OnChange = miLissajousfiguurClick
+      end
+      object seF1: TSpinEdit
+        Left = 144
+        Top = 37
+        Width = 48
+        Height = 24
+        MaxValue = 100
+        MinValue = 0
+        TabOrder = 1
+        Value = 16
+        OnChange = miLissajousfiguurClick
+      end
+      object seK2: TSpinEdit
+        Left = 17
+        Top = 100
+        Width = 48
+        Height = 24
+        MaxValue = 100
+        MinValue = 0
+        TabOrder = 2
+        Value = 0
+        OnChange = miLissajousfiguurClick
+      end
+      object seF2: TSpinEdit
+        Left = 140
+        Top = 97
+        Width = 48
+        Height = 24
+        MaxValue = 100
+        MinValue = 0
+        TabOrder = 3
+        Value = 0
+        OnChange = miLissajousfiguurClick
+      end
+      object seK3: TSpinEdit
+        Left = 17
+        Top = 172
+        Width = 48
+        Height = 24
+        Increment = 10
+        MaxValue = 400
+        MinValue = 0
+        TabOrder = 4
+        Value = 100
+        OnChange = miLissajousfiguurClick
+      end
+      object seF3: TSpinEdit
+        Left = 144
+        Top = 172
+        Width = 48
+        Height = 24
+        MaxValue = 100
+        MinValue = 0
+        TabOrder = 5
+        Value = 17
+        OnChange = miLissajousfiguurClick
+      end
+      object seK4: TSpinEdit
+        Left = 17
+        Top = 251
+        Width = 48
+        Height = 24
+        MaxValue = 100
+        MinValue = 0
+        TabOrder = 6
+        Value = 0
+        OnChange = miLissajousfiguurClick
+      end
+      object seF4: TSpinEdit
+        Left = 144
+        Top = 251
+        Width = 48
+        Height = 24
+        MaxValue = 100
+        MinValue = 0
+        TabOrder = 7
+        Value = 0
+        OnChange = miLissajousfiguurClick
+      end
+      object seP1: TSpinEdit
+        Left = 17
+        Top = 323
+        Width = 48
+        Height = 24
+        MaxValue = 0
+        MinValue = 0
+        TabOrder = 8
+        Value = 0
+        OnChange = miLissajousfiguurClick
+      end
+      object seP3: TSpinEdit
+        Left = 144
+        Top = 323
+        Width = 48
+        Height = 24
+        MaxValue = 100
+        MinValue = 0
+        TabOrder = 9
+        Value = 35
+        OnChange = miLissajousfiguurClick
+      end
+    end
+    object pnlOppKromme: TPanel
+      Left = 1
+      Top = 1
+      Width = 273
+      Height = 518
+      Align = alClient
+      TabOrder = 9
+      Visible = False
+      ExplicitLeft = -4
+      ExplicitTop = 6
+      object lblKromme: TLabel
+        Left = 34
+        Top = 42
+        Width = 91
+        Height = 15
+        Caption = 'Kromme formule'
+      end
+      object seKromme: TSpinEdit
+        Left = 34
+        Top = 67
+        Width = 55
+        Height = 24
+        MaxValue = 5
+        MinValue = 1
+        TabOrder = 0
+        Value = 1
+        OnChange = miOppKrommeClick
+      end
+    end
   end
   object MainMenu1: TMainMenu
     Left = 16
@@ -622,6 +844,10 @@ object frmMain: TfrmMain
       object miFuncFPhi: TMenuItem
         Caption = 'Grafiek van de functie R=f(Phi)'
         OnClick = miFuncFPhiClick
+      end
+      object miLissajousfiguur: TMenuItem
+        Caption = 'Lissajous figuur'
+        OnClick = miLissajousfiguurClick
       end
     end
   end

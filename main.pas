@@ -82,6 +82,31 @@ type
     seHP: TSpinEdit;
     seLP: TSpinEdit;
     miFuncFPhi: TMenuItem;
+    miLissajousfiguur: TMenuItem;
+    pnlLissajous: TPanel;
+    lblK1: TLabel;
+    Label2: TLabel;
+    lblK2: TLabel;
+    Label4: TLabel;
+    lblK3: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    seK1: TSpinEdit;
+    seF1: TSpinEdit;
+    seK2: TSpinEdit;
+    seF2: TSpinEdit;
+    seK3: TSpinEdit;
+    seF3: TSpinEdit;
+    seK4: TSpinEdit;
+    seF4: TSpinEdit;
+    seP1: TSpinEdit;
+    seP3: TSpinEdit;
+    pnlOppKromme: TPanel;
+    seKromme: TSpinEdit;
+    lblKromme: TLabel;
     procedure Diagonaalweb1Click(Sender: TObject);
     procedure MoireeeffectClick(Sender: TObject);
     procedure DriehoekenClick(Sender: TObject);
@@ -99,12 +124,13 @@ type
     procedure miBloem4Click(Sender: TObject);
     procedure miSpiralenClick(Sender: TObject);
     procedure miFuncFPhiClick(Sender: TObject);
+    procedure miLissajousfiguurClick(Sender: TObject);
   private
     { Private declarations }
     procedure frmClear;
     procedure Formule(i: Integer; x: Double; var y:Double);
     procedure Swap(var a, b: Integer);
-    function OppKromme(x: Double): Double;
+    function OppKromme(i: Integer; x: Double): Double;
     procedure fn(x: Double; lp: Integer; hp: Integer; var y: Double; var fz: Integer);
     function FormuleBloem(I: Integer; p: Double): Double;
     function FormuleBloem2(i: Integer; k: Integer; p: Double): Double;
@@ -231,6 +257,8 @@ begin
   pnlWillekFunc.Visible := False;
   pnlBloem.Visible := False;
   pnlFuncFPhi.Visible := False;
+  pnlLissajous.Visible := False;
+  pnlOppKromme.Visible := False;
 end;
 
 procedure TfrmMain.Grafiekvaneencontinuefunctie1Click(Sender: TObject);
@@ -372,9 +400,15 @@ begin
   end;
 end;
 
-function TfrmMain.OppKromme(x: Double): Double;
+function TfrmMain.OppKromme(i: Integer; x: Double): Double;
 begin
-  Result := Cos(x) - Cos(3*x)/3 + Cos(5*x)/5 - Cos(7*x)/7;
+  case i of
+   1: Result := Cos(x);
+   2: Result := Cos(x) - Cos(3*x)/3;
+   3: Result := Cos(x) - Cos(3*x)/3 + Cos(5*x)/5;
+   4: Result := Cos(x) - Cos(3*x)/3 + Cos(5*x)/5 - Cos(7*x)/7;
+   5: Result := Cos(x) - Cos(3*x)/3 + Cos(5*x)/5 - Cos(7*x)/7 + Cos(9*x)/9;
+  end;
 end;
 
 procedure TfrmMain.miBloem2Click(Sender: TObject);
@@ -524,20 +558,66 @@ begin
   end;
 end;
 
-procedure TfrmMain.miOppKrommeClick(Sender: TObject);
+procedure TfrmMain.miLissajousfiguurClick(Sender: TObject);
 var
-  j, k, v, y: Integer;
-  c, x: Double;
+  f1, f2, f3, f4, k1, k2, k3, k4, p1, p3, u, v, w, xx, yy, x1, x2, y1, y2: Integer;
+  rd, t, x, y: Double;
 begin
   frmClear;
+  pnlLissajous.Visible:=True;
+  f1 := seF1.Value;
+  f2 := seF2.Value;
+  f3 := seF3.Value;
+  f4 := seF4.Value;
+  k1 := seK1.Value;
+  k2 := seK2.Value;
+  k3 := seK3.Value;
+  k4 := seK4.Value;
+  p1 := seP1.Value;
+  p3 := seP3.Value;
+  u := Trunc(pbMain.Width/2);
+  v := Trunc(pbMain.Height/2);
+  rd := pi/180;
+  for w:=0 to 360 do
+  begin
+    t := w * rd;
+    x := k1*Sin(f1*t+p1)+k2*Cos(f2*t);
+    y := k3*Sin(f3*t+p3)+k4*Cos(f4*t);
+    xx := Trunc(u+x);
+    yy := Trunc(v-y);
+    if w=0 then
+    begin
+      x1 := xx;
+      y1 := yy;
+    end
+    else
+    begin
+      x2 := xx;
+      y2 := yy;
+      pbMain.Canvas.MoveTo(x1,y1);
+      pbMain.Canvas.LineTo(x2,y2);
+      x1 := x2;
+      y1 := y2;
+    end;
+  end;
+end;
+
+procedure TfrmMain.miOppKrommeClick(Sender: TObject);
+var
+  i, j, k, v, y: Integer;
+  c, x, yy: Double;
+begin
+  frmClear;
+  pnlOppKromme.Visible := True;
   v := pbMain.Width div 4;
   k := pbMain.Height div 4;
   c := 2*pi/pbMain.Height;
+  i := seKromme.Value;
   for j := 0 to pbMain.Height do
   begin
     x := j*c-pi;
-    //yy := Trunc(Cos(x) - (Cos(3*x)/3) + (Cos(5*x)/5) - (Cos(7*x)/7));
-    y := Trunc(v - k * OppKromme(x));
+    yy := OppKromme(i,x);
+    y := Trunc(v - k * yy);
     pbMain.Canvas.MoveTo(j,v);
     pbMain.Canvas.LineTo(j,y);
   end;
