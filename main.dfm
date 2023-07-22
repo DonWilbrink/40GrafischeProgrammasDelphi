@@ -546,6 +546,35 @@ object frmMain: TfrmMain
         OnChange = miFuncFPhiClick
       end
     end
+    object pnlOppKromme: TPanel
+      Left = 1
+      Top = 1
+      Width = 273
+      Height = 518
+      Align = alClient
+      TabOrder = 9
+      Visible = False
+      ExplicitLeft = -4
+      ExplicitTop = 6
+      object lblKromme: TLabel
+        Left = 34
+        Top = 42
+        Width = 91
+        Height = 15
+        Caption = 'Kromme formule'
+      end
+      object seKromme: TSpinEdit
+        Left = 34
+        Top = 67
+        Width = 55
+        Height = 24
+        MaxValue = 5
+        MinValue = 1
+        TabOrder = 0
+        Value = 1
+        OnChange = miOppKrommeClick
+      end
+    end
     object pnlLissajous: TPanel
       Left = 1
       Top = 1
@@ -739,35 +768,6 @@ object frmMain: TfrmMain
         OnChange = miLissajousfiguurClick
       end
     end
-    object pnlOppKromme: TPanel
-      Left = 1
-      Top = 1
-      Width = 273
-      Height = 518
-      Align = alClient
-      TabOrder = 9
-      Visible = False
-      ExplicitLeft = -4
-      ExplicitTop = 6
-      object lblKromme: TLabel
-        Left = 34
-        Top = 42
-        Width = 91
-        Height = 15
-        Caption = 'Kromme formule'
-      end
-      object seKromme: TSpinEdit
-        Left = 34
-        Top = 67
-        Width = 55
-        Height = 24
-        MaxValue = 5
-        MinValue = 1
-        TabOrder = 0
-        Value = 1
-        OnChange = miOppKrommeClick
-      end
-    end
   end
   object MainMenu1: TMainMenu
     Left = 16
@@ -848,6 +848,10 @@ object frmMain: TfrmMain
       object miLissajousfiguur: TMenuItem
         Caption = 'Lissajous figuur'
         OnClick = miLissajousfiguurClick
+      end
+      object miVliegekop: TMenuItem
+        Caption = 'Vliegekop figuur'
+        OnClick = miVliegekopClick
       end
     end
   end

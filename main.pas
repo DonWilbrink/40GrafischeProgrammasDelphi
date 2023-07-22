@@ -107,6 +107,7 @@ type
     pnlOppKromme: TPanel;
     seKromme: TSpinEdit;
     lblKromme: TLabel;
+    miVliegekop: TMenuItem;
     procedure Diagonaalweb1Click(Sender: TObject);
     procedure MoireeeffectClick(Sender: TObject);
     procedure DriehoekenClick(Sender: TObject);
@@ -125,6 +126,7 @@ type
     procedure miSpiralenClick(Sender: TObject);
     procedure miFuncFPhiClick(Sender: TObject);
     procedure miLissajousfiguurClick(Sender: TObject);
+    procedure miVliegekopClick(Sender: TObject);
   private
     { Private declarations }
     procedure frmClear;
@@ -675,6 +677,40 @@ begin
     begin
       x2 := x;
       y2 := y;
+      pbMain.Canvas.MoveTo(x1,y1);
+      pbMain.Canvas.LineTo(x2,y2);
+      x1 := x2;
+      y1 := y2;
+    end;
+  end;
+end;
+
+procedure TfrmMain.miVliegekopClick(Sender: TObject);
+var
+  k, u, v, w, xx, x1, x2, yy, y1, y2: Integer;
+  rd, t, x, y: Double;
+begin
+  frmClear;
+  u := pbMain.Width div 2;
+  v := pbMain.Height div 2;
+  k := 100;
+  rd := pi/180;
+  for w := 90 to 450 do
+  begin
+    t := w * rd;
+    x := k * Sin(2 * t) * (2.5 + Cos(3 * t));
+    y := k * 2 * Cos(3 * t);
+    xx := Trunc(u + x);
+    yy := Trunc(v - y);
+    if w = 90 then
+    begin
+      x1 := xx;
+      y1 := yy;
+    end
+    else
+    begin
+      x2 := xx;
+      y2 := yy;
       pbMain.Canvas.MoveTo(x1,y1);
       pbMain.Canvas.LineTo(x2,y2);
       x1 := x2;
