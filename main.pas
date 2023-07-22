@@ -108,6 +108,7 @@ type
     seKromme: TSpinEdit;
     lblKromme: TLabel;
     miVliegekop: TMenuItem;
+    rgWillekFunc: TRadioGroup;
     procedure Diagonaalweb1Click(Sender: TObject);
     procedure MoireeeffectClick(Sender: TObject);
     procedure DriehoekenClick(Sender: TObject);
@@ -261,6 +262,7 @@ begin
   pnlFuncFPhi.Visible := False;
   pnlLissajous.Visible := False;
   pnlOppKromme.Visible := False;
+  pnlSpiralen.Visible := False;
 end;
 
 procedure TfrmMain.Grafiekvaneencontinuefunctie1Click(Sender: TObject);
@@ -746,7 +748,7 @@ begin
       fa := 1;
     end
     else
-    begin
+    //begin
       if fa=1 then
       begin
         x1 := x2;
@@ -761,7 +763,7 @@ begin
         x1 := x2;
         y1 := y2;
       end;
-    end;
+    //end;
     x := x + dx;
   until x >= b;
   x1 := 0;
@@ -1002,15 +1004,46 @@ var
   n : Double;
 begin
 //subroutine functiewaarde berekenen
-  n := x*x-x-6;
-  if n=0 then
-    fz := 1
-  else
-    y := (x*x+3)/n;
-  if (y<lp) or (y>hp) then
-    fz := 1
-  else
-    fz := 0;
+  case rgWillekFunc.ItemIndex of
+    0:
+    begin
+      n := x*x-x-6;
+      if n=0 then
+        fz := 1
+      else
+        y := (x*x+3)/n;
+      if (y<lp) or (y>hp) then
+        fz := 1
+      else
+        fz := 0;
+    end;
+    1:
+    begin
+      n := x*x-2;
+      if n<=0 then
+        fz := 1
+      else
+      begin
+        y := Ln(n);
+        if (y<lp) or (y>hp) then
+          fz := 1
+        else
+          fz := 0;
+      end;
+    end;
+    2:
+    begin
+      n := x-3;
+      if n=0 then
+        fz := 1
+      else
+        y := 3-x+Ln(Abs((x-1)/n));
+      if (y<lp) or (y>hp) then
+        fz := 1
+      else
+        fz := 0;
+    end;
+  end;
 end;
 
 procedure TfrmMain.Zeshoeken1Click(Sender: TObject);

@@ -173,87 +173,6 @@ object frmMain: TfrmMain
         OnChange = Ingeschrevenvierkanten1Click
       end
     end
-    object pnlWillekFunc: TPanel
-      Left = 1
-      Top = 1
-      Width = 273
-      Height = 518
-      Align = alClient
-      TabOrder = 4
-      Visible = False
-      object lblLinkergrensX: TLabel
-        Left = 28
-        Top = 45
-        Width = 98
-        Height = 15
-        Caption = 'Linkergrens voor X'
-      end
-      object lblRechtergrensX: TLabel
-        Left = 28
-        Top = 109
-        Width = 106
-        Height = 15
-        Caption = 'Rechtergrens voor X'
-      end
-      object lblBovengrensY: TLabel
-        Left = 28
-        Top = 181
-        Width = 99
-        Height = 15
-        Caption = 'Bovengrens voor Y'
-      end
-      object lblOndergrensY: TLabel
-        Left = 28
-        Top = 251
-        Width = 99
-        Height = 15
-        Caption = 'Ondergrens voor Y'
-      end
-      object seLinkergrensX: TSpinEdit
-        Left = 28
-        Top = 67
-        Width = 53
-        Height = 24
-        MaxValue = -1
-        MinValue = -5
-        TabOrder = 0
-        Value = -5
-        OnChange = miWillekeurigeFunctieClick
-      end
-      object seRechtergrensX: TSpinEdit
-        Left = 28
-        Top = 130
-        Width = 53
-        Height = 24
-        MaxValue = 5
-        MinValue = 0
-        TabOrder = 1
-        Value = 5
-        OnChange = miWillekeurigeFunctieClick
-      end
-      object seBovengrensY: TSpinEdit
-        Left = 28
-        Top = 202
-        Width = 53
-        Height = 24
-        MaxValue = 10
-        MinValue = 0
-        TabOrder = 2
-        Value = 10
-        OnChange = miWillekeurigeFunctieClick
-      end
-      object seOndergrensY: TSpinEdit
-        Left = 28
-        Top = 272
-        Width = 53
-        Height = 24
-        MaxValue = 0
-        MinValue = -10
-        TabOrder = 3
-        Value = -10
-        OnChange = miWillekeurigeFunctieClick
-      end
-    end
     object pnlBloem: TPanel
       Left = 1
       Top = 1
@@ -766,6 +685,101 @@ object frmMain: TfrmMain
         TabOrder = 9
         Value = 35
         OnChange = miLissajousfiguurClick
+      end
+    end
+    object pnlWillekFunc: TPanel
+      Left = 1
+      Top = 1
+      Width = 273
+      Height = 518
+      Align = alClient
+      TabOrder = 4
+      Visible = False
+      object lblLinkergrensX: TLabel
+        Left = 28
+        Top = 45
+        Width = 98
+        Height = 15
+        Caption = 'Linkergrens voor X'
+      end
+      object lblRechtergrensX: TLabel
+        Left = 28
+        Top = 109
+        Width = 106
+        Height = 15
+        Caption = 'Rechtergrens voor X'
+      end
+      object lblBovengrensY: TLabel
+        Left = 28
+        Top = 181
+        Width = 99
+        Height = 15
+        Caption = 'Bovengrens voor Y'
+      end
+      object lblOndergrensY: TLabel
+        Left = 28
+        Top = 251
+        Width = 99
+        Height = 15
+        Caption = 'Ondergrens voor Y'
+      end
+      object seLinkergrensX: TSpinEdit
+        Left = 34
+        Top = 67
+        Width = 53
+        Height = 24
+        MaxValue = -1
+        MinValue = -25
+        TabOrder = 0
+        Value = -5
+        OnChange = miWillekeurigeFunctieClick
+      end
+      object seRechtergrensX: TSpinEdit
+        Left = 28
+        Top = 130
+        Width = 53
+        Height = 24
+        MaxValue = 25
+        MinValue = 0
+        TabOrder = 1
+        Value = 5
+        OnChange = miWillekeurigeFunctieClick
+      end
+      object seBovengrensY: TSpinEdit
+        Left = 28
+        Top = 202
+        Width = 53
+        Height = 24
+        MaxValue = 10
+        MinValue = 0
+        TabOrder = 2
+        Value = 10
+        OnChange = miWillekeurigeFunctieClick
+      end
+      object seOndergrensY: TSpinEdit
+        Left = 28
+        Top = 272
+        Width = 53
+        Height = 24
+        MaxValue = 0
+        MinValue = -10
+        TabOrder = 3
+        Value = -10
+        OnChange = miWillekeurigeFunctieClick
+      end
+      object rgWillekFunc: TRadioGroup
+        Left = 28
+        Top = 344
+        Width = 185
+        Height = 105
+        Caption = 'Formules'
+        ItemIndex = 0
+        Items.Strings = (
+          'y=x*x+3/x*x-x-6'
+          'y=ln(x*x-2)'
+          'y=3-x+ln(abs(x-1/x-3))')
+        TabOrder = 4
+        OnClick = miWillekeurigeFunctieClick
       end
     end
   end
