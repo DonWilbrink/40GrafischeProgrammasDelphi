@@ -114,6 +114,10 @@ type
     rgVlinders: TRadioGroup;
     seC: TSpinEdit;
     Label1: TLabel;
+    Programma21301: TMenuItem;
+    miSymmetrischefiguren: TMenuItem;
+    pnlSymFig: TPanel;
+    rgSymFig: TRadioGroup;
     procedure Diagonaalweb1Click(Sender: TObject);
     procedure MoireeeffectClick(Sender: TObject);
     procedure DriehoekenClick(Sender: TObject);
@@ -134,6 +138,7 @@ type
     procedure miLissajousfiguurClick(Sender: TObject);
     procedure miVliegekopClick(Sender: TObject);
     procedure miVlindersClick(Sender: TObject);
+    procedure miSymmetrischefigurenClick(Sender: TObject);
   private
     { Private declarations }
     procedure frmClear;
@@ -270,6 +275,7 @@ begin
   pnlOppKromme.Visible := False;
   pnlSpiralen.Visible := False;
   pnlVlinders.Visible := False;
+  pnlSymFig.Visible := False;
 end;
 
 procedure TfrmMain.Grafiekvaneencontinuefunctie1Click(Sender: TObject);
@@ -686,6 +692,89 @@ begin
     begin
       x2 := x;
       y2 := y;
+      pbMain.Canvas.MoveTo(x1,y1);
+      pbMain.Canvas.LineTo(x2,y2);
+      x1 := x2;
+      y1 := y2;
+    end;
+  end;
+end;
+
+procedure TfrmMain.miSymmetrischefigurenClick(Sender: TObject);
+var
+  a, b, c, k, u, v, w, x1, x2, y1, y2: Integer;
+  r, rd, t: Double;
+begin
+  frmClear;
+  pnlSymFig.Visible := True;
+  u := pbMain.Width div 2;
+  v := pbMain.Height div 2;
+  k := pbMain.Height div 2 - 50;
+  rd := pi/180;
+  case rgSymFig.ItemIndex of
+  0:
+    begin
+      a := 2;
+      b := 7;
+      c := 3;
+    end;
+  1:
+    begin
+      a := 6;
+      b := 6;
+      c := 4;
+    end;
+  2:
+    begin
+      a := 4;
+      b := 6;
+      c := 1;
+    end;
+  3:
+    begin
+      a := 1;
+      b := 1;
+      c := 4;
+    end;
+  4:
+    begin
+      a := 3;
+      b := 3;
+      c := 5;
+    end;
+  5:
+    begin
+      a := 2;
+      b := 2;
+      c := 9;
+    end;
+  6:
+    begin
+      a := 20;
+      b := -1;
+      c := 3;
+    end;
+  7:
+    begin
+      a := -40;
+      b := -40;
+      c := 10;
+    end;
+  end;
+
+  for w := 0 to 360 do
+  begin
+    t := w * rd;
+    r := k * Sin(c*t);
+    x2 := Trunc(u+r*Cos(a*t));
+    y2 := Trunc(v-r*Sin(b*t));
+    if w = 0 then
+    begin
+      x1 := x2;
+      y1 := y2;
+    end
+    else
+    begin
       pbMain.Canvas.MoveTo(x1,y1);
       pbMain.Canvas.LineTo(x2,y2);
       x1 := x2;

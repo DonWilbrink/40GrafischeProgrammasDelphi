@@ -12,6 +12,7 @@ object frmMain: TfrmMain
   Font.Style = []
   Menu = MainMenu1
   OldCreateOrder = True
+  Position = poDesktopCenter
   PixelsPerInch = 96
   TextHeight = 15
   object pbMain: TPaintBox
@@ -822,6 +823,38 @@ object frmMain: TfrmMain
         OnChange = miVlindersClick
       end
     end
+    object pnlSymFig: TPanel
+      Left = 1
+      Top = 1
+      Width = 273
+      Height = 518
+      Align = alClient
+      TabOrder = 11
+      Visible = False
+      ExplicitLeft = 55
+      ExplicitTop = 283
+      ExplicitWidth = 185
+      ExplicitHeight = 41
+      object rgSymFig: TRadioGroup
+        Left = 17
+        Top = 49
+        Width = 185
+        Height = 196
+        Caption = 'Parameters'
+        ItemIndex = 0
+        Items.Strings = (
+          'a=2 b=7 c=3'
+          'a=6 b=6 c=4'
+          'a=4 b=6 c=1'
+          'a=1 b=1 c=4'
+          'a=3 b=3 c=5'
+          'a=2 b=2 c=9'
+          'a=20 b=-1 c=3'
+          'a=-40 b==40 c=10')
+        TabOrder = 0
+        OnClick = miSymmetrischefigurenClick
+      end
+    end
   end
   object MainMenu1: TMainMenu
     Left = 16
@@ -910,6 +943,13 @@ object frmMain: TfrmMain
       object miVlinders: TMenuItem
         Caption = 'Vlinders'
         OnClick = miVlindersClick
+      end
+    end
+    object Programma21301: TMenuItem
+      Caption = 'Programma 21-30'
+      object miSymmetrischefiguren: TMenuItem
+        Caption = 'Symmetrische figuren'
+        OnClick = miSymmetrischefigurenClick
       end
     end
   end
