@@ -30,9 +30,7 @@ object frmMain: TfrmMain
     Width = 875
     Height = 49
     Align = alTop
-    Caption = 
-      '40 grafische programma'#39's vertaald uit ZXSpectrum basic naar Delp' +
-      'hi'
+    Caption = '40 grafische programma'#39's vertaald uit MSX basic naar Delphi'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -473,8 +471,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 9
       Visible = False
-      ExplicitLeft = -4
-      ExplicitTop = 6
       object lblKromme: TLabel
         Left = 34
         Top = 42
@@ -502,8 +498,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 8
       Visible = False
-      ExplicitLeft = -4
-      ExplicitTop = 6
       object lblK1: TLabel
         Left = 17
         Top = 16
@@ -782,6 +776,52 @@ object frmMain: TfrmMain
         OnClick = miWillekeurigeFunctieClick
       end
     end
+    object pnlVlinders: TPanel
+      Left = 1
+      Top = 1
+      Width = 273
+      Height = 518
+      Align = alClient
+      TabOrder = 10
+      Visible = False
+      ExplicitLeft = -4
+      ExplicitTop = 6
+      object Label1: TLabel
+        Left = 17
+        Top = 204
+        Width = 63
+        Height = 15
+        Caption = 'Parameter c'
+      end
+      object rgVlinders: TRadioGroup
+        Left = 14
+        Top = 49
+        Width = 185
+        Height = 147
+        Caption = 'Parameters a en b'
+        ItemIndex = 0
+        Items.Strings = (
+          'a=-6 b=1'
+          'a=-6 b=2'
+          'a=-8 b=2'
+          'a=4 b=1'
+          'a=4 b=2'
+          'a=6 b=1')
+        TabOrder = 0
+        OnClick = miVlindersClick
+      end
+      object seC: TSpinEdit
+        Left = 17
+        Top = 232
+        Width = 48
+        Height = 24
+        MaxValue = 6
+        MinValue = 3
+        TabOrder = 1
+        Value = 3
+        OnChange = miVlindersClick
+      end
+    end
   end
   object MainMenu1: TMainMenu
     Left = 16
@@ -866,6 +906,10 @@ object frmMain: TfrmMain
       object miVliegekop: TMenuItem
         Caption = 'Vliegekop figuur'
         OnClick = miVliegekopClick
+      end
+      object miVlinders: TMenuItem
+        Caption = 'Vlinders'
+        OnClick = miVlindersClick
       end
     end
   end

@@ -109,6 +109,11 @@ type
     lblKromme: TLabel;
     miVliegekop: TMenuItem;
     rgWillekFunc: TRadioGroup;
+    miVlinders: TMenuItem;
+    pnlVlinders: TPanel;
+    rgVlinders: TRadioGroup;
+    seC: TSpinEdit;
+    Label1: TLabel;
     procedure Diagonaalweb1Click(Sender: TObject);
     procedure MoireeeffectClick(Sender: TObject);
     procedure DriehoekenClick(Sender: TObject);
@@ -128,6 +133,7 @@ type
     procedure miFuncFPhiClick(Sender: TObject);
     procedure miLissajousfiguurClick(Sender: TObject);
     procedure miVliegekopClick(Sender: TObject);
+    procedure miVlindersClick(Sender: TObject);
   private
     { Private declarations }
     procedure frmClear;
@@ -263,6 +269,7 @@ begin
   pnlLissajous.Visible := False;
   pnlOppKromme.Visible := False;
   pnlSpiralen.Visible := False;
+  pnlVlinders.Visible := False;
 end;
 
 procedure TfrmMain.Grafiekvaneencontinuefunctie1Click(Sender: TObject);
@@ -719,6 +726,81 @@ begin
       y1 := y2;
     end;
   end;
+end;
+
+procedure TfrmMain.miVlindersClick(Sender: TObject);
+var
+  a, b, c, n, kx, ky, u, v, w, xx, x1, x2, yy, y1, y2: Integer;
+  rd, t, x, y: Double;
+begin
+  frmClear;
+  pnlVlinders.Visible := True;
+  u := pbMain.Width div 2;
+  v := pbMain.Height div 2;
+  kx := 15;
+  ky := 15;
+  rd := pi/180;
+  case rgVlinders.ItemIndex of
+  0:
+    begin
+      a := -6;
+      b := 1;
+    end;
+  1:
+    begin
+      a := -6;
+      b := 2;
+    end;
+  2:
+    begin
+      a := -8;
+      b := 2;
+    end;
+  3:
+    begin
+      a := 4;
+      b := 1;
+    end;
+  4:
+    begin
+      a := 4;
+      b := 2;
+    end;
+  5:
+    begin
+      a := 6;
+      b := 1;
+    end;
+  end;
+  c := seC.Value;
+  for n := -c to c do
+    for w := 0 to 360 do
+    begin
+    //w := 0;
+    //repeat
+      t := w * rd;
+      x := (a+b)*Cos(t)-n*b*Cos((a+b)/b*t);
+      y := (a+b)*Sin(t)-n*b*Sin((a+b)/b*t);
+      xx := Trunc(u+kx*x);
+      yy := Trunc(v-ky*y);
+      if w = 0 then
+      begin
+        x1 := xx;
+        y1 := yy;
+      end
+      else
+      begin
+        x2 := xx;
+        y2 := yy;
+        pbMain.Canvas.MoveTo(x1,y1);
+        pbMain.Canvas.LineTo(x2,y2);
+        x1 := x2;
+        y1 := y2;
+      end;
+      //w := w + 3;
+    //until w>=360;
+    end;
+
 end;
 
 procedure TfrmMain.miWillekeurigeFunctieClick(Sender: TObject);
