@@ -118,6 +118,7 @@ type
     miSymmetrischefiguren: TMenuItem;
     pnlSymFig: TPanel;
     rgSymFig: TRadioGroup;
+    miKubusmetachtvlak: TMenuItem;
     procedure Diagonaalweb1Click(Sender: TObject);
     procedure MoireeeffectClick(Sender: TObject);
     procedure DriehoekenClick(Sender: TObject);
@@ -139,6 +140,7 @@ type
     procedure miVliegekopClick(Sender: TObject);
     procedure miVlindersClick(Sender: TObject);
     procedure miSymmetrischefigurenClick(Sender: TObject);
+    procedure miKubusmetachtvlakClick(Sender: TObject);
   private
     { Private declarations }
     procedure frmClear;
@@ -572,6 +574,50 @@ begin
         y1 := y2;
       end;
     end;
+  end;
+end;
+
+procedure TfrmMain.miKubusmetachtvlakClick(Sender: TObject);
+var
+  a, i, j, l, m, n, u, v: Integer;
+  c, k, rd, s, w: Double;
+  x, y, z: Array of Integer;
+  xx, yy: Array of Integer;
+  zz: Array[1..2] of String;
+begin
+  frmClear;
+  SetLength(xx,14);
+  SetLength(yy,14);
+  a := 45;
+  k := 0.5;
+  u := Trunc(pbMain.Width/2);
+  v := Trunc(pbMain.Height/2);
+  rd := pi/180;
+  w := a*rd;
+  c := k*Cos(w);
+  s := k*Sin(w);
+  x := [-200,200,200,-200,-200,200,200,-200,0,0,200,0,-200,0];
+  y := [-200,-200,200,200,-200,-200,200,200,0,-200,0,200,0,0];
+  z := [-200,-200,-200,-200,200,200,200,200,-200,0,0,0,0,200];
+  for j := 0 to 13 do
+  begin
+    xx[j] := Trunc(u+x[j]+c*y[j]);
+    yy[j] := Trunc(v-s*y[j]-z[j]);
+  end;
+  zz[1] := 'abbccddaaebfcgdheffgghhe';
+  zz[2] := 'ijikilimjkkllmmjjnknlnmn';
+  l := Length(zz[1]);
+  for n := 1 to 2 do
+    //n := 1;
+  begin
+    m := 1;
+    repeat
+      i := Ord(zz[n][m])-96;
+      j := Ord(zz[n][m+1])-96;
+      pbMain.Canvas.MoveTo(xx[i-1],yy[i-1]);
+      pbMain.Canvas.LineTo(xx[j-1],yy[j-1]);
+      m := m + 2;
+    until m=l+1 ;
   end;
 end;
 

@@ -785,8 +785,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 10
       Visible = False
-      ExplicitLeft = -4
-      ExplicitTop = 6
       object Label1: TLabel
         Left = 17
         Top = 204
@@ -831,10 +829,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 11
       Visible = False
-      ExplicitLeft = 55
-      ExplicitTop = 283
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object rgSymFig: TRadioGroup
         Left = 17
         Top = 49
@@ -950,6 +944,10 @@ object frmMain: TfrmMain
       object miSymmetrischefiguren: TMenuItem
         Caption = 'Symmetrische figuren'
         OnClick = miSymmetrischefigurenClick
+      end
+      object miKubusmetachtvlak: TMenuItem
+        Caption = 'Kubus met achtvlak'
+        OnClick = miKubusmetachtvlakClick
       end
     end
   end
