@@ -949,6 +949,10 @@ object frmMain: TfrmMain
         Caption = 'Kubus met achtvlak'
         OnClick = miKubusmetachtvlakClick
       end
+      object miKubusmetzadelvlak: TMenuItem
+        Caption = 'Kubus met zadelvlak'
+        OnClick = miKubusmetzadelvlakClick
+      end
     end
   end
 end

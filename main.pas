@@ -119,6 +119,7 @@ type
     pnlSymFig: TPanel;
     rgSymFig: TRadioGroup;
     miKubusmetachtvlak: TMenuItem;
+    miKubusmetzadelvlak: TMenuItem;
     procedure Diagonaalweb1Click(Sender: TObject);
     procedure MoireeeffectClick(Sender: TObject);
     procedure DriehoekenClick(Sender: TObject);
@@ -141,6 +142,7 @@ type
     procedure miVlindersClick(Sender: TObject);
     procedure miSymmetrischefigurenClick(Sender: TObject);
     procedure miKubusmetachtvlakClick(Sender: TObject);
+    procedure miKubusmetzadelvlakClick(Sender: TObject);
   private
     { Private declarations }
     procedure frmClear;
@@ -619,6 +621,59 @@ begin
       m := m + 2;
     until m=l+1 ;
   end;
+end;
+
+procedure TfrmMain.miKubusmetzadelvlakClick(Sender: TObject);
+var
+  a, i, j, l, m, n, u, v, x1, x2, y1, y2: Integer;
+  c, k, rd, s, w: Double;
+  x, y, z: Array of Integer;
+  xx, yy: Array of Integer;
+  zz: String;
+begin
+  frmClear;
+  SetLength(xx,14);
+  SetLength(yy,14);
+  a := 45;
+  k := 0.5;
+  n := 32;
+  u := Trunc(pbMain.Width/2);
+  v := Trunc(pbMain.Height/2);
+  rd := pi/180;
+  w := a*rd;
+  c := k*Cos(w);
+  s := k*Sin(w);
+  x := [-200,200,200,-200,-200,200,200,-200];
+  y := [-200,-200,200,200,-200,-200,200,200];
+  z := [-200,-200,-200,-200,200,200,200,200];
+  for j := 0 to 7 do
+  begin
+    xx[j] := Trunc(u+x[j]+c*y[j]);
+    yy[j] := Trunc(v-s*y[j]-z[j]);
+  end;
+  zz := 'abbccddaaebfcgdheffgghhe';
+  l := Length(zz);
+  m := 1;
+  repeat
+    i := Ord(zz[m])-96;
+    j := Ord(zz[m+1])-96;
+    pbMain.Canvas.MoveTo(xx[i-1],yy[i-1]);
+    pbMain.Canvas.LineTo(xx[j-1],yy[j-1]);
+    m := m + 2;
+  until m=l+1 ;
+  for j := 0 to n do
+  begin
+    x1 := Trunc(xx[1]+j*(xx[6]-xx[1])/n);
+    y1 := Trunc(yy[1]+j*(yy[6]-yy[1])/n);
+    x2 := Trunc(xx[4]+j*(xx[3]-xx[4])/n);
+    y2 := Trunc(yy[4]+j*(yy[3]-yy[4])/n);
+    pbMain.Canvas.MoveTo(x1,y1);
+    pbMain.Canvas.LineTo(x2,y2);
+  end;
+  pbMain.Canvas.MoveTo(xx[1],yy[1]);
+  pbMain.Canvas.LineTo(xx[6],yy[6]);
+  pbMain.Canvas.MoveTo(xx[4],yy[4]);
+  pbMain.Canvas.LineTo(xx[3],yy[3]);
 end;
 
 procedure TfrmMain.miLissajousfiguurClick(Sender: TObject);
