@@ -1008,6 +1008,10 @@ object frmMain: TfrmMain
         Caption = 'Bol'
         OnClick = Bol1Click
       end
+      object miDraaiendprisma: TMenuItem
+        Caption = 'Draaiend prisma'
+        OnClick = miDraaiendprismaClick
+      end
     end
   end
 end

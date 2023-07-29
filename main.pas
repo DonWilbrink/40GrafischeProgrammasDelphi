@@ -127,6 +127,7 @@ type
     seR1: TSpinEdit;
     seR2: TSpinEdit;
     Bol1: TMenuItem;
+    miDraaiendprisma: TMenuItem;
     procedure Diagonaalweb1Click(Sender: TObject);
     procedure MoireeeffectClick(Sender: TObject);
     procedure DriehoekenClick(Sender: TObject);
@@ -152,6 +153,7 @@ type
     procedure miKubusmetzadelvlakClick(Sender: TObject);
     procedure miCylindersenkegelsClick(Sender: TObject);
     procedure Bol1Click(Sender: TObject);
+    procedure miDraaiendprismaClick(Sender: TObject);
   private
     { Private declarations }
     procedure frmClear;
@@ -656,6 +658,53 @@ begin
   until w0>=360;
   pbMain.Canvas.MoveTo(u,0);
   pbMain.Canvas.LineTo(u,pbMain.Height);
+end;
+
+procedure TfrmMain.miDraaiendprismaClick(Sender: TObject);
+var
+  a, om, r, u, v, w0: Integer;
+  c, k, rd, s, w, w1, xx, yy: Double;
+  x, y: Array[0..7] of Integer;
+  j: Integer;
+begin
+  a := 45;
+  k := 0.5;
+  om := 45;
+  u := Trunc(pbMain.Width/2);
+  v := Trunc(pbMain.Height/2);
+  rd := pi/180;
+  r := pbMain.Height div 2 - 50;
+  w := a * rd;
+  c := k*Cos(w);
+  s := k*Sin(w);
+  pbMain.Canvas.MoveTo(u,0);
+  pbMain.Canvas.LineTo(u,pbMain.Height);
+  w0 := 0;
+  repeat
+    for j := 0 to 3 do
+    begin
+      w1 := (w0 + j * 120) * rd;
+      xx := r * Cos(w1);
+      yy := r * Sin(w1);
+      x[j] := Trunc(u+xx+c*yy);
+      y[j] := Trunc(v-s*yy+150);
+      x[j+4] := x[j];
+      y[j+4] := Trunc(v-s*yy-150);
+    end;
+    for j := 0 to 2 do
+    begin
+      with pbMain.Canvas do
+      begin
+        MoveTo(x[j],y[j]);
+        LineTo(x[j+1],y[j+1]);
+        MoveTo(x[j],y[j]);
+        LineTo(x[j+4],y[j+4]);
+        MoveTo(x[j+4],y[j+4]);
+        LineTo(x[j+5],y[j+5]);
+      end;
+    end;
+    w0 := w0 + om;
+  until w0=360 ;
 end;
 
 procedure TfrmMain.miFuncFPhiClick(Sender: TObject);
