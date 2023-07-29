@@ -849,6 +849,53 @@ object frmMain: TfrmMain
         OnClick = miSymmetrischefigurenClick
       end
     end
+    object pnlCylKeg: TPanel
+      Left = 1
+      Top = 1
+      Width = 273
+      Height = 518
+      Align = alClient
+      TabOrder = 12
+      Visible = False
+      object Label3: TLabel
+        Left = 17
+        Top = 24
+        Width = 45
+        Height = 15
+        Caption = 'Straal R1'
+      end
+      object Label5: TLabel
+        Left = 17
+        Top = 97
+        Width = 45
+        Height = 15
+        Caption = 'Straal R2'
+      end
+      object seR1: TSpinEdit
+        Left = 17
+        Top = 45
+        Width = 48
+        Height = 24
+        Increment = 10
+        MaxValue = 350
+        MinValue = 0
+        TabOrder = 0
+        Value = 100
+        OnChange = miCylindersenkegelsClick
+      end
+      object seR2: TSpinEdit
+        Left = 17
+        Top = 127
+        Width = 48
+        Height = 24
+        Increment = 10
+        MaxValue = 350
+        MinValue = 0
+        TabOrder = 1
+        Value = 100
+        OnChange = miCylindersenkegelsClick
+      end
+    end
   end
   object MainMenu1: TMainMenu
     Left = 16
@@ -952,6 +999,14 @@ object frmMain: TfrmMain
       object miKubusmetzadelvlak: TMenuItem
         Caption = 'Kubus met zadelvlak'
         OnClick = miKubusmetzadelvlakClick
+      end
+      object miCylindersenkegels: TMenuItem
+        Caption = 'Cylinders en kegels'
+        OnClick = miCylindersenkegelsClick
+      end
+      object Bol1: TMenuItem
+        Caption = 'Bol'
+        OnClick = Bol1Click
       end
     end
   end

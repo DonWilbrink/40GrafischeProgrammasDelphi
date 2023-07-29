@@ -120,6 +120,13 @@ type
     rgSymFig: TRadioGroup;
     miKubusmetachtvlak: TMenuItem;
     miKubusmetzadelvlak: TMenuItem;
+    miCylindersenkegels: TMenuItem;
+    pnlCylKeg: TPanel;
+    Label3: TLabel;
+    Label5: TLabel;
+    seR1: TSpinEdit;
+    seR2: TSpinEdit;
+    Bol1: TMenuItem;
     procedure Diagonaalweb1Click(Sender: TObject);
     procedure MoireeeffectClick(Sender: TObject);
     procedure DriehoekenClick(Sender: TObject);
@@ -143,6 +150,8 @@ type
     procedure miSymmetrischefigurenClick(Sender: TObject);
     procedure miKubusmetachtvlakClick(Sender: TObject);
     procedure miKubusmetzadelvlakClick(Sender: TObject);
+    procedure miCylindersenkegelsClick(Sender: TObject);
+    procedure Bol1Click(Sender: TObject);
   private
     { Private declarations }
     procedure frmClear;
@@ -165,6 +174,81 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmMain.Bol1Click(Sender: TObject);
+var
+  a, p, r, u, v, w0, xx, x1, x2, yy, y1, y2: Integer;
+  c, k, p1, rd, r1, s, w, w1, x, y, z: Double;
+begin
+  frmClear;
+  a := 90;
+  k := 0.5;
+  r := pbMain.Height div 2 - 50;
+  u := Trunc(pbMain.Width/2);
+  v := Trunc(pbMain.Height/2);
+  rd := pi/180;
+  w := a*rd;
+  c := k*Cos(w);
+  s := k*Sin(w);
+  w0 := -90;
+  repeat
+    w1 := w0 * rd;
+    r1 := r * Cos(w1);
+    for p := 0 to 360 do
+    begin
+      p1 := p * rd;
+      x := 1.15 * r1 * Cos(p1);
+      y := r1 * Sin(p1);
+      z := r * Sin(w1);
+      xx := Trunc(u+x+Sign(p)*c*y);
+      yy := Trunc(v-Sign(p)*s*y-z);
+      if p=0 then
+      begin
+        x1 := xx;
+        y1 := yy;
+      end
+      else
+      begin
+        x2 := xx;
+        y2 := yy;
+        pbMain.Canvas.MoveTo(x1,y1);
+        pbMain.Canvas.LineTo(x2,y2);
+        x1 := x2;
+        y1 := y2;
+      end;
+    end;
+    w0 := w0 + 15;
+  until w0=90;
+  p := 0;
+  repeat
+    p1 := p * rd;
+    for w0 := 0 to 360 do
+    begin
+      w1 := w0 * rd;
+      r1 := r * Cos(w1);
+      x := 1.15 * r1 * Cos(p1);
+      y := r1 * Sin(p1);
+      z := r * Sin(w1);
+      xx := Trunc(u+x+c*y);
+      yy := Trunc(v-s*y-z);
+      if w0=0 then
+      begin
+        x1 := xx;
+        y1 := yy;
+      end
+      else
+      begin
+        x2 := xx;
+        y2 := yy;
+        pbMain.Canvas.MoveTo(x1,y1);
+        pbMain.Canvas.LineTo(x2,y2);
+        x1 := x2;
+        y1 := y2;
+      end;
+    end;
+    p := p + 15;
+  until p=180;
+end;
 
 procedure TfrmMain.Diagonaalweb1Click(Sender: TObject);
 var
@@ -280,6 +364,7 @@ begin
   pnlSpiralen.Visible := False;
   pnlVlinders.Visible := False;
   pnlSymFig.Visible := False;
+  pnlCylKeg.Visible := False;
 end;
 
 procedure TfrmMain.Grafiekvaneencontinuefunctie1Click(Sender: TObject);
@@ -507,6 +592,72 @@ begin
   Teken(I);
 end;
 
+procedure TfrmMain.miCylindersenkegelsClick(Sender: TObject);
+var
+  a, n, r1, r2, u, v, w0, xx, x1, x2, yy, y1, y2, z: Integer;
+  c, dr, k, r, rd, s, w, w1, x, y: Double;
+begin
+  frmClear;
+  pnlCylKeg.Visible := True;
+  a := 45;
+  k := 0.5;
+  r1 := seR1.Value;
+  r2 := seR2.Value;
+  u := Trunc(pbMain.Width/2);
+  v := Trunc(pbMain.Height/2);
+  rd := pi/180;
+  dr := (r1-r2)/10;
+  n := 0;
+  w := a*rd;
+  c := k*Cos(w);
+  s := k*Sin(w);
+  z := -100;
+  repeat
+    r := r1-n*dr;
+    for w0 := 0 to 360 do
+    begin
+      w1 := w0*rd;
+      x := r*Cos(w1);
+      y := r*Sin(w1);
+      xx := Trunc(u+x+c*y);
+      yy := Trunc(v-s*y-z);
+      if w0=0 then
+      begin
+        x1 := xx;
+        y1 := yy;
+      end
+      else
+      begin
+        x2 := xx;
+        y2 := yy;
+        pbMain.Canvas.MoveTo(x1,y1);
+        pbMain.Canvas.LineTo(x2,y2);
+        x1 := x2;
+        y1 := y2;
+      end;
+    end;
+    n := n + 1;
+    z := z + 20;
+  until z>=101;
+  w0 := 0;
+  repeat
+    w1 := w0*rd;
+    x := r1*Cos(w1);
+    y := r1*Sin(w1);
+    x1 := Trunc(u+x+c*y);
+    y1 := Trunc(v-s*y+100);
+    x := r2*Cos(w1);
+    y := r2*Sin(w1);
+    x2 := Trunc(u+x+c*y);
+    y2 := Trunc(v-s*y-100);
+    pbMain.Canvas.MoveTo(x1,y1);
+    pbMain.Canvas.LineTo(x2,y2);
+    w0 := w0+23;
+  until w0>=360;
+  pbMain.Canvas.MoveTo(u,0);
+  pbMain.Canvas.LineTo(u,pbMain.Height);
+end;
+
 procedure TfrmMain.miFuncFPhiClick(Sender: TObject);
 var
   a, b, cw, ch, fa, fz, i, lp, hp, w, wo, wn, x1, x2, y1, y2: Integer;
@@ -682,7 +833,7 @@ var
   rd, t, x, y: Double;
 begin
   frmClear;
-  pnlLissajous.Visible:=True;
+  pnlLissajous.Visible := True;
   f1 := seF1.Value;
   f2 := seF2.Value;
   f3 := seF3.Value;
