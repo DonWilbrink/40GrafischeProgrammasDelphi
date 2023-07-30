@@ -128,6 +128,8 @@ type
     seR2: TSpinEdit;
     Bol1: TMenuItem;
     miDraaiendprisma: TMenuItem;
+    miIkosaeder: TMenuItem;
+    Memo1: TMemo;
     procedure Diagonaalweb1Click(Sender: TObject);
     procedure MoireeeffectClick(Sender: TObject);
     procedure DriehoekenClick(Sender: TObject);
@@ -154,6 +156,7 @@ type
     procedure miCylindersenkegelsClick(Sender: TObject);
     procedure Bol1Click(Sender: TObject);
     procedure miDraaiendprismaClick(Sender: TObject);
+    procedure miIkosaederClick(Sender: TObject);
   private
     { Private declarations }
     procedure frmClear;
@@ -367,6 +370,7 @@ begin
   pnlVlinders.Visible := False;
   pnlSymFig.Visible := False;
   pnlCylKeg.Visible := False;
+  Memo1.Visible := False;
 end;
 
 procedure TfrmMain.Grafiekvaneencontinuefunctie1Click(Sender: TObject);
@@ -776,6 +780,51 @@ begin
         y1 := y2;
       end;
     end;
+  end;
+end;
+
+procedure TfrmMain.miIkosaederClick(Sender: TObject);
+var
+  a, f, i, j, l, m, u, v, x1, x2, y1, y2: Integer;
+  c, k, rd, s, t, w: Double;
+  x, y, z: Array of Double;
+  zz: Array of string;
+  n: Integer;
+begin
+  frmClear;
+  //Memo1.Visible := True;
+  a := 90;
+  k := 0.4;
+  u := Trunc(pbMain.Width/2);
+  v := Trunc(pbMain.Height/2);
+  rd := pi/180;
+  w := a*rd;
+  c := k*Cos(w);
+  s := k*Sin(w);
+  t := (Sqrt(5)-1)/2;
+  f := pbMain.Height div 2 - 100;
+  x := [0,0,f,-f,f*t,-f*t,f*t,-f*t,f,-f,0,0];
+  y := [f*t,-f*t,0,0,f,f,-f,-f,0,0,f*t,-f*t];
+  z := [-f,-f,-f*t,-f*t,0,0,0,0,f*t,f*t,f,f];
+  zz := ['bcceeffddbabacaeafad','bhhddjjffkkeeiiccggb','ghhjjkkiiglglhljlkli'];
+  for n := 0 to 2 do
+  begin
+    l := Length(zz[n]);
+    m := 1;
+    repeat
+      i := Ord(zz[n][m])-97;
+      j := Ord(zz[n][m+1])-97;
+      x1 := Trunc(u+x[i]+c*y[i]);
+      y1 := Trunc(v-s*y[i]-z[i]);
+      x2 := Trunc(u+x[j]+c*y[j]);
+      y2 := Trunc(v-s*y[j]-z[j]);
+      pbMain.Canvas.MoveTo(x1,y1);
+      pbMain.Canvas.LineTo(x2,y2);
+      {Memo1.Lines.Add('n='+n.ToString+' m='+m.ToString+' i='+i.ToString+
+        ' j='+j.ToString+' x1='+x1.ToString+' x2='+x2.ToString+
+        ' y1='+y1.ToString+' y2='+y2.ToString); }
+      m := m + 2;
+    until m>l-1 ;
   end;
 end;
 

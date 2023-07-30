@@ -896,6 +896,18 @@ object frmMain: TfrmMain
         OnChange = miCylindersenkegelsClick
       end
     end
+    object Memo1: TMemo
+      Left = 18
+      Top = 193
+      Width = 240
+      Height = 296
+      Lines.Strings = (
+        'Memo1')
+      ScrollBars = ssVertical
+      TabOrder = 13
+      Visible = False
+      WantTabs = True
+    end
   end
   object MainMenu1: TMainMenu
     Left = 16
@@ -1011,6 +1023,10 @@ object frmMain: TfrmMain
       object miDraaiendprisma: TMenuItem
         Caption = 'Draaiend prisma'
         OnClick = miDraaiendprismaClick
+      end
+      object miIkosaeder: TMenuItem
+        Caption = 'Ikosaeder'
+        OnClick = miIkosaederClick
       end
     end
   end
