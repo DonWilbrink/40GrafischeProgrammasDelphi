@@ -1028,6 +1028,10 @@ object frmMain: TfrmMain
         Caption = 'Ikosaeder'
         OnClick = miIkosaederClick
       end
+      object miGrafiekvanzfxy: TMenuItem
+        Caption = 'Grafiek van z=f(x,y)'
+        OnClick = miGrafiekvanzfxyClick
+      end
     end
   end
 end

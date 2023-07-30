@@ -130,6 +130,7 @@ type
     miDraaiendprisma: TMenuItem;
     miIkosaeder: TMenuItem;
     Memo1: TMemo;
+    miGrafiekvanzfxy: TMenuItem;
     procedure Diagonaalweb1Click(Sender: TObject);
     procedure MoireeeffectClick(Sender: TObject);
     procedure DriehoekenClick(Sender: TObject);
@@ -157,6 +158,7 @@ type
     procedure Bol1Click(Sender: TObject);
     procedure miDraaiendprismaClick(Sender: TObject);
     procedure miIkosaederClick(Sender: TObject);
+    procedure miGrafiekvanzfxyClick(Sender: TObject);
   private
     { Private declarations }
     procedure frmClear;
@@ -781,6 +783,65 @@ begin
       end;
     end;
   end;
+end;
+
+procedure TfrmMain.miGrafiekvanzfxyClick(Sender: TObject);
+var
+  a, dx, dy, g, k1, u, v, w, xg, xx, x1, x2, yg, yy, y1, y2: Integer;
+  af, c, k, rd, s, x, y, z: Double;
+begin
+  frmClear;
+  //Memo1.Visible := True;
+  w := 45;
+  k := 0.5;
+  a := 2;
+  k1 := 300;
+  u := Trunc(pbMain.Width/2);
+  v := Trunc(pbMain.Height/2);
+  rd := pi/180;
+  c := k*Cos(w);
+  s := k*Sin(w);
+  dx := 5;
+  dy := 5;
+  g := u - 100;
+  af := a/g;
+  yy := -g;
+  repeat
+    y := yy * af;
+    xx := -g;
+    repeat
+      x := xx * af;
+      z := k1 * Exp(-x * x - y * y);
+      xg := Trunc(u + xx + c * yy);
+      yg := Trunc(v - s * yy - z);
+      //if xg<0 then xg := 0;
+      //if xg>255 then xg := 255;
+      if (yg<0) or (yg>pbMain.Height) then
+      begin
+        ShowMessage('Foute k1, yg='+yg.ToString);
+        Exit;
+      end;
+      if xx=-g then
+      begin
+        x1 := xg;
+        y1 := yg;
+      end
+      else
+      begin
+        x2 := xg;
+        y2 := yg;
+        pbMain.Canvas.MoveTo(x1,y1);
+        pbMain.Canvas.LineTo(x2,y2);
+        x1 := x2;
+        y1 := y2;
+      end;
+      {Memo1.Lines.Add('xg='+xg.ToString+' yg='+yg.ToString+' xx='+xx.ToString+
+        ' yy='+yy.ToString+' x1='+x1.ToString+' x2='+x2.ToString+
+        ' y1='+y1.ToString+' y2='+y2.ToString);}
+      xx := xx + dx;
+    until xx>=g;
+    yy := yy + dy;
+  until yy>=g;
 end;
 
 procedure TfrmMain.miIkosaederClick(Sender: TObject);
