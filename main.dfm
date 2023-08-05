@@ -2,8 +2,8 @@ object frmMain: TfrmMain
   Left = 0
   Top = 0
   Caption = '40 Grafische Programma'#39's'
-  ClientHeight = 569
-  ClientWidth = 875
+  ClientHeight = 691
+  ClientWidth = 934
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,17 +18,18 @@ object frmMain: TfrmMain
   object pbMain: TPaintBox
     Left = 275
     Top = 49
-    Width = 600
-    Height = 520
+    Width = 659
+    Height = 642
     Align = alClient
     ExplicitLeft = 185
     ExplicitTop = 55
     ExplicitWidth = 690
+    ExplicitHeight = 520
   end
   object pnlTop: TPanel
     Left = 0
     Top = 0
-    Width = 875
+    Width = 934
     Height = 49
     Align = alTop
     Caption = '40 grafische programma'#39's vertaald uit MSX basic naar Delphi'
@@ -39,22 +40,25 @@ object frmMain: TfrmMain
     Font.Style = []
     ParentFont = False
     TabOrder = 0
+    ExplicitWidth = 875
   end
   object pnlSide: TPanel
     Left = 0
     Top = 49
     Width = 275
-    Height = 520
+    Height = 642
     Align = alLeft
     TabOrder = 1
+    ExplicitHeight = 520
     object pnlDiagWeb: TPanel
       Left = 1
       Top = 1
       Width = 273
-      Height = 518
+      Height = 640
       Align = alClient
       TabOrder = 0
       Visible = False
+      ExplicitHeight = 518
       object lblN: TLabel
         Left = 28
         Top = 24
@@ -78,10 +82,11 @@ object frmMain: TfrmMain
       Left = 1
       Top = 1
       Width = 273
-      Height = 518
+      Height = 640
       Align = alClient
       TabOrder = 1
       Visible = False
+      ExplicitHeight = 518
       object lblBreed: TLabel
         Left = 8
         Top = 8
@@ -143,10 +148,11 @@ object frmMain: TfrmMain
       Left = 1
       Top = 1
       Width = 273
-      Height = 518
+      Height = 640
       Align = alClient
       TabOrder = 2
       Visible = False
+      ExplicitHeight = 518
       object lblK: TLabel
         Left = 8
         Top = 16
@@ -176,10 +182,11 @@ object frmMain: TfrmMain
       Left = 1
       Top = 1
       Width = 273
-      Height = 518
+      Height = 640
       Align = alClient
       TabOrder = 5
       Visible = False
+      ExplicitHeight = 518
       object rgFormule: TRadioGroup
         Left = 17
         Top = 21
@@ -218,10 +225,11 @@ object frmMain: TfrmMain
       Left = 1
       Top = 1
       Width = 273
-      Height = 518
+      Height = 640
       Align = alClient
       TabOrder = 6
       Visible = False
+      ExplicitHeight = 518
       object lblGrootte: TLabel
         Left = 40
         Top = 40
@@ -277,10 +285,11 @@ object frmMain: TfrmMain
       Left = 1
       Top = 1
       Width = 273
-      Height = 518
+      Height = 640
       Align = alClient
       TabOrder = 3
       Visible = False
+      ExplicitHeight = 518
       object lblLinker: TLabel
         Left = 8
         Top = 5
@@ -374,10 +383,11 @@ object frmMain: TfrmMain
       Left = 1
       Top = 1
       Width = 273
-      Height = 518
+      Height = 640
       Align = alClient
       TabOrder = 7
       Visible = False
+      ExplicitHeight = 518
       object lblA: TLabel
         Left = 15
         Top = 16
@@ -468,10 +478,11 @@ object frmMain: TfrmMain
       Left = 1
       Top = 1
       Width = 273
-      Height = 518
+      Height = 640
       Align = alClient
       TabOrder = 9
       Visible = False
+      ExplicitHeight = 518
       object lblKromme: TLabel
         Left = 34
         Top = 42
@@ -495,10 +506,11 @@ object frmMain: TfrmMain
       Left = 1
       Top = 1
       Width = 273
-      Height = 518
+      Height = 640
       Align = alClient
       TabOrder = 8
       Visible = False
+      ExplicitHeight = 518
       object lblK1: TLabel
         Left = 17
         Top = 16
@@ -686,10 +698,11 @@ object frmMain: TfrmMain
       Left = 1
       Top = 1
       Width = 273
-      Height = 518
+      Height = 640
       Align = alClient
       TabOrder = 4
       Visible = False
+      ExplicitHeight = 518
       object lblLinkergrensX: TLabel
         Left = 28
         Top = 45
@@ -781,10 +794,11 @@ object frmMain: TfrmMain
       Left = 1
       Top = 1
       Width = 273
-      Height = 518
+      Height = 640
       Align = alClient
       TabOrder = 10
       Visible = False
+      ExplicitHeight = 518
       object Label1: TLabel
         Left = 17
         Top = 204
@@ -825,10 +839,11 @@ object frmMain: TfrmMain
       Left = 1
       Top = 1
       Width = 273
-      Height = 518
+      Height = 640
       Align = alClient
       TabOrder = 11
       Visible = False
+      ExplicitHeight = 518
       object rgSymFig: TRadioGroup
         Left = 17
         Top = 49
@@ -853,10 +868,11 @@ object frmMain: TfrmMain
       Left = 1
       Top = 1
       Width = 273
-      Height = 518
+      Height = 640
       Align = alClient
       TabOrder = 12
       Visible = False
+      ExplicitHeight = 518
       object Label3: TLabel
         Left = 17
         Top = 24
@@ -1031,6 +1047,10 @@ object frmMain: TfrmMain
       object miGrafiekvanzfxy: TMenuItem
         Caption = 'Grafiek van z=f(x,y)'
         OnClick = miGrafiekvanzfxyClick
+      end
+      object miGrafiekvanzfxyhiddenlines: TMenuItem
+        Caption = 'Grafiek van z=f(x,y), hidden lines'
+        OnClick = miGrafiekvanzfxyhiddenlinesClick
       end
     end
   end

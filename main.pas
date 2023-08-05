@@ -131,6 +131,7 @@ type
     miIkosaeder: TMenuItem;
     Memo1: TMemo;
     miGrafiekvanzfxy: TMenuItem;
+    miGrafiekvanzfxyhiddenlines: TMenuItem;
     procedure Diagonaalweb1Click(Sender: TObject);
     procedure MoireeeffectClick(Sender: TObject);
     procedure DriehoekenClick(Sender: TObject);
@@ -159,6 +160,7 @@ type
     procedure miDraaiendprismaClick(Sender: TObject);
     procedure miIkosaederClick(Sender: TObject);
     procedure miGrafiekvanzfxyClick(Sender: TObject);
+    procedure miGrafiekvanzfxyhiddenlinesClick(Sender: TObject);
   private
     { Private declarations }
     procedure frmClear;
@@ -673,6 +675,7 @@ var
   x, y: Array[0..7] of Integer;
   j: Integer;
 begin
+  frmClear;
   a := 45;
   k := 0.5;
   om := 45;
@@ -794,16 +797,17 @@ begin
   //Memo1.Visible := True;
   w := 45;
   k := 0.5;
-  a := 2;
-  k1 := 300;
+  a := 3;
+  //k1 := Trunc((pbMain.Height/3)*2);
+  k1 := 400;
   u := Trunc(pbMain.Width/2);
-  v := Trunc(pbMain.Height/2);
+  v := Trunc(pbMain.Height/2)+100;
   rd := pi/180;
   c := k*Cos(w);
   s := k*Sin(w);
   dx := 5;
-  dy := 5;
-  g := u - 100;
+  dy := 10;
+  g := u - 200;
   af := a/g;
   yy := -g;
   repeat
@@ -838,6 +842,87 @@ begin
       {Memo1.Lines.Add('xg='+xg.ToString+' yg='+yg.ToString+' xx='+xx.ToString+
         ' yy='+yy.ToString+' x1='+x1.ToString+' x2='+x2.ToString+
         ' y1='+y1.ToString+' y2='+y2.ToString);}
+      xx := xx + dx;
+    until xx>=g;
+    yy := yy + dy;
+  until yy>=g;
+end;
+
+procedure TfrmMain.miGrafiekvanzfxyhiddenlinesClick(Sender: TObject);
+var
+  a, dx, dy, g, k1, u, v, w, xg, xx, x1, x2, yg, yy, y1, y2: Integer;
+  af, c, k, rd, s, x, y, z: Double;
+  f1, f2: Boolean;
+  h: Array[0..310] of Integer;
+  l: Integer;
+begin
+  frmClear;
+  //Memo1.Visible := True;
+  w := 45;
+  k := 0.5;
+  a := 3;
+  //k1 := Trunc((pbMain.Height/3)*2);
+  k1 := 400;
+  u := Trunc(pbMain.Width/2);
+  v := Trunc(pbMain.Height/2)+100;
+  rd := pi/180;
+  c := k*Cos(w);
+  s := k*Sin(w);
+  dx := 5;
+  dy := 10;
+  g := u - 200;
+  af := a/g;
+  for l := 0 to 310 do
+    h[l] := 1000;
+  yy := -g;
+  repeat
+    y := yy * af;
+    xx := -g;
+    repeat
+      x := xx * af;
+      z := k1 * Exp(-x * x - y * y);
+      xg := Trunc(u + xx + c * yy);
+      yg := Trunc(v - s * yy - z);
+      //if xg<0 then xg := 0;
+      //if xg>255 then xg := 255;
+      if (yg<0) or (yg>pbMain.Height) then
+      begin
+        ShowMessage('Foute k1, yg='+yg.ToString);
+        Exit;
+      end;
+      if xx=-g then
+      begin
+        f1 := False;
+        l := Trunc(xg/dx);
+        if yg<=h[l] then
+        begin
+          f1 := True;
+          h[l] := yg;
+        end;
+        x1 := xg;
+        y1 := yg;
+      end
+      else
+      begin
+        f2 := False;
+        l := Trunc(xg/dx);
+        if yg<=h[l] then
+        begin
+          f2 := True;
+          h[l] := yg;
+        end;
+        x2 := xg;
+        y2 := yg;
+        if f1 and f2 then
+        begin
+          pbMain.Canvas.MoveTo(x1,y1);
+          pbMain.Canvas.LineTo(x2,y2);
+        end;
+        x1 := x2;
+        y1 := y2;
+      end;
+      {Memo1.Lines.Add('xg='+xg.ToString+' yg='+yg.ToString+' xx='+xx.ToString+
+        ' yy='+yy.ToString);  }
       xx := xx + dx;
     until xx>=g;
     yy := yy + dy;
