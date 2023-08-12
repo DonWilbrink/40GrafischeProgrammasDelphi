@@ -132,6 +132,11 @@ type
     Memo1: TMemo;
     miGrafiekvanzfxy: TMenuItem;
     miGrafiekvanzfxyhiddenlines: TMenuItem;
+    pnlBloem2: TPanel;
+    seBloem: TSpinEdit;
+    seBloem2: TSpinEdit;
+    pnlZFXYhidden: TPanel;
+    rgZFXYhidden: TRadioGroup;
     procedure Diagonaalweb1Click(Sender: TObject);
     procedure MoireeeffectClick(Sender: TObject);
     procedure DriehoekenClick(Sender: TObject);
@@ -355,6 +360,7 @@ begin
   case i of
     1 : Result := k * Cos(4 * Sin(2 * p));
     2 : Result := Trunc(pbMain.Height/4) + 2*k * Sin(4 * p);
+    3 : Result := 2 * Tan(2*p) + k * Sin(2*Cos(Sin(6*p)));
   end;
 end;
 
@@ -367,6 +373,7 @@ begin
   pnlContFunctie.Visible := False;
   pnlWillekFunc.Visible := False;
   pnlBloem.Visible := False;
+  pnlBloem2.Visible := False;
   pnlFuncFPhi.Visible := False;
   pnlLissajous.Visible := False;
   pnlOppKromme.Visible := False;
@@ -374,6 +381,7 @@ begin
   pnlVlinders.Visible := False;
   pnlSymFig.Visible := False;
   pnlCylKeg.Visible := False;
+  pnlZFXYhidden.Visible := False;
   Memo1.Visible := False;
 end;
 
@@ -389,7 +397,7 @@ begin
   if a>b then  Swap(a,b);
   hp := -100000;
   lp := 100000;
-  dx := (b-a)/128;
+  dx := (b-a)/256;
   x := a;
   i := rgFormules.ItemIndex;
   repeat
@@ -497,10 +505,10 @@ begin
     a := j * 10;
     with pbMain.Canvas do
     begin
-      MoveTo(0,h);
-      LineTo(a,0);
-      MoveTo(0,h);
-      LineTo(h,a);
+      MoveTo(0,0);
+      LineTo(a,h);
+      MoveTo(0,0);
+      LineTo(h,h-a);
     end;
   end;
   for j := 0 to Trunc(h/10) do
@@ -508,10 +516,10 @@ begin
     a := j * 10;
     with pbMain.Canvas do
     begin
-      MoveTo(h,0);
-      LineTo(0,a);
-      MoveTo(h,0);
-      LineTo(a,h);
+      MoveTo(h,h);
+      LineTo(0,h-a);
+      MoveTo(h,h);
+      LineTo(a,0);
     end;
   end;
 end;
@@ -539,7 +547,7 @@ procedure TfrmMain.miBloem3Click(Sender: TObject);
 var
   i: Integer;
 begin
-  i := 2;
+  i := 3;
   Teken3(i);
 end;
 
@@ -851,18 +859,43 @@ end;
 procedure TfrmMain.miGrafiekvanzfxyhiddenlinesClick(Sender: TObject);
 var
   a, dx, dy, g, k1, u, v, w, xg, xx, x1, x2, yg, yy, y1, y2: Integer;
-  af, c, k, rd, s, x, y, z: Double;
+  af, c, k, r, rd, s, x, y, z: Double;
   f1, f2: Boolean;
   h: Array[0..310] of Integer;
   l: Integer;
 begin
   frmClear;
+  pnlZFXYhidden.Visible := True;
   //Memo1.Visible := True;
   w := 45;
   k := 0.5;
-  a := 3;
-  //k1 := Trunc((pbMain.Height/3)*2);
-  k1 := 400;
+  case rgZFXYhidden.ItemIndex of
+  0:
+    begin
+      a := 3;
+      k1 := 400;
+    end;
+  1:
+    begin
+      a := 180;
+      k1 := 45;
+    end;
+  2:
+    begin
+      a := 1080;
+      k1 := 60;
+    end;
+  3:
+    begin
+      a := 90;
+      k1 := 80;
+    end;
+  4, 5:
+    begin
+      a := 90;
+      k1 := 50;
+    end;
+  end;
   u := Trunc(pbMain.Width/2);
   v := Trunc(pbMain.Height/2)+100;
   rd := pi/180;
@@ -880,7 +913,37 @@ begin
     xx := -g;
     repeat
       x := xx * af;
-      z := k1 * Exp(-x * x - y * y);
+      case rgZFXYhidden.ItemIndex of
+      0: z := k1 * Exp(-x * x - y * y);
+      1:
+        begin
+          r := Sqrt(x * x + y * y ) * rd;
+          z := k1 * (Cos(r) - Cos(3 * r)/3 + Cos(5 * r)/5 - Cos(7 * r)/7);
+        end;
+      2:
+        begin
+          r := Sqrt(x * x + y * y ) * rd;
+          if r=0 then
+            z := k1
+          else
+            z := k1 * Sin(r)/r;
+        end;
+      3:
+        begin
+          r := Sqrt(x * x + y * y);
+          z := k1 * Exp(-Cos(r/16));
+        end;
+      4:
+        begin
+          r := Sqrt(x * x + y * y);
+          z := k1 * Cos(r/16);
+        end;
+      5:
+         begin
+          r := Sqrt(x * x + y * y);
+          z := k1 * Sin(r/16);
+        end;
+      end;
       xg := Trunc(u + xx + c * yy);
       yg := Trunc(v - s * yy - z);
       //if xg<0 then xg := 0;
@@ -1122,11 +1185,11 @@ var
 begin
   frmClear;
   pnlOppKromme.Visible := True;
-  v := pbMain.Width div 4;
-  k := pbMain.Height div 4;
+  v := pbMain.Width div 2;
+  k := pbMain.Height div 2;
   c := 2*pi/pbMain.Height;
   i := seKromme.Value;
-  for j := 0 to pbMain.Height do
+  for j := 0 to pbMain.Width do
   begin
     x := j*c-pi;
     yy := OppKromme(i,x);
@@ -1464,7 +1527,7 @@ begin
     x := -110;
     repeat
       xx := Trunc(u+x*4);
-      y:= Trunc(-k*x*x/6400+k);
+      y := Trunc(-k*x*x/6400+k);
       y := v-y;
       if x = -110 then
       begin
@@ -1492,8 +1555,8 @@ var
   c, p, x: Double;
 begin
   frmClear;
-  v := 300;
-  k := 200;
+  v := pbMain.Height div 2;
+  k := 350;
   p := pi/9;
   c := 2*pi/pbMain.Width;
   for n := 0 to 9 do
@@ -1567,6 +1630,7 @@ var
   rd, p, r: Double;
 begin
   frmClear;
+  pnlBloem2.Visible := True;
   u := Trunc(pbMain.Width/2);
   v := Trunc(pbMain.Height/2);
   //u := 200;
@@ -1577,7 +1641,7 @@ begin
   repeat
     repeat
       p := w * rd;
-      r := FormuleBloem2(i, k, p);
+      r := k * Cos(seBloem.Value * Sin(seBloem2.Value * p));
       x := Trunc(u + k * r * Cos(p));
       y := Trunc(v - k * r * Sin(p));
       if p = 0 then
@@ -1607,6 +1671,7 @@ var
   p, r, rd: Double;
 begin
   frmClear;
+  Memo1.Visible := True;
   u := Trunc(pbMain.Width/2);
   v := Trunc(pbMain.Height/2);
   rd := pi/180;
@@ -1632,9 +1697,11 @@ begin
         x1 := x2;
         y1 := y2;
       end;
+      Memo1.Lines.Add('x='+x.ToString+' y='+y.ToString+' r='+r.ToString+
+        ' p='+p.ToString+' k='+k.ToString+' w='+w.ToString);
     end;
-    k := k + 20;
-  until k > 80;
+    k := k + 10;
+  until k >= 80;
 end;
 
 procedure TfrmMain.DriehoekenClick(Sender: TObject);

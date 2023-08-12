@@ -40,7 +40,6 @@ object frmMain: TfrmMain
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    ExplicitWidth = 875
   end
   object pnlSide: TPanel
     Left = 0
@@ -49,7 +48,6 @@ object frmMain: TfrmMain
     Height = 642
     Align = alLeft
     TabOrder = 1
-    ExplicitHeight = 520
     object pnlDiagWeb: TPanel
       Left = 1
       Top = 1
@@ -58,7 +56,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 0
       Visible = False
-      ExplicitHeight = 518
       object lblN: TLabel
         Left = 28
         Top = 24
@@ -86,7 +83,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 1
       Visible = False
-      ExplicitHeight = 518
       object lblBreed: TLabel
         Left = 8
         Top = 8
@@ -152,7 +148,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 2
       Visible = False
-      ExplicitHeight = 518
       object lblK: TLabel
         Left = 8
         Top = 16
@@ -186,7 +181,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 5
       Visible = False
-      ExplicitHeight = 518
       object rgFormule: TRadioGroup
         Left = 17
         Top = 21
@@ -229,7 +223,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 6
       Visible = False
-      ExplicitHeight = 518
       object lblGrootte: TLabel
         Left = 40
         Top = 40
@@ -289,7 +282,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 3
       Visible = False
-      ExplicitHeight = 518
       object lblLinker: TLabel
         Left = 8
         Top = 5
@@ -324,7 +316,7 @@ object frmMain: TfrmMain
         Width = 73
         Height = 24
         MaxValue = -1
-        MinValue = -20
+        MinValue = -30
         TabOrder = 0
         Value = -15
         OnChange = Grafiekvaneencontinuefunctie1Click
@@ -334,7 +326,7 @@ object frmMain: TfrmMain
         Top = 29
         Width = 73
         Height = 24
-        MaxValue = 18
+        MaxValue = 30
         MinValue = 1
         TabOrder = 1
         Value = 15
@@ -387,7 +379,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 7
       Visible = False
-      ExplicitHeight = 518
       object lblA: TLabel
         Left = 15
         Top = 16
@@ -482,7 +473,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 9
       Visible = False
-      ExplicitHeight = 518
       object lblKromme: TLabel
         Left = 34
         Top = 42
@@ -510,7 +500,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 8
       Visible = False
-      ExplicitHeight = 518
       object lblK1: TLabel
         Left = 17
         Top = 16
@@ -702,7 +691,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 4
       Visible = False
-      ExplicitHeight = 518
       object lblLinkergrensX: TLabel
         Left = 28
         Top = 45
@@ -798,7 +786,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 10
       Visible = False
-      ExplicitHeight = 518
       object Label1: TLabel
         Left = 17
         Top = 204
@@ -843,7 +830,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 11
       Visible = False
-      ExplicitHeight = 518
       object rgSymFig: TRadioGroup
         Left = 17
         Top = 49
@@ -872,7 +858,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 12
       Visible = False
-      ExplicitHeight = 518
       object Label3: TLabel
         Left = 17
         Top = 24
@@ -923,6 +908,74 @@ object frmMain: TfrmMain
       TabOrder = 13
       Visible = False
       WantTabs = True
+    end
+    object pnlBloem2: TPanel
+      Left = 1
+      Top = 1
+      Width = 273
+      Height = 640
+      Align = alClient
+      TabOrder = 14
+      Visible = False
+      object seBloem: TSpinEdit
+        Left = 26
+        Top = 70
+        Width = 39
+        Height = 24
+        MaxValue = 6
+        MinValue = 2
+        TabOrder = 0
+        Value = 2
+        OnChange = miBloem2Click
+      end
+      object seBloem2: TSpinEdit
+        Left = 26
+        Top = 157
+        Width = 45
+        Height = 24
+        MaxValue = 6
+        MinValue = 2
+        TabOrder = 1
+        Value = 2
+        OnChange = miBloem2Click
+      end
+    end
+    object pnlZFXYhidden: TPanel
+      Left = 1
+      Top = 1
+      Width = 273
+      Height = 640
+      Align = alClient
+      TabOrder = 15
+      Visible = False
+      ExplicitLeft = 64
+      ExplicitTop = 360
+      ExplicitWidth = 185
+      ExplicitHeight = 41
+      object rgZFXYhidden: TRadioGroup
+        Left = 17
+        Top = 37
+        Width = 232
+        Height = 310
+        Caption = 'Functies'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ItemIndex = 0
+        Items.Strings = (
+          'z=k1*Exp(-x*x-y*y)'
+          'z=k1*(Cos(r)-Cos(3*r)/3+Cos(5*r/5)-Cos(7*r)/7)'
+          'z=k1*Sin{r}/r'
+          'z=k1*Exp(-Cos(r/16))'
+          'z=k1*Cos(r/16)'
+          'z=k1*Sin(r/16)')
+        ParentFont = False
+        TabOrder = 0
+        WordWrap = True
+        OnClick = miGrafiekvanzfxyhiddenlinesClick
+      end
     end
   end
   object MainMenu1: TMainMenu
