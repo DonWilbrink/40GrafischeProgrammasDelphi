@@ -21,10 +21,8 @@ object frmMain: TfrmMain
     Width = 659
     Height = 642
     Align = alClient
-    ExplicitLeft = 185
+    ExplicitLeft = 280
     ExplicitTop = 55
-    ExplicitWidth = 690
-    ExplicitHeight = 520
   end
   object pnlTop: TPanel
     Left = 0
@@ -897,25 +895,13 @@ object frmMain: TfrmMain
         OnChange = miCylindersenkegelsClick
       end
     end
-    object Memo1: TMemo
-      Left = 18
-      Top = 193
-      Width = 240
-      Height = 296
-      Lines.Strings = (
-        'Memo1')
-      ScrollBars = ssVertical
-      TabOrder = 13
-      Visible = False
-      WantTabs = True
-    end
     object pnlBloem2: TPanel
       Left = 1
       Top = 1
       Width = 273
       Height = 640
       Align = alClient
-      TabOrder = 14
+      TabOrder = 13
       Visible = False
       object seBloem: TSpinEdit
         Left = 26
@@ -946,7 +932,7 @@ object frmMain: TfrmMain
       Width = 273
       Height = 640
       Align = alClient
-      TabOrder = 15
+      TabOrder = 14
       Visible = False
       ExplicitLeft = 64
       ExplicitTop = 360
@@ -975,6 +961,18 @@ object frmMain: TfrmMain
         TabOrder = 0
         WordWrap = True
         OnClick = miGrafiekvanzfxyhiddenlinesClick
+      end
+      object Memo1: TMemo
+        Left = 15
+        Top = 367
+        Width = 240
+        Height = 257
+        Lines.Strings = (
+          'Memo1')
+        ScrollBars = ssVertical
+        TabOrder = 1
+        Visible = False
+        WantTabs = True
       end
     end
   end

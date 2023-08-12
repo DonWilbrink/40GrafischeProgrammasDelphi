@@ -861,7 +861,7 @@ var
   a, dx, dy, g, k1, u, v, w, xg, xx, x1, x2, yg, yy, y1, y2: Integer;
   af, c, k, r, rd, s, x, y, z: Double;
   f1, f2: Boolean;
-  h: Array[0..310] of Integer;
+  h: Array[0..643] of Integer;
   l: Integer;
 begin
   frmClear;
@@ -878,16 +878,16 @@ begin
   1:
     begin
       a := 180;
-      k1 := 45;
+      k1 := 70;
     end;
   2:
     begin
       a := 1080;
-      k1 := 60;
+      k1 := 150;
     end;
   3:
     begin
-      a := 90;
+      a := 100;
       k1 := 80;
     end;
   4, 5:
@@ -901,11 +901,11 @@ begin
   rd := pi/180;
   c := k*Cos(w);
   s := k*Sin(w);
-  dx := 5;
-  dy := 10;
+  dx := 3;
+  dy := 5;
   g := u - 200;
   af := a/g;
-  for l := 0 to 310 do
+  for l := 0 to 643 do
     h[l] := 1000;
   yy := -g;
   repeat
@@ -944,15 +944,12 @@ begin
           z := k1 * Sin(r/16);
         end;
       end;
-      xg := Trunc(u + xx + c * yy);
-      yg := Trunc(v - s * yy - z);
-      //if xg<0 then xg := 0;
-      //if xg>255 then xg := 255;
-      if (yg<0) or (yg>pbMain.Height) then
-      begin
-        ShowMessage('Foute k1, yg='+yg.ToString);
-        Exit;
-      end;
+      xg := Round(u + xx + c * yy);
+      yg := Round(v - s * yy - z);
+      if xg<0 then xg := 0;
+      if xg>pbMain.Width then xg := pbMain.Width;
+      if yg<0 then yg := 0;
+      if yg>pbMain.Height then yg := pbMain.Height;
       if xx=-g then
       begin
         f1 := False;
@@ -983,9 +980,10 @@ begin
         end;
         x1 := x2;
         y1 := y2;
+        f1 := f2;
       end;
-      {Memo1.Lines.Add('xg='+xg.ToString+' yg='+yg.ToString+' xx='+xx.ToString+
-        ' yy='+yy.ToString);  }
+      //Memo1.Lines.Add('x1='+x1.ToString+' y1='+y1.ToString+' x2='+x2.ToString+
+       // ' y2='+y2.ToString);
       xx := xx + dx;
     until xx>=g;
     yy := yy + dy;
