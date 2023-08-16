@@ -934,10 +934,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 14
       Visible = False
-      ExplicitLeft = 64
-      ExplicitTop = 360
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object rgZFXYhidden: TRadioGroup
         Left = 17
         Top = 37
@@ -1102,6 +1098,10 @@ object frmMain: TfrmMain
       object miGrafiekvanzfxyhiddenlines: TMenuItem
         Caption = 'Grafiek van z=f(x,y), hidden lines'
         OnClick = miGrafiekvanzfxyhiddenlinesClick
+      end
+      object miMooiefunctie: TMenuItem
+        Caption = 'Mooie functie'
+        OnClick = miMooiefunctieClick
       end
     end
   end

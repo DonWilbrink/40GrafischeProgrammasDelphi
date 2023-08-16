@@ -137,6 +137,7 @@ type
     seBloem2: TSpinEdit;
     pnlZFXYhidden: TPanel;
     rgZFXYhidden: TRadioGroup;
+    miMooiefunctie: TMenuItem;
     procedure Diagonaalweb1Click(Sender: TObject);
     procedure MoireeeffectClick(Sender: TObject);
     procedure DriehoekenClick(Sender: TObject);
@@ -166,6 +167,7 @@ type
     procedure miIkosaederClick(Sender: TObject);
     procedure miGrafiekvanzfxyClick(Sender: TObject);
     procedure miGrafiekvanzfxyhiddenlinesClick(Sender: TObject);
+    procedure miMooiefunctieClick(Sender: TObject);
   private
     { Private declarations }
     procedure frmClear;
@@ -1174,6 +1176,79 @@ begin
       y1 := y2;
     end;
   end;
+end;
+
+procedure TfrmMain.miMooiefunctieClick(Sender: TObject);
+var
+  dx, dy, g, k1, u, v, w, xg, xx, x1, x2, yg, yy, y1, y2: Integer;
+  c, k, m1, m2, rd, s, z: Double;
+  f1, f2: Boolean;
+  h: Array[0..643] of Integer;
+  l: Integer;
+begin
+  frmClear;
+  w := 45;
+  k := 0.5;
+  u := Trunc(pbMain.Width/2);
+  v := Trunc(pbMain.Height/2)+100;
+  rd := pi/180;
+  c := k*Cos(w*rd);
+  s := k*Sin(w*rd);
+  k1 := 50;
+  dx := 3;
+  dy := 5;
+  g := u - 200;
+  for l := 0 to 643 do
+    h[l] := 1000;
+  yy := -g;
+  repeat
+    m1 := Cos(yy*2*pi/g-pi)+1;
+    xx := -g;
+    repeat
+      m2 := Cos(xx*2*pi/g-pi)+1;
+      z := k1*m1*m2;
+      xg := Round(u + xx + c * yy);
+      yg := Round(v - s * yy - z);
+      if xg<0 then xg := 0;
+      if xg>pbMain.Width then xg := pbMain.Width;
+      if yg<0 then yg := 0;
+      if yg>pbMain.Height then yg := pbMain.Height;
+      if xx=-g then
+      begin
+        f1 := False;
+        l := Trunc(xg/dx);
+        if yg<=h[l] then
+        begin
+          f1 := True;
+          h[l] := yg;
+        end;
+        x1 := xg;
+        y1 := yg;
+      end
+      else
+      begin
+        f2 := False;
+        l := Trunc(xg/dx);
+        if yg<=h[l] then
+        begin
+          f2 := True;
+          h[l] := yg;
+        end;
+        x2 := xg;
+        y2 := yg;
+        if f1 and f2 then
+        begin
+          pbMain.Canvas.MoveTo(x1,y1);
+          pbMain.Canvas.LineTo(x2,y2);
+        end;
+        x1 := x2;
+        y1 := y2;
+        f1 := f2;
+      end;
+      xx := xx + dx;
+    until xx>=g;
+    yy := yy + dy;
+  until yy>=g;
 end;
 
 procedure TfrmMain.miOppKrommeClick(Sender: TObject);
