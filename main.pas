@@ -138,6 +138,8 @@ type
     pnlZFXYhidden: TPanel;
     rgZFXYhidden: TRadioGroup;
     miMooiefunctie: TMenuItem;
+    seFormule: TSpinEdit;
+    Label11: TLabel;
     procedure Diagonaalweb1Click(Sender: TObject);
     procedure MoireeeffectClick(Sender: TObject);
     procedure DriehoekenClick(Sender: TObject);
@@ -385,6 +387,8 @@ begin
   pnlCylKeg.Visible := False;
   pnlZFXYhidden.Visible := False;
   Memo1.Visible := False;
+  Label11.Visible := False;
+  seFormule.Visible := False;
 end;
 
 procedure TfrmMain.Grafiekvaneencontinuefunctie1Click(Sender: TObject);
@@ -549,7 +553,10 @@ procedure TfrmMain.miBloem3Click(Sender: TObject);
 var
   i: Integer;
 begin
-  i := 3;
+  frmClear;
+  Label11.Visible := True;
+  seFormule.Visible := True;
+  i := seFormule.Value;
   Teken3(i);
 end;
 
@@ -1743,38 +1750,76 @@ var
   k, u, v, w, x, x1, x2, y, y1, y2: Integer;
   p, r, rd: Double;
 begin
-  frmClear;
-  Memo1.Visible := True;
   u := Trunc(pbMain.Width/2);
   v := Trunc(pbMain.Height/2);
   rd := pi/180;
-  k := -80;
-  repeat
-    for w := 0 to 360 do
-    begin
-      p := w * rd;
-      r := FormuleBloem2(i, k, p);
-      x := Trunc(u + r * Cos(p));
-      y := Trunc(v - r * Sin(p));
-      if p = 0 then
+  case i of
+    2:
       begin
-        x1 := x;
-        y1 := y;
-      end
-      else
-      begin
-        x2 := x;
-        y2 := y;
-        pbMain.Canvas.MoveTo(x1,y1);
-        pbMain.Canvas.LineTo(x2,y2);
-        x1 := x2;
-        y1 := y2;
+        Label11.Caption := 'y=Height/4+2*k*Sin(4*p)';
+        k := -v div 4;
+        repeat
+          for w := 0 to 360 do
+          begin
+            p := w * rd;
+            r := FormuleBloem2(i, k, p);
+            x := Trunc(u + r * Cos(p));
+            y := Trunc(v - r * Sin(p));
+            if p = 0 then
+            begin
+              x1 := x;
+              y1 := y;
+            end
+            else
+            begin
+              x2 := x;
+              y2 := y;
+              pbMain.Canvas.MoveTo(x1,y1);
+              pbMain.Canvas.LineTo(x2,y2);
+              x1 := x2;
+              y1 := y2;
+            end;
+          end;
+          k := k + 10;
+        until k > v div 4;
       end;
-      Memo1.Lines.Add('x='+x.ToString+' y='+y.ToString+' r='+r.ToString+
-        ' p='+p.ToString+' k='+k.ToString+' w='+w.ToString);
-    end;
-    k := k + 10;
-  until k >= 80;
+    3:
+      begin
+        Label11.Caption := 'y=2*Tan(2*p)+k*Sin(2*Cos(Sin(6*p)))';
+        k := -v+50;
+        repeat
+          for w := 0 to 360 do
+          begin
+            p := w * rd;
+            if (w=45) or (w=135) or (w=225) or (w=315) then
+            begin
+              // Doe niets
+            end
+            else
+            begin
+              r := FormuleBloem2(i, k, p);
+              x := Trunc(u + r * Cos(p));
+              y := Trunc(v - r * Sin(p));
+              if p = 0 then
+              begin
+                x1 := x;
+                y1 := y;
+              end
+              else
+              begin
+                x2 := x;
+                y2 := y;
+                pbMain.Canvas.MoveTo(x1,y1);
+                pbMain.Canvas.LineTo(x2,y2);
+                x1 := x2;
+                y1 := y2;
+              end;
+            end;
+          end;
+          k := k + 10;
+        until k >= v-50;
+      end;
+  end;
 end;
 
 procedure TfrmMain.DriehoekenClick(Sender: TObject);

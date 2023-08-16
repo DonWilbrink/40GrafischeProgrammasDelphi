@@ -46,6 +46,14 @@ object frmMain: TfrmMain
     Height = 642
     Align = alLeft
     TabOrder = 1
+    object Label11: TLabel
+      Left = 17
+      Top = 8
+      Width = 133
+      Height = 15
+      Caption = 'y=Height/4+2*k*Sin(4*p)'
+      Visible = False
+    end
     object pnlDiagWeb: TPanel
       Left = 1
       Top = 1
@@ -934,6 +942,8 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 14
       Visible = False
+      ExplicitLeft = -4
+      ExplicitTop = 6
       object rgZFXYhidden: TRadioGroup
         Left = 17
         Top = 37
@@ -958,18 +968,30 @@ object frmMain: TfrmMain
         WordWrap = True
         OnClick = miGrafiekvanzfxyhiddenlinesClick
       end
-      object Memo1: TMemo
-        Left = 15
-        Top = 367
-        Width = 240
-        Height = 257
-        Lines.Strings = (
-          'Memo1')
-        ScrollBars = ssVertical
-        TabOrder = 1
-        Visible = False
-        WantTabs = True
-      end
+    end
+    object Memo1: TMemo
+      Left = 15
+      Top = 367
+      Width = 240
+      Height = 257
+      Lines.Strings = (
+        'Memo1')
+      ScrollBars = ssVertical
+      TabOrder = 15
+      Visible = False
+      WantTabs = True
+    end
+    object seFormule: TSpinEdit
+      Left = 224
+      Top = 6
+      Width = 31
+      Height = 24
+      MaxValue = 3
+      MinValue = 2
+      TabOrder = 16
+      Value = 2
+      Visible = False
+      OnChange = miBloem3Click
     end
   end
   object MainMenu1: TMainMenu
