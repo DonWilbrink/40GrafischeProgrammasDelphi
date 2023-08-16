@@ -993,6 +993,110 @@ object frmMain: TfrmMain
       Visible = False
       OnChange = miBloem3Click
     end
+    object pnlLogo1: TPanel
+      Left = 1
+      Top = 1
+      Width = 273
+      Height = 640
+      Align = alClient
+      TabOrder = 17
+      Visible = False
+      ExplicitWidth = 271
+      ExplicitHeight = 638
+      object Label12: TLabel
+        Left = 20
+        Top = 29
+        Width = 11
+        Height = 15
+        Caption = 'W'
+      end
+      object Label13: TLabel
+        Left = 20
+        Top = 79
+        Width = 19
+        Height = 15
+        Caption = 'S1'
+      end
+      object Label14: TLabel
+        Left = 20
+        Top = 126
+        Width = 19
+        Height = 15
+        Caption = 'DW'
+      end
+      object Label15: TLabel
+        Left = 20
+        Top = 171
+        Width = 12
+        Height = 15
+        Caption = 'S2'
+      end
+      object Label16: TLabel
+        Left = 20
+        Top = 224
+        Width = 9
+        Height = 15
+        Caption = 'N'
+      end
+      object seBeginW: TSpinEdit
+        Left = 21
+        Top = 50
+        Width = 59
+        Height = 24
+        Increment = 5
+        MaxValue = 175
+        MinValue = 5
+        TabOrder = 0
+        Value = 90
+        OnChange = miVierkantpatroonLOGO1Click
+      end
+      object seVerplS1: TSpinEdit
+        Left = 20
+        Top = 96
+        Width = 59
+        Height = 24
+        Increment = 10
+        MaxValue = 200
+        MinValue = 10
+        TabOrder = 1
+        Value = 10
+        OnChange = miVierkantpatroonLOGO1Click
+      end
+      object seDraaiDW: TSpinEdit
+        Left = 21
+        Top = 147
+        Width = 59
+        Height = 24
+        MaxValue = 90
+        MinValue = 5
+        TabOrder = 2
+        Value = 45
+        OnChange = miVierkantpatroonLOGO1Click
+      end
+      object seZijdeS2: TSpinEdit
+        Left = 20
+        Top = 186
+        Width = 59
+        Height = 24
+        Increment = 10
+        MaxValue = 250
+        MinValue = 50
+        TabOrder = 3
+        Value = 100
+        OnChange = miVierkantpatroonLOGO1Click
+      end
+      object seAantalN: TSpinEdit
+        Left = 21
+        Top = 250
+        Width = 59
+        Height = 24
+        MaxValue = 20
+        MinValue = 4
+        TabOrder = 4
+        Value = 8
+        OnChange = miVierkantpatroonLOGO1Click
+      end
+    end
   end
   object MainMenu1: TMainMenu
     Left = 16
@@ -1124,6 +1228,13 @@ object frmMain: TfrmMain
       object miMooiefunctie: TMenuItem
         Caption = 'Mooie functie'
         OnClick = miMooiefunctieClick
+      end
+    end
+    object Programma31401: TMenuItem
+      Caption = 'Programma 31-40'
+      object miVierkantpatroonLOGO1: TMenuItem
+        Caption = 'Vierkantpatroon (LOGO-1)'
+        OnClick = miVierkantpatroonLOGO1Click
       end
     end
   end

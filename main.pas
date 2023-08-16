@@ -140,6 +140,19 @@ type
     miMooiefunctie: TMenuItem;
     seFormule: TSpinEdit;
     Label11: TLabel;
+    Programma31401: TMenuItem;
+    miVierkantpatroonLOGO1: TMenuItem;
+    pnlLogo1: TPanel;
+    Label12: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
+    Label15: TLabel;
+    Label16: TLabel;
+    seBeginW: TSpinEdit;
+    seVerplS1: TSpinEdit;
+    seDraaiDW: TSpinEdit;
+    seZijdeS2: TSpinEdit;
+    seAantalN: TSpinEdit;
     procedure Diagonaalweb1Click(Sender: TObject);
     procedure MoireeeffectClick(Sender: TObject);
     procedure DriehoekenClick(Sender: TObject);
@@ -170,6 +183,7 @@ type
     procedure miGrafiekvanzfxyClick(Sender: TObject);
     procedure miGrafiekvanzfxyhiddenlinesClick(Sender: TObject);
     procedure miMooiefunctieClick(Sender: TObject);
+    procedure miVierkantpatroonLOGO1Click(Sender: TObject);
   private
     { Private declarations }
     procedure frmClear;
@@ -386,6 +400,7 @@ begin
   pnlSymFig.Visible := False;
   pnlCylKeg.Visible := False;
   pnlZFXYhidden.Visible := False;
+  pnlLogo1.Visible := False;
   Memo1.Visible := False;
   Label11.Visible := False;
   seFormule.Visible := False;
@@ -1419,6 +1434,50 @@ begin
       x1 := x2;
       y1 := y2;
     end;
+  end;
+end;
+
+procedure TfrmMain.miVierkantpatroonLOGO1Click(Sender: TObject);
+var
+  ax, ay,dw, j, n, s1, s2, w, x1, x2, y1, y2: Integer;
+  rd, w1: Double;
+  k: Integer;
+begin
+  frmClear;
+  pnlLogo1.Visible := True;
+  x1 := pbMain.Width div 2;
+  y1 := pbMain.Height div 2 - 100;
+  w := seBeginW.Value;
+  s1 := seVerplS1.Value;
+  dw := seDraaiDW.Value;
+  s2 := seZijdeS2.Value;
+  n := seAantalN.Value;
+  rd := pi/180;
+  w1 := w*rd;
+  for j := 1 to n do
+  begin
+    x2 := Round(x1+s1*Cos(w1));
+    y2 := Round(y1-s1*Sin(w1));
+    pbMain.Canvas.MoveTo(x1,y1);
+    pbMain.Canvas.LineTo(x2,y2);
+    x1 := x2;
+    y1 := y2;
+    ax := x1;
+    ay := y1;
+    w := w+dw;
+    if w>360 then w := w-360;
+    w1 := w*rd;
+    for k := 0 to 2 do
+    begin
+      x2 := Round(x1+s2*Cos(w1+k/2*pi));
+      y2 := Round(y1-s2*Sin(w1+k/2*pi));
+      pbMain.Canvas.MoveTo(x1,y1);
+      pbMain.Canvas.LineTo(x2,y2);
+      x1 := x2;
+      y1 := y2;
+    end;
+    pbMain.Canvas.MoveTo(x1,y1);
+    pbMain.Canvas.LineTo(ax,ay);
   end;
 end;
 
