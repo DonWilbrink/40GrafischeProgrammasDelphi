@@ -1118,6 +1118,74 @@ object frmMain: TfrmMain
         OnClick = miTurtlegrafiekLOGO2Click
       end
     end
+    object pnlLogo4: TPanel
+      Left = 1
+      Top = 1
+      Width = 273
+      Height = 640
+      Align = alClient
+      TabOrder = 19
+      Visible = False
+      ExplicitLeft = -4
+      ExplicitTop = 6
+      object Label17: TLabel
+        Left = 38
+        Top = 63
+        Width = 63
+        Height = 15
+        Caption = 'Lengte steel'
+      end
+      object Label18: TLabel
+        Left = 38
+        Top = 130
+        Width = 98
+        Height = 15
+        Caption = 'Draaihoek linksom'
+      end
+      object Label19: TLabel
+        Left = 38
+        Top = 202
+        Width = 35
+        Height = 15
+        Caption = 'Radius'
+      end
+      object seLengte: TSpinEdit
+        Left = 38
+        Top = 88
+        Width = 51
+        Height = 24
+        Increment = 5
+        MaxValue = 300
+        MinValue = 90
+        TabOrder = 0
+        Value = 90
+        OnChange = miCirkelfiguur1LOGO4Click
+      end
+      object seDraaihoek: TSpinEdit
+        Left = 38
+        Top = 151
+        Width = 51
+        Height = 24
+        Increment = 5
+        MaxValue = 240
+        MinValue = 90
+        TabOrder = 1
+        Value = 170
+        OnChange = miCirkelfiguur1LOGO4Click
+      end
+      object seRadius: TSpinEdit
+        Left = 36
+        Top = 225
+        Width = 53
+        Height = 24
+        Increment = 5
+        MaxValue = 100
+        MinValue = 20
+        TabOrder = 2
+        Value = 20
+        OnChange = miCirkelfiguur1LOGO4Click
+      end
+    end
   end
   object MainMenu1: TMainMenu
     Left = 16
@@ -1260,6 +1328,14 @@ object frmMain: TfrmMain
       object miTurtlegrafiekLOGO2: TMenuItem
         Caption = 'Turtle-grafiek (LOGO-2)'
         OnClick = miTurtlegrafiekLOGO2Click
+      end
+      object miVierkantspiraal: TMenuItem
+        Caption = 'Vierkantspiraal'
+        OnClick = miVierkantspiraalClick
+      end
+      object miCirkelfiguur1LOGO4: TMenuItem
+        Caption = 'Cirkelfiguur-1 (LOGO-4)'
+        OnClick = miCirkelfiguur1LOGO4Click
       end
     end
   end

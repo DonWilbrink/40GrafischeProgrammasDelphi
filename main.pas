@@ -156,6 +156,15 @@ type
     pnlLogo2: TPanel;
     rgLogo2: TRadioGroup;
     miTurtlegrafiekLOGO2: TMenuItem;
+    miVierkantspiraal: TMenuItem;
+    miCirkelfiguur1LOGO4: TMenuItem;
+    pnlLogo4: TPanel;
+    Label17: TLabel;
+    seLengte: TSpinEdit;
+    Label18: TLabel;
+    seDraaihoek: TSpinEdit;
+    Label19: TLabel;
+    seRadius: TSpinEdit;
     procedure Diagonaalweb1Click(Sender: TObject);
     procedure MoireeeffectClick(Sender: TObject);
     procedure DriehoekenClick(Sender: TObject);
@@ -188,6 +197,8 @@ type
     procedure miMooiefunctieClick(Sender: TObject);
     procedure miVierkantpatroonLOGO1Click(Sender: TObject);
     procedure miTurtlegrafiekLOGO2Click(Sender: TObject);
+    procedure miVierkantspiraalClick(Sender: TObject);
+    procedure miCirkelfiguur1LOGO4Click(Sender: TObject);
   private
     { Private declarations }
     procedure frmClear;
@@ -406,6 +417,7 @@ begin
   pnlZFXYhidden.Visible := False;
   pnlLogo1.Visible := False;
   pnlLogo2.Visible := False;
+  pnlLogo4.Visible := False;
   Memo1.Visible := False;
   Label11.Visible := False;
   seFormule.Visible := False;
@@ -637,6 +649,41 @@ var
 begin
   I := rgFormule.ItemIndex + 1;
   Teken(I);
+end;
+
+procedure TfrmMain.miCirkelfiguur1LOGO4Click(Sender: TObject);
+var
+  dw, l, r, u, v, w, x1, x2, xx, y1, y2, yy: Integer;
+  rd, w1: Double;
+begin
+  frmClear;
+  pnlLogo4.Visible := True;
+  x1 := pbMain.Width div 2;
+  y1 := pbMain.Height div 2 + 100;
+  w := 90;
+  l := seLengte.Value;
+  r := seRadius.Value;
+  dw := seDraaihoek.Value;
+  rd := pi/180;
+  w1 := w * rd;
+  xx := x1;
+  yy := y1;
+  repeat
+    x2 := Round(x1+l*Cos(w1));
+    y2 := Round(y1-l*Sin(w1));
+    pbMain.Canvas.MoveTo(x1,y1);
+    pbMain.Canvas.LineTo(x2,y2);
+    u := Round(x2+r*Cos(w1));
+    v := Round(y2-r*Sin(w1));
+    //pbMain.Canvas.AngleArc(u,v,r,0,360);
+    //pbMain.Canvas.Ellipse(u-r,v-r,u+r,v+r);
+    pbMain.Canvas.Arc(u-r,v-r,u+r,v+r,u+r,v,u+r,v);
+    w := w + dw;
+    //if w>=360 then w := w - 360;
+    w1 := w * rd;
+    x1 := x2;
+    y1 := y2;
+  until ((x1<>xx) or (y1<>yy)) and (w>8000);
 end;
 
 procedure TfrmMain.miCylindersenkegelsClick(Sender: TObject);
@@ -1888,6 +1935,51 @@ begin
   end;
 end;
 
+procedure TfrmMain.miVierkantspiraalClick(Sender: TObject);
+var
+  ax, ay, dw, i, w, x1, x2, y1, y2: Integer;
+  ds, fase,rd, s, w1: Double;
+  vlag: Boolean;
+begin
+  frmClear;
+  x1 := pbMain.Width div 2;
+  y1 := pbMain.Height div 2;
+  w := 90;
+  s := 5;
+  dw := 15;
+  ds := 3.5;
+  rd := pi/180;
+  w1 := w * rd;
+  ax := x1;
+  ay := y1;
+  vlag := False;
+  while not vlag do
+  begin
+    fase := 0;
+    while fase<=pi do
+    begin
+      x2 := Round(x1+s*Cos(w1+fase));
+      y2 := Round(y1-s*Sin(w1+fase));
+      if (x2<0) or (x2>pbMain.Width) or (y2<0) or (y2>pbMain.Height) then
+        vlag := True;
+      if vlag then Break;
+      pbMain.Canvas.MoveTo(x1,y1);
+      pbMain.Canvas.LineTo(x2,y2);
+      x1 := x2;
+      y1 := y2;
+      fase := fase + pi/2;
+    end;
+    pbMain.Canvas.MoveTo(x1,y1);
+    pbMain.Canvas.LineTo(ax,ay);
+    x1 := ax;
+    y1 := ay;
+    w := w + dw;
+    if w>360 then w := w - 360;
+    w1 := w * rd;
+    s := s + ds;
+  end;
+end;
+
 procedure TfrmMain.miTurtlegrafiekLOGO2Click(Sender: TObject);
 var
   ds, dw, i, s, w, x1, x2, y1, y2: Integer;
@@ -1938,7 +2030,7 @@ begin
     x2 := Round(x1+s*Cos(w1));
     y2 := Round(y1-s*Sin(w1));
     if (x2<0) or (x2>pbMain.Width) or (y2<0) or (y2>pbMain.Height) then
-      Exit;
+      Break;
     pbMain.Canvas.MoveTo(x1,y1);
     pbMain.Canvas.LineTo(x2,y2);
     x1 := x2;
