@@ -153,6 +153,9 @@ type
     seDraaiDW: TSpinEdit;
     seZijdeS2: TSpinEdit;
     seAantalN: TSpinEdit;
+    pnlLogo2: TPanel;
+    rgLogo2: TRadioGroup;
+    miTurtlegrafiekLOGO2: TMenuItem;
     procedure Diagonaalweb1Click(Sender: TObject);
     procedure MoireeeffectClick(Sender: TObject);
     procedure DriehoekenClick(Sender: TObject);
@@ -184,6 +187,7 @@ type
     procedure miGrafiekvanzfxyhiddenlinesClick(Sender: TObject);
     procedure miMooiefunctieClick(Sender: TObject);
     procedure miVierkantpatroonLOGO1Click(Sender: TObject);
+    procedure miTurtlegrafiekLOGO2Click(Sender: TObject);
   private
     { Private declarations }
     procedure frmClear;
@@ -401,6 +405,7 @@ begin
   pnlCylKeg.Visible := False;
   pnlZFXYhidden.Visible := False;
   pnlLogo1.Visible := False;
+  pnlLogo2.Visible := False;
   Memo1.Visible := False;
   Label11.Visible := False;
   seFormule.Visible := False;
@@ -1478,6 +1483,8 @@ begin
     end;
     pbMain.Canvas.MoveTo(x1,y1);
     pbMain.Canvas.LineTo(ax,ay);
+    x1 := ax;
+    y1 := ay;
   end;
 end;
 
@@ -1878,6 +1885,71 @@ begin
           k := k + 10;
         until k >= v-50;
       end;
+  end;
+end;
+
+procedure TfrmMain.miTurtlegrafiekLOGO2Click(Sender: TObject);
+var
+  ds, dw, i, s, w, x1, x2, y1, y2: Integer;
+  rd, w1: Double;
+begin
+  frmClear;
+  pnlLogo2.Visible := True;
+  x1 := pbMain.Width div 2;
+  y1 := pbMain.Height div 2;
+  w := 90;
+  case rgLogo2.ItemIndex of
+    0:
+    begin
+      s := 5;
+      dw := 144;
+      ds := 3;
+    end;
+    1:
+    begin
+      s := 5;
+      dw := 123;
+      ds := 2;
+    end;
+    2:
+    begin
+      s := -2;
+      dw := 92;
+      ds := 2;
+    end;
+    3:
+    begin
+      s := 5;
+      dw := 72;
+      ds := 1;
+    end;
+    4:
+    begin
+      s := 260;
+      dw := 145;
+      ds := 0;
+    end;
+  end;
+  rd := pi/180;
+  w1 := w * rd;
+  i := 1;
+  while s<=pbMain.Width div 2 do
+  begin
+    x2 := Round(x1+s*Cos(w1));
+    y2 := Round(y1-s*Sin(w1));
+    if (x2<0) or (x2>pbMain.Width) or (y2<0) or (y2>pbMain.Height) then
+      Exit;
+    pbMain.Canvas.MoveTo(x1,y1);
+    pbMain.Canvas.LineTo(x2,y2);
+    x1 := x2;
+    y1 := y2;
+    w := w + dw;
+    if w>360 then
+      w := w - 360;
+    w1 := w * rd;
+    Inc(i);
+    if i>500 then Break;
+    s := s + ds;
   end;
 end;
 

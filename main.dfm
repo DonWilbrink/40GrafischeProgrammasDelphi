@@ -942,8 +942,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 14
       Visible = False
-      ExplicitLeft = -4
-      ExplicitTop = 6
       object rgZFXYhidden: TRadioGroup
         Left = 17
         Top = 37
@@ -1001,11 +999,9 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 17
       Visible = False
-      ExplicitWidth = 271
-      ExplicitHeight = 638
       object Label12: TLabel
-        Left = 20
-        Top = 29
+        Left = 23
+        Top = 30
         Width = 11
         Height = 15
         Caption = 'W'
@@ -1013,7 +1009,7 @@ object frmMain: TfrmMain
       object Label13: TLabel
         Left = 20
         Top = 79
-        Width = 19
+        Width = 12
         Height = 15
         Caption = 'S1'
       end
@@ -1040,7 +1036,7 @@ object frmMain: TfrmMain
       end
       object seBeginW: TSpinEdit
         Left = 21
-        Top = 50
+        Top = 49
         Width = 59
         Height = 24
         Increment = 5
@@ -1063,7 +1059,7 @@ object frmMain: TfrmMain
         OnChange = miVierkantpatroonLOGO1Click
       end
       object seDraaiDW: TSpinEdit
-        Left = 21
+        Left = 20
         Top = 147
         Width = 59
         Height = 24
@@ -1074,8 +1070,8 @@ object frmMain: TfrmMain
         OnChange = miVierkantpatroonLOGO1Click
       end
       object seZijdeS2: TSpinEdit
-        Left = 20
-        Top = 186
+        Left = 21
+        Top = 187
         Width = 59
         Height = 24
         Increment = 10
@@ -1086,8 +1082,8 @@ object frmMain: TfrmMain
         OnChange = miVierkantpatroonLOGO1Click
       end
       object seAantalN: TSpinEdit
-        Left = 21
-        Top = 250
+        Left = 22
+        Top = 251
         Width = 59
         Height = 24
         MaxValue = 20
@@ -1095,6 +1091,31 @@ object frmMain: TfrmMain
         TabOrder = 4
         Value = 8
         OnChange = miVierkantpatroonLOGO1Click
+      end
+    end
+    object pnlLogo2: TPanel
+      Left = 1
+      Top = 1
+      Width = 273
+      Height = 640
+      Align = alClient
+      TabOrder = 18
+      Visible = False
+      object rgLogo2: TRadioGroup
+        Left = 8
+        Top = 67
+        Width = 226
+        Height = 178
+        Caption = 'Parameters'
+        ItemIndex = 0
+        Items.Strings = (
+          'A: W=90, S=5, DW=144, DS=3'
+          'B: W=90, S=5, DW=123, DS=2'
+          'C: W=90, S=-2, DW=92, DS=2'
+          'D: W=90, S=5, DW=72, DS=1'
+          'E: W=90, S=160, DW=145, DS=1')
+        TabOrder = 0
+        OnClick = miTurtlegrafiekLOGO2Click
       end
     end
   end
@@ -1235,6 +1256,10 @@ object frmMain: TfrmMain
       object miVierkantpatroonLOGO1: TMenuItem
         Caption = 'Vierkantpatroon (LOGO-1)'
         OnClick = miVierkantpatroonLOGO1Click
+      end
+      object miTurtlegrafiekLOGO2: TMenuItem
+        Caption = 'Turtle-grafiek (LOGO-2)'
+        OnClick = miTurtlegrafiekLOGO2Click
       end
     end
   end
