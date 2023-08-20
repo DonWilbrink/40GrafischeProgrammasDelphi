@@ -173,6 +173,7 @@ type
     seLengte2: TSpinEdit;
     seDraai2: TSpinEdit;
     seRadius2: TSpinEdit;
+    miKaartvanZwitserland: TMenuItem;
     procedure Diagonaalweb1Click(Sender: TObject);
     procedure MoireeeffectClick(Sender: TObject);
     procedure DriehoekenClick(Sender: TObject);
@@ -208,6 +209,7 @@ type
     procedure miVierkantspiraalClick(Sender: TObject);
     procedure miCirkelfiguur1LOGO4Click(Sender: TObject);
     procedure miCirkelfiguur2LOGO5Click(Sender: TObject);
+    procedure miKaartvanZwitserlandClick(Sender: TObject);
   private
     { Private declarations }
     procedure frmClear;
@@ -698,7 +700,7 @@ end;
 
 procedure TfrmMain.miCirkelfiguur2LOGO5Click(Sender: TObject);
 var
-  dw, l, r, u, v, w, x1, x2, xx, y1, y2, yy: Integer;
+  dw, l, r, u, v, w, x1, x2, y1, y2: Integer;
   rd, w1: Double;
   j: Integer;
 begin
@@ -1155,6 +1157,46 @@ begin
         ' y1='+y1.ToString+' y2='+y2.ToString); }
       m := m + 2;
     until m>l-1 ;
+  end;
+end;
+
+procedure TfrmMain.miKaartvanZwitserlandClick(Sender: TObject);
+var
+  x, y: Array of Integer;
+  k: Double;
+  u, v, x1, x2, y1, y2: Integer;
+  i: Integer;
+begin
+  frmClear;
+  pbMain.Canvas.Pen.Width := 2;
+  pbMain.Font.Size := 18;
+  pbMain.Font.Style := [fsBold,fsItalic];
+  pbMain.Canvas.TextOut(pbMain.Width div 3,pbMain.Height div 3,'Zwitserland');
+  k := 4.5;
+  u := 18;
+  v := pbMain.Height div 2 + 150;
+  x := [ 69, 71, 70, 75, 75, 76, 80, 81, 86, 91, 94,101,100,105,106,101, 98,102,
+        108,112,114,118,128,139,145,146,142,144,154,154,154,163,168,173,177,174,
+        177,177,171,167,161,165,166,162,157,143,139,136,133,132,122,125,122,119,
+        114,116,100,102, 94, 88, 90, 79, 75, 66, 60, 52, 48, 37, 39, 37, 39, 29,
+         16, 18, 13,  6,  6, 11, 13, 10, 12, 25, 26, 30, 48, 42, 46, 54, 53, 61,
+         63, 69];
+  y := [108,107,104,104,104,106,107,104,105,108,107,106,108,108,110,110,112,117,
+        118,112,115,110,110,102,103, 95, 86, 78, 77, 77, 72, 67, 68, 76, 73, 59,
+         56, 52, 51, 56, 50, 43, 34, 34, 42, 36, 48, 45, 48, 40, 23, 15, 11, 12,
+         20, 25, 35, 45, 42, 35, 28, 15, 15, 19, 14, 12, 13, 29, 36, 40, 43, 45,
+         38, 33, 29, 28, 32, 34, 40, 45, 53, 63, 73, 73, 94, 94,102,102, 99, 98,
+        102,108];
+  x1 := Round(u+k*x[0]);
+  y1 := Round(v-k*y[0]);
+  for i := 0 to Length(x)-1 do
+  begin
+    x2 := Round(u+k*x[i]);
+    y2 := Round(v-k*y[i]);
+    pbMain.Canvas.MoveTo(x1,y1);
+    pbMain.Canvas.LineTo(x2,y2);
+    x1 := x2;
+    y1 := y2;
   end;
 end;
 

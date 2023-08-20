@@ -21,6 +21,12 @@ object frmMain: TfrmMain
     Width = 659
     Height = 642
     Align = alClient
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentFont = False
     ExplicitLeft = 280
     ExplicitTop = 55
   end
@@ -1406,6 +1412,10 @@ object frmMain: TfrmMain
       object miCirkelfiguur2LOGO5: TMenuItem
         Caption = 'Cirkelfiguur-2 (LOGO-5)'
         OnClick = miCirkelfiguur2LOGO5Click
+      end
+      object miKaartvanZwitserland: TMenuItem
+        Caption = 'Kaart van Zwitserland'
+        OnClick = miKaartvanZwitserlandClick
       end
     end
   end
