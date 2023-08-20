@@ -174,6 +174,10 @@ type
     seDraai2: TSpinEdit;
     seRadius2: TSpinEdit;
     miKaartvanZwitserland: TMenuItem;
+    miHistogram: TMenuItem;
+    pnlHistogram: TPanel;
+    Label23: TLabel;
+    seGegevens: TSpinEdit;
     procedure Diagonaalweb1Click(Sender: TObject);
     procedure MoireeeffectClick(Sender: TObject);
     procedure DriehoekenClick(Sender: TObject);
@@ -210,6 +214,7 @@ type
     procedure miCirkelfiguur1LOGO4Click(Sender: TObject);
     procedure miCirkelfiguur2LOGO5Click(Sender: TObject);
     procedure miKaartvanZwitserlandClick(Sender: TObject);
+    procedure miHistogramClick(Sender: TObject);
   private
     { Private declarations }
     procedure frmClear;
@@ -430,6 +435,7 @@ begin
   pnlLogo2.Visible := False;
   pnlLogo4.Visible := False;
   pnlLogo5.Visible := False;
+  pnlHistogram.Visible := False;
   Memo1.Visible := False;
   Label11.Visible := False;
   seFormule.Visible := False;
@@ -503,6 +509,70 @@ begin
   y2 := pbMain.Height;
   if (x1 >= 0) and (x1 <= pbMain.Width) then
   begin
+    pbMain.Canvas.MoveTo(x1,y1);
+    pbMain.Canvas.LineTo(x2,y2);
+  end;
+end;
+
+procedure TfrmMain.miHistogramClick(Sender: TObject);
+var
+  b, h, j, mx, n, w, x1, x2, y1, y2: Integer;
+  a: Array of Integer;
+begin
+  frmClear;
+  pnlHistogram.Visible := True;
+  h := pbMain.Height-50;
+  w := pbMain.Width-50;
+  n := seGegevens.Value;
+  SetLength(a,n);
+  mx := -100000;
+  for j := 0 to n-1 do
+  begin
+    a[j] := InputBox('Gegevens invoer','Geef waarde:','0').ToInteger;
+    if a[j]>mx then mx:= a[j];
+  end;
+  // Horizontale as
+  pbMain.Canvas.MoveTo(50,h);
+  pbMain.Canvas.LineTo(w,h);
+  // Vertikale as
+  pbMain.Canvas.MoveTo(60,50);
+  pbMain.Canvas.LineTo(60,h);
+  // Schaalverdeling
+  for j := 10 downto 1 do
+  begin
+    x1 := 50;
+    y1 := h - j * 2 * Round((h-50)/20);
+    x2 := 60;
+    y2 := y1;
+    pbMain.Canvas.MoveTo(x1,y1);
+    pbMain.Canvas.LineTo(x2,y2);
+    x1 := 55;
+    y1 := y2 + Round((h-50)/20);
+    x2 := 60;
+    y2 := y1;
+    pbMain.Canvas.MoveTo(x1,y1);
+    pbMain.Canvas.LineTo(x2,y2);
+  end;
+  // Staven tekenen (B=breedte)
+  b := Trunc((w-65)/n);
+  for j := 0 to n-1 do
+  begin
+    x1 := (j)*b+65;
+    y1 := h;
+    x2 := x1;
+    y2 := Round(h-(h-64)*a[j]/mx);
+    pbMain.Canvas.MoveTo(x1,y1);
+    pbMain.Canvas.LineTo(x2,y2);
+    x1 := x2;
+    y1 := y2;
+    x2 := x1 + b;
+    y2 := y1;
+    pbMain.Canvas.MoveTo(x1,y1);
+    pbMain.Canvas.LineTo(x2,y2);
+    x1 := x2;
+    y1 := y2;
+    x2 := x1;
+    y2 := h;
     pbMain.Canvas.MoveTo(x1,y1);
     pbMain.Canvas.LineTo(x2,y2);
   end;

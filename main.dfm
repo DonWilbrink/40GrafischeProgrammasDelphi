@@ -1258,6 +1258,37 @@ object frmMain: TfrmMain
         OnChange = miCirkelfiguur2LOGO5Click
       end
     end
+    object pnlHistogram: TPanel
+      Left = 1
+      Top = 1
+      Width = 273
+      Height = 640
+      Align = alClient
+      TabOrder = 21
+      Visible = False
+      ExplicitLeft = 87
+      ExplicitTop = 272
+      ExplicitWidth = 185
+      ExplicitHeight = 41
+      object Label23: TLabel
+        Left = 23
+        Top = 51
+        Width = 127
+        Height = 15
+        Caption = 'Hoeveel gegevens (<40)'
+      end
+      object seGegevens: TSpinEdit
+        Left = 25
+        Top = 88
+        Width = 48
+        Height = 24
+        MaxValue = 40
+        MinValue = 5
+        TabOrder = 0
+        Value = 5
+        OnChange = miHistogramClick
+      end
+    end
   end
   object MainMenu1: TMainMenu
     Left = 16
@@ -1416,6 +1447,10 @@ object frmMain: TfrmMain
       object miKaartvanZwitserland: TMenuItem
         Caption = 'Kaart van Zwitserland'
         OnClick = miKaartvanZwitserlandClick
+      end
+      object miHistogram: TMenuItem
+        Caption = 'Histogram'
+        OnClick = miHistogramClick
       end
     end
   end
