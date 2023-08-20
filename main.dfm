@@ -1126,8 +1126,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 19
       Visible = False
-      ExplicitLeft = -4
-      ExplicitTop = 6
       object Label17: TLabel
         Left = 38
         Top = 63
@@ -1168,7 +1166,7 @@ object frmMain: TfrmMain
         Height = 24
         Increment = 5
         MaxValue = 240
-        MinValue = 90
+        MinValue = 30
         TabOrder = 1
         Value = 170
         OnChange = miCirkelfiguur1LOGO4Click
@@ -1184,6 +1182,74 @@ object frmMain: TfrmMain
         TabOrder = 2
         Value = 20
         OnChange = miCirkelfiguur1LOGO4Click
+      end
+    end
+    object pnlLogo5: TPanel
+      Left = 1
+      Top = 1
+      Width = 273
+      Height = 640
+      Align = alClient
+      TabOrder = 20
+      Visible = False
+      ExplicitWidth = 271
+      ExplicitHeight = 638
+      object Label20: TLabel
+        Left = 38
+        Top = 63
+        Width = 63
+        Height = 15
+        Caption = 'Lengte steel'
+      end
+      object Label21: TLabel
+        Left = 38
+        Top = 130
+        Width = 98
+        Height = 15
+        Caption = 'Draaihoek linksom'
+      end
+      object Label22: TLabel
+        Left = 38
+        Top = 202
+        Width = 35
+        Height = 15
+        Caption = 'Radius'
+      end
+      object seLengte2: TSpinEdit
+        Left = 38
+        Top = 88
+        Width = 51
+        Height = 24
+        Increment = 5
+        MaxValue = 300
+        MinValue = 50
+        TabOrder = 0
+        Value = 50
+        OnChange = miCirkelfiguur2LOGO5Click
+      end
+      object seDraai2: TSpinEdit
+        Left = 37
+        Top = 151
+        Width = 51
+        Height = 24
+        Increment = 5
+        MaxValue = 240
+        MinValue = 30
+        TabOrder = 1
+        Value = 45
+        OnChange = miCirkelfiguur2LOGO5Click
+      end
+      object seRadius2: TSpinEdit
+        Left = 36
+        Top = 223
+        Width = 53
+        Height = 24
+        Increment = 5
+        MaxValue = 100
+        MinValue = 10
+        TabOrder = 2
+        Value = 10
+        OnChange = miCirkelfiguur2LOGO5Click
       end
     end
   end
@@ -1336,6 +1402,10 @@ object frmMain: TfrmMain
       object miCirkelfiguur1LOGO4: TMenuItem
         Caption = 'Cirkelfiguur-1 (LOGO-4)'
         OnClick = miCirkelfiguur1LOGO4Click
+      end
+      object miCirkelfiguur2LOGO5: TMenuItem
+        Caption = 'Cirkelfiguur-2 (LOGO-5)'
+        OnClick = miCirkelfiguur2LOGO5Click
       end
     end
   end
