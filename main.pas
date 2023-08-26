@@ -178,6 +178,11 @@ type
     pnlHistogram: TPanel;
     Label23: TLabel;
     seGegevens: TSpinEdit;
+    pnlBreking: TPanel;
+    Label24: TLabel;
+    edBreking: TEdit;
+    btnBreking: TButton;
+    miBrekingvanlicht: TMenuItem;
     procedure Diagonaalweb1Click(Sender: TObject);
     procedure MoireeeffectClick(Sender: TObject);
     procedure DriehoekenClick(Sender: TObject);
@@ -215,6 +220,7 @@ type
     procedure miCirkelfiguur2LOGO5Click(Sender: TObject);
     procedure miKaartvanZwitserlandClick(Sender: TObject);
     procedure miHistogramClick(Sender: TObject);
+    procedure miBrekingvanlichtClick(Sender: TObject);
   private
     { Private declarations }
     procedure frmClear;
@@ -436,6 +442,7 @@ begin
   pnlLogo4.Visible := False;
   pnlLogo5.Visible := False;
   pnlHistogram.Visible := False;
+  pnlBreking.Visible := False;
   Memo1.Visible := False;
   Label11.Visible := False;
   seFormule.Visible := False;
@@ -731,6 +738,89 @@ var
 begin
   I := rgFormule.ItemIndex + 1;
   Teken(I);
+end;
+
+procedure TfrmMain.miBrekingvanlichtClick(Sender: TObject);
+var
+  b, h, v, w, x1, x2, y1, y2: Integer;
+  a1, b1, n, rd, s: Single;
+begin
+  frmClear;
+  pnlBreking.Visible := True;
+  //Memo1.Visible := True;
+  h := pbMain.Height-50;
+  //h := 190;
+  w := pbMain.Width-50;
+  //w := 255;
+  n := StrToFloat(edBreking.Text);
+  v := pbMain.Height div 2;
+  //v := 96;
+  //Memo1.Lines.Add('h='+h.ToString+' w='+w.ToString+' v='+v.ToString);
+  rd := pi/180;
+  b := 0;
+  pbMain.Canvas.MoveTo(50,v);
+  pbMain.Canvas.LineTo(w,v);
+  pbMain.Canvas.MoveTo(50,h);
+  pbMain.Canvas.LineTo(w,h);
+  pbMain.Canvas.LineTo(w,50);
+  pbMain.Canvas.LineTo(50,50);
+  pbMain.Canvas.LineTo(50,h);
+  // stralen in medium 1 en 2 tekenen; B=beta in graden; B1=beta in radialen;
+  // A1=alfa in radialen; S=sin(beta)
+  while b < 90 do
+  begin
+    b := b + 3;
+    b1 := b * rd;
+    x1 := 50;
+    y1 := h;
+    x2 := Round(90*Tan(b1))+50;
+    y2 := v;
+    if x2 > w then Break;
+    pbMain.Canvas.MoveTo(x1,y1);
+    pbMain.Canvas.LineTo(x2,y2);
+    //Memo1.Lines.Add('b='+b.ToString+' a1='+a1.ToString+' x2='+x2.ToString+' y2='+y2.ToString);
+    x1 := x2;
+    y1 := y2;
+  // alfa en sin(alfa) berekenen en totale reflectie nagaan
+    s := n * Sin(b1);
+    if s > 1 then        // totale reflectie
+    begin
+      x2 := x1 + x1;
+      y2 := h;
+      if x2 < w then
+      begin
+        pbMain.Canvas.MoveTo(x1,y1);
+        pbMain.Canvas.LineTo(x2,y2);
+      end
+      else
+      begin
+        x2 := w;
+        y2 := Round(v+(w-x1)/Tan(b1));
+        pbMain.Canvas.MoveTo(x1,y1);
+        pbMain.Canvas.LineTo(x2,y2);
+      end;
+      //Memo1.Lines.Add('b='+b.ToString+' b1='+b1.ToString+' x2='+x2.ToString+' y2='+y2.ToString);
+    end
+    else               // breking
+    begin
+      a1 := Arctan(s/Sqrt(1-s*s));
+      x2 := Round(x1+90*Tan(a1));
+      y2 := 50;
+      if x2 < w then
+      begin
+        pbMain.Canvas.MoveTo(x1,y1);
+        pbMain.Canvas.LineTo(x2,y2);
+      end
+      else
+      begin
+        x2 := w;
+        y2 := Round(v-((w-x1)/Tan(a1)));
+        pbMain.Canvas.MoveTo(x1,y1);
+        pbMain.Canvas.LineTo(x2,y2);
+      end;
+      //Memo1.Lines.Add('b='+b.ToString+' a1='+a1.ToString+' x2='+x2.ToString+' y2='+y2.ToString);
+    end;
+  end;
 end;
 
 procedure TfrmMain.miCirkelfiguur1LOGO4Click(Sender: TObject);

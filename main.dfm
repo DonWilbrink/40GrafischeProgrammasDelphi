@@ -973,18 +973,6 @@ object frmMain: TfrmMain
         OnClick = miGrafiekvanzfxyhiddenlinesClick
       end
     end
-    object Memo1: TMemo
-      Left = 15
-      Top = 367
-      Width = 240
-      Height = 257
-      Lines.Strings = (
-        'Memo1')
-      ScrollBars = ssVertical
-      TabOrder = 15
-      Visible = False
-      WantTabs = True
-    end
     object seFormule: TSpinEdit
       Left = 224
       Top = 6
@@ -992,7 +980,7 @@ object frmMain: TfrmMain
       Height = 24
       MaxValue = 3
       MinValue = 2
-      TabOrder = 16
+      TabOrder = 15
       Value = 2
       Visible = False
       OnChange = miBloem3Click
@@ -1003,7 +991,7 @@ object frmMain: TfrmMain
       Width = 273
       Height = 640
       Align = alClient
-      TabOrder = 17
+      TabOrder = 16
       Visible = False
       object Label12: TLabel
         Left = 23
@@ -1105,7 +1093,7 @@ object frmMain: TfrmMain
       Width = 273
       Height = 640
       Align = alClient
-      TabOrder = 18
+      TabOrder = 17
       Visible = False
       object rgLogo2: TRadioGroup
         Left = 8
@@ -1130,7 +1118,7 @@ object frmMain: TfrmMain
       Width = 273
       Height = 640
       Align = alClient
-      TabOrder = 19
+      TabOrder = 18
       Visible = False
       object Label17: TLabel
         Left = 38
@@ -1196,10 +1184,8 @@ object frmMain: TfrmMain
       Width = 273
       Height = 640
       Align = alClient
-      TabOrder = 20
+      TabOrder = 19
       Visible = False
-      ExplicitWidth = 271
-      ExplicitHeight = 638
       object Label20: TLabel
         Left = 38
         Top = 63
@@ -1264,12 +1250,8 @@ object frmMain: TfrmMain
       Width = 273
       Height = 640
       Align = alClient
-      TabOrder = 21
+      TabOrder = 20
       Visible = False
-      ExplicitLeft = 87
-      ExplicitTop = 272
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object Label23: TLabel
         Left = 23
         Top = 51
@@ -1278,7 +1260,7 @@ object frmMain: TfrmMain
         Caption = 'Hoeveel gegevens (<40)'
       end
       object seGegevens: TSpinEdit
-        Left = 25
+        Left = 26
         Top = 88
         Width = 48
         Height = 24
@@ -1287,6 +1269,51 @@ object frmMain: TfrmMain
         TabOrder = 0
         Value = 5
         OnChange = miHistogramClick
+      end
+    end
+    object pnlBreking: TPanel
+      Left = 1
+      Top = 1
+      Width = 273
+      Height = 640
+      Align = alClient
+      TabOrder = 21
+      Visible = False
+      object Label24: TLabel
+        Left = 36
+        Top = 58
+        Width = 181
+        Height = 15
+        Caption = 'Geef brekingsindex (Water = 1,33):'
+      end
+      object edBreking: TEdit
+        Left = 36
+        Top = 91
+        Width = 67
+        Height = 23
+        TabOrder = 0
+        Text = '1,33'
+      end
+      object btnBreking: TButton
+        Left = 36
+        Top = 130
+        Width = 75
+        Height = 36
+        Caption = 'Teken'
+        TabOrder = 1
+        OnClick = miBrekingvanlichtClick
+      end
+      object Memo1: TMemo
+        Left = 15
+        Top = 367
+        Width = 240
+        Height = 257
+        Lines.Strings = (
+          'Memo1')
+        ScrollBars = ssVertical
+        TabOrder = 2
+        Visible = False
+        WantTabs = True
       end
     end
   end
@@ -1451,6 +1478,10 @@ object frmMain: TfrmMain
       object miHistogram: TMenuItem
         Caption = 'Histogram'
         OnClick = miHistogramClick
+      end
+      object miBrekingvanlicht: TMenuItem
+        Caption = 'Breking van licht'
+        OnClick = miBrekingvanlichtClick
       end
     end
   end
