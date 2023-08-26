@@ -1715,8 +1715,19 @@ begin
       b := -40;
       c := 10;
     end;
+  8:
+    begin
+      a := -40;
+      b := -40;
+      c := 11;
+    end;
+  9:
+    begin
+      a := 20;
+      b := -12;
+      c := -4;
+    end;
   end;
-
   for w := 0 to 360 do
   begin
     t := w * rd;

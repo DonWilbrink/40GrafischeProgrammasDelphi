@@ -834,34 +834,6 @@ object frmMain: TfrmMain
         OnChange = miVlindersClick
       end
     end
-    object pnlSymFig: TPanel
-      Left = 1
-      Top = 1
-      Width = 273
-      Height = 640
-      Align = alClient
-      TabOrder = 11
-      Visible = False
-      object rgSymFig: TRadioGroup
-        Left = 17
-        Top = 49
-        Width = 185
-        Height = 196
-        Caption = 'Parameters'
-        ItemIndex = 0
-        Items.Strings = (
-          'a=2 b=7 c=3'
-          'a=6 b=6 c=4'
-          'a=4 b=6 c=1'
-          'a=1 b=1 c=4'
-          'a=3 b=3 c=5'
-          'a=2 b=2 c=9'
-          'a=20 b=-1 c=3'
-          'a=-40 b==40 c=10')
-        TabOrder = 0
-        OnClick = miSymmetrischefigurenClick
-      end
-    end
     object pnlCylKeg: TPanel
       Left = 1
       Top = 1
@@ -1314,6 +1286,36 @@ object frmMain: TfrmMain
         TabOrder = 2
         Visible = False
         WantTabs = True
+      end
+    end
+    object pnlSymFig: TPanel
+      Left = 1
+      Top = 1
+      Width = 273
+      Height = 640
+      Align = alClient
+      TabOrder = 11
+      Visible = False
+      object rgSymFig: TRadioGroup
+        Left = 16
+        Top = 49
+        Width = 185
+        Height = 280
+        Caption = 'Parameters'
+        ItemIndex = 0
+        Items.Strings = (
+          'a=2 b=7 c=3'
+          'a=6 b=6 c=4'
+          'a=4 b=6 c=1'
+          'a=1 b=1 c=4'
+          'a=3 b=3 c=5'
+          'a=2 b=2 c=9'
+          'a=20 b=-1 c=3'
+          'a=-40 b=-40 c=10'
+          'a=-40 b=-40 c=11'
+          'a=20 b=-12 c=-4')
+        TabOrder = 0
+        OnClick = miSymmetrischefigurenClick
       end
     end
   end
