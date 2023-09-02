@@ -183,6 +183,14 @@ type
     edBreking: TEdit;
     btnBreking: TButton;
     miBrekingvanlicht: TMenuItem;
+    miSpeldenworpvanBuffon: TMenuItem;
+    pnlSpelden: TPanel;
+    Label25: TLabel;
+    seWorpen: TSpinEdit;
+    Label26: TLabel;
+    Label27: TLabel;
+    Label28: TLabel;
+    Label29: TLabel;
     procedure Diagonaalweb1Click(Sender: TObject);
     procedure MoireeeffectClick(Sender: TObject);
     procedure DriehoekenClick(Sender: TObject);
@@ -221,6 +229,8 @@ type
     procedure miKaartvanZwitserlandClick(Sender: TObject);
     procedure miHistogramClick(Sender: TObject);
     procedure miBrekingvanlichtClick(Sender: TObject);
+    procedure miSpeldenworpvanBuffonClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
     procedure frmClear;
@@ -378,6 +388,11 @@ begin
   end;
 end;
 
+procedure TfrmMain.FormCreate(Sender: TObject);
+begin
+  Randomize;
+end;
+
 procedure TfrmMain.Formule(i: Integer; x: Double; var y: Double);
 begin
   case i of
@@ -443,7 +458,8 @@ begin
   pnlLogo5.Visible := False;
   pnlHistogram.Visible := False;
   pnlBreking.Visible := False;
-  Memo1.Visible := False;
+  pnlSpelden.Visible := False;
+  //Memo1.Visible := False;
   Label11.Visible := False;
   seFormule.Visible := False;
 end;
@@ -1593,6 +1609,48 @@ begin
     pbMain.Canvas.MoveTo(j,v);
     pbMain.Canvas.LineTo(j,y);
   end;
+end;
+
+procedure TfrmMain.miSpeldenworpvanBuffonClick(Sender: TObject);
+var
+  j, m, n, pbw, pbh, x1, x2, xm, y1, y2, ym: Integer;
+  bpi, dx, dy, w, y11, y22: Double;
+begin
+  frmClear;
+  pnlSpelden.Visible := True;
+  pbw := pbMain.Width;
+  pbh := pbMain.Height;
+  n := seWorpen.Value;
+  m := 0;
+  y1 := 10;
+  while y1<=190 do
+  begin
+    pbMain.Canvas.MoveTo(0,y1);
+    pbMain.Canvas.LineTo(pbw-60,y1);
+    y1 := y1 + 60;
+  end;
+  for j := 1 to n do
+  begin
+    xm := Round(226*Random()+30);
+    ym := Round(60*Random()+70);
+    w := pi * Random();
+    dx := 30 * Cos(w);
+    dy := 30 * Sin(w);
+    x1 := Round(xm-dx);
+    y11 := ym+dy;
+    x2 := Round(xm+dx);
+    y22 := ym-dy;
+    //Memo1.Lines.Add('xm='+xm.ToString+' w='+w.ToString);
+    pbMain.Canvas.MoveTo(x1,Round(y11));
+    pbMain.Canvas.LineTo(x2,Round(y22));
+    if (y11>=130) or (y22<=70) then
+      m := m + 1;
+  end;
+  Label26.Caption := 'Aantal worpen: ' + n.ToString;
+  Label27.Caption := 'Aantal doorsnijdingen: ' + m.ToString;
+  bpi := 2*n/m;
+  Label28.Caption := 'Benadering van pi: ' + bpi.ToString;
+  Label29.Caption := 'Verschil (pi-bpi): ' + (pi-bpi).ToString;
 end;
 
 procedure TfrmMain.miSpiralenClick(Sender: TObject);
