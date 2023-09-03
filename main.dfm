@@ -85,7 +85,7 @@ object frmMain: TfrmMain
         MinValue = 8
         TabOrder = 0
         Value = 8
-        OnChange = Diagonaalweb1Click
+        OnChange = miDiagonaalwebClick
       end
     end
     object pnlDiagNHoek: TPanel
@@ -127,7 +127,7 @@ object frmMain: TfrmMain
         MinValue = 50
         TabOrder = 0
         Value = 50
-        OnChange = Diagonalenhoeken1Click
+        OnChange = miDiagonalenhoekenClick
       end
       object seHoog: TSpinEdit
         Left = 8
@@ -139,7 +139,7 @@ object frmMain: TfrmMain
         MinValue = 50
         TabOrder = 1
         Value = 50
-        OnChange = Diagonalenhoeken1Click
+        OnChange = miDiagonalenhoekenClick
       end
       object seHoek: TSpinEdit
         Left = 8
@@ -150,7 +150,7 @@ object frmMain: TfrmMain
         MinValue = 4
         TabOrder = 2
         Value = 4
-        OnChange = Diagonalenhoeken1Click
+        OnChange = miDiagonalenhoekenClick
       end
     end
     object pnlIngeschreven: TPanel
@@ -183,7 +183,7 @@ object frmMain: TfrmMain
         ParentFont = False
         TabOrder = 0
         Value = 2
-        OnChange = Ingeschrevenvierkanten1Click
+        OnChange = miIngeschrevenvierkantenClick
       end
     end
     object pnlBloem: TPanel
@@ -332,7 +332,7 @@ object frmMain: TfrmMain
         MinValue = -30
         TabOrder = 0
         Value = -15
-        OnChange = Grafiekvaneencontinuefunctie1Click
+        OnChange = miGrafiekvaneencontinuefunctieClick
       end
       object seRechter: TSpinEdit
         Left = 8
@@ -343,7 +343,7 @@ object frmMain: TfrmMain
         MinValue = 1
         TabOrder = 1
         Value = 15
-        OnChange = Grafiekvaneencontinuefunctie1Click
+        OnChange = miGrafiekvaneencontinuefunctieClick
       end
       object seBoven: TSpinEdit
         Left = 8
@@ -354,7 +354,7 @@ object frmMain: TfrmMain
         MinValue = 1
         TabOrder = 2
         Value = 4
-        OnChange = Grafiekvaneencontinuefunctie1Click
+        OnChange = miGrafiekvaneencontinuefunctieClick
       end
       object seOnder: TSpinEdit
         Left = 8
@@ -365,7 +365,7 @@ object frmMain: TfrmMain
         MinValue = -20
         TabOrder = 3
         Value = -4
-        OnChange = Grafiekvaneencontinuefunctie1Click
+        OnChange = miGrafiekvaneencontinuefunctieClick
       end
       object rgFormules: TRadioGroup
         Left = 17
@@ -381,7 +381,7 @@ object frmMain: TfrmMain
           '4 : y=Exp(x)'
           '5 : y=x*x*x-2*x*x-x')
         TabOrder = 4
-        OnClick = Grafiekvaneencontinuefunctie1Click
+        OnClick = miGrafiekvaneencontinuefunctieClick
       end
     end
     object pnlFuncFPhi: TPanel
@@ -789,50 +789,6 @@ object frmMain: TfrmMain
           'y=3-x+ln(abs(x-1/x-3))')
         TabOrder = 4
         OnClick = miWillekeurigeFunctieClick
-      end
-    end
-    object pnlVlinders: TPanel
-      Left = 1
-      Top = 1
-      Width = 273
-      Height = 640
-      Align = alClient
-      TabOrder = 10
-      Visible = False
-      object Label1: TLabel
-        Left = 17
-        Top = 204
-        Width = 63
-        Height = 15
-        Caption = 'Parameter c'
-      end
-      object rgVlinders: TRadioGroup
-        Left = 14
-        Top = 49
-        Width = 185
-        Height = 147
-        Caption = 'Parameters a en b'
-        ItemIndex = 0
-        Items.Strings = (
-          'a=-6 b=1'
-          'a=-6 b=2'
-          'a=-8 b=2'
-          'a=4 b=1'
-          'a=4 b=2'
-          'a=6 b=1')
-        TabOrder = 0
-        OnClick = miVlindersClick
-      end
-      object seC: TSpinEdit
-        Left = 17
-        Top = 232
-        Width = 48
-        Height = 24
-        MaxValue = 6
-        MinValue = 3
-        TabOrder = 1
-        Value = 3
-        OnChange = miVlindersClick
       end
     end
     object pnlCylKeg: TPanel
@@ -1362,65 +1318,213 @@ object frmMain: TfrmMain
         Value = 1000
         OnChange = miSpeldenworpvanBuffonClick
       end
-      object Memo1: TMemo
-        Left = 15
-        Top = 255
-        Width = 240
-        Height = 257
-        ScrollBars = ssVertical
+    end
+    object pnlVlinders: TPanel
+      Left = 1
+      Top = 1
+      Width = 273
+      Height = 640
+      Align = alClient
+      TabOrder = 10
+      Visible = False
+      object Label1: TLabel
+        Left = 18
+        Top = 251
+        Width = 63
+        Height = 15
+        Caption = 'Parameter c'
+      end
+      object rgVlinders: TRadioGroup
+        Left = 14
+        Top = 49
+        Width = 185
+        Height = 177
+        Caption = 'Parameters a en b'
+        ItemIndex = 0
+        Items.Strings = (
+          'a=-6 b=1'
+          'a=-6 b=2'
+          'a=-8 b=2'
+          'a=4 b=1'
+          'a=4 b=2'
+          'a=6 b=1'
+          'a=-10 b=5'
+          'a=8 b=-4')
+        TabOrder = 0
+        OnClick = miVlindersClick
+      end
+      object seC: TSpinEdit
+        Left = 17
+        Top = 272
+        Width = 48
+        Height = 24
+        MaxValue = 6
+        MinValue = 3
         TabOrder = 1
-        Visible = False
-        WantTabs = True
+        Value = 3
+        OnChange = miVlindersClick
+      end
+    end
+    object pnlEco: TPanel
+      Left = 1
+      Top = 1
+      Width = 273
+      Height = 640
+      Align = alClient
+      TabOrder = 23
+      Visible = False
+      object Label30: TLabel
+        Left = 19
+        Top = 24
+        Width = 114
+        Height = 15
+        Caption = 'Pop. prooidieren(200)'
+      end
+      object Label31: TLabel
+        Left = 19
+        Top = 79
+        Width = 102
+        Height = 15
+        Caption = 'Pop. roofdieren(20)'
+      end
+      object Label32: TLabel
+        Left = 19
+        Top = 126
+        Width = 115
+        Height = 15
+        Caption = 'Groei prooidieren(0.3)'
+      end
+      object Label33: TLabel
+        Left = 19
+        Top = 176
+        Width = 135
+        Height = 15
+        Caption = 'Afname prooidieren(0.01)'
+      end
+      object Label34: TLabel
+        Left = 19
+        Top = 230
+        Width = 121
+        Height = 15
+        Caption = 'Groei roofdieren(0.002)'
+      end
+      object Label35: TLabel
+        Left = 19
+        Top = 281
+        Width = 123
+        Height = 15
+        Caption = 'Afname roofdieren(0.5)'
+      end
+      object seProoi: TSpinEdit
+        Left = 19
+        Top = 46
+        Width = 70
+        Height = 24
+        MaxValue = 300
+        MinValue = 10
+        TabOrder = 0
+        Value = 200
+      end
+      object edGroeiP: TEdit
+        Left = 20
+        Top = 147
+        Width = 57
+        Height = 23
+        TabOrder = 1
+        Text = '0,3'
+      end
+      object edAfnameP: TEdit
+        Left = 19
+        Top = 195
+        Width = 57
+        Height = 23
+        TabOrder = 2
+        Text = '0,01'
+      end
+      object edGroeiR: TEdit
+        Left = 20
+        Top = 251
+        Width = 57
+        Height = 23
+        TabOrder = 3
+        Text = '0,002'
+      end
+      object edAfnameR: TEdit
+        Left = 18
+        Top = 302
+        Width = 57
+        Height = 23
+        TabOrder = 4
+        Text = '0,5'
+      end
+      object seRoof: TSpinEdit
+        Left = 19
+        Top = 97
+        Width = 70
+        Height = 24
+        MaxValue = 100
+        MinValue = 5
+        TabOrder = 5
+        Value = 20
+      end
+      object btnGrafiek: TButton
+        Left = 23
+        Top = 367
+        Width = 97
+        Height = 58
+        Caption = 'Teken grafiek'
+        TabOrder = 6
+        OnClick = miRoofdierprooidierecosysteemClick
       end
     end
   end
   object MainMenu1: TMainMenu
     Left = 16
     Top = 8
-    object Programma1101: TMenuItem
+    object miProgramma110: TMenuItem
       Caption = 'Programma 1-10'
-      object Diagonaalweb1: TMenuItem
+      object miDiagonaalweb: TMenuItem
         Caption = 'Diagonaal web'
-        OnClick = Diagonaalweb1Click
+        OnClick = miDiagonaalwebClick
       end
-      object Moireeeffect: TMenuItem
+      object miMoireeeffect: TMenuItem
         Caption = 'Moiree effect'
-        OnClick = MoireeeffectClick
+        OnClick = miMoireeeffectClick
       end
-      object Driehoeken: TMenuItem
+      object miDriehoeken: TMenuItem
         Caption = 'Driehoeken'
-        OnClick = DriehoekenClick
+        OnClick = miDriehoekenClick
       end
-      object Zeshoeken1: TMenuItem
+      object miZeshoeken: TMenuItem
         Caption = 'Zeshoeken'
-        OnClick = Zeshoeken1Click
+        OnClick = miZeshoekenClick
       end
-      object Diagonalenhoeken1: TMenuItem
+      object miDiagonalenhoeken: TMenuItem
         Caption = 'Diagonale n-hoeken'
-        OnClick = Diagonalenhoeken1Click
+        OnClick = miDiagonalenhoekenClick
       end
-      object Ingeschrevenvierkanten1: TMenuItem
+      object miIngeschrevenvierkanten: TMenuItem
         Caption = 'Ingeschreven vierkanten'
-        OnClick = Ingeschrevenvierkanten1Click
+        OnClick = miIngeschrevenvierkantenClick
       end
-      object Grafiekvaneencontinuefunctie1: TMenuItem
+      object miGrafiekvaneencontinuefunctie: TMenuItem
         Caption = 'Grafiek van een continue functie'
-        OnClick = Grafiekvaneencontinuefunctie1Click
+        OnClick = miGrafiekvaneencontinuefunctieClick
       end
-      object Sinuskrommen1: TMenuItem
+      object miSinuskrommen: TMenuItem
         Caption = 'Sinuskrommen'
-        OnClick = Sinuskrommen1Click
+        OnClick = miSinuskrommenClick
       end
-      object ParaboolStelsel: TMenuItem
+      object miParaboolStelsel: TMenuItem
         Caption = 'ParaboolStelsel'
-        OnClick = ParaboolStelselClick
+        OnClick = miParaboolStelselClick
       end
       object miOppKromme: TMenuItem
         Caption = 'Oppervlakte onder kromme'
         OnClick = miOppKrommeClick
       end
     end
-    object Programma1120: TMenuItem
+    object miProgramma1120: TMenuItem
       Caption = 'Programma 11-20'
       object miWillekeurigeFunctie: TMenuItem
         Caption = 'Grafiek van een willekeurige functie'
@@ -1463,7 +1567,7 @@ object frmMain: TfrmMain
         OnClick = miVlindersClick
       end
     end
-    object Programma21301: TMenuItem
+    object miProgramma2130: TMenuItem
       Caption = 'Programma 21-30'
       object miSymmetrischefiguren: TMenuItem
         Caption = 'Symmetrische figuren'
@@ -1481,9 +1585,9 @@ object frmMain: TfrmMain
         Caption = 'Cylinders en kegels'
         OnClick = miCylindersenkegelsClick
       end
-      object Bol1: TMenuItem
+      object miBol: TMenuItem
         Caption = 'Bol'
-        OnClick = Bol1Click
+        OnClick = miBolClick
       end
       object miDraaiendprisma: TMenuItem
         Caption = 'Draaiend prisma'
@@ -1506,7 +1610,7 @@ object frmMain: TfrmMain
         OnClick = miMooiefunctieClick
       end
     end
-    object Programma31401: TMenuItem
+    object miProgramma3140: TMenuItem
       Caption = 'Programma 31-40'
       object miVierkantpatroonLOGO1: TMenuItem
         Caption = 'Vierkantpatroon (LOGO-1)'
@@ -1543,6 +1647,10 @@ object frmMain: TfrmMain
       object miSpeldenworpvanBuffon: TMenuItem
         Caption = 'Speldenworp van Buffon'
         OnClick = miSpeldenworpvanBuffonClick
+      end
+      object miRoofdierprooidierecosysteem: TMenuItem
+        Caption = 'Roofdier-prooidier ecosysteem'
+        OnClick = miRoofdierprooidierecosysteemClick
       end
     end
   end

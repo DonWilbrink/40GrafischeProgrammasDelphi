@@ -11,18 +11,18 @@ type
   TfrmMain = class(TForm)
     pbMain: TPaintBox;
     MainMenu1: TMainMenu;
-    Programma1101: TMenuItem;
-    Diagonaalweb1: TMenuItem;
-    Moireeeffect: TMenuItem;
-    Driehoeken: TMenuItem;
-    Zeshoeken1: TMenuItem;
-    Diagonalenhoeken1: TMenuItem;
+    miProgramma110: TMenuItem;
+    miDiagonaalweb: TMenuItem;
+    miMoireeeffect: TMenuItem;
+    miDriehoeken: TMenuItem;
+    miZeshoeken: TMenuItem;
+    miDiagonalenhoeken: TMenuItem;
     pnlTop: TPanel;
-    Ingeschrevenvierkanten1: TMenuItem;
-    Grafiekvaneencontinuefunctie1: TMenuItem;
+    miIngeschrevenvierkanten: TMenuItem;
+    miGrafiekvaneencontinuefunctie: TMenuItem;
     edN: TSpinEdit;
     lblN: TLabel;
-    Sinuskrommen1: TMenuItem;
+    miSinuskrommen: TMenuItem;
     pnlSide: TPanel;
     pnlDiagWeb: TPanel;
     pnlDiagNHoek: TPanel;
@@ -35,7 +35,7 @@ type
     pnlIngeschreven: TPanel;
     lblK: TLabel;
     seK: TSpinEdit;
-    ParaboolStelsel: TMenuItem;
+    miParaboolStelsel: TMenuItem;
     pnlContFunctie: TPanel;
     lblLinker: TLabel;
     seLinker: TSpinEdit;
@@ -47,7 +47,7 @@ type
     seOnder: TSpinEdit;
     rgFormules: TRadioGroup;
     miOppKromme: TMenuItem;
-    Programma1120: TMenuItem;
+    miProgramma1120: TMenuItem;
     miWillekeurigeFunctie: TMenuItem;
     pnlWillekFunc: TPanel;
     seLinkergrensX: TSpinEdit;
@@ -114,7 +114,7 @@ type
     rgVlinders: TRadioGroup;
     seC: TSpinEdit;
     Label1: TLabel;
-    Programma21301: TMenuItem;
+    miProgramma2130: TMenuItem;
     miSymmetrischefiguren: TMenuItem;
     pnlSymFig: TPanel;
     rgSymFig: TRadioGroup;
@@ -126,10 +126,9 @@ type
     Label5: TLabel;
     seR1: TSpinEdit;
     seR2: TSpinEdit;
-    Bol1: TMenuItem;
+    miBol: TMenuItem;
     miDraaiendprisma: TMenuItem;
     miIkosaeder: TMenuItem;
-    Memo1: TMemo;
     miGrafiekvanzfxy: TMenuItem;
     miGrafiekvanzfxyhiddenlines: TMenuItem;
     pnlBloem2: TPanel;
@@ -140,7 +139,7 @@ type
     miMooiefunctie: TMenuItem;
     seFormule: TSpinEdit;
     Label11: TLabel;
-    Programma31401: TMenuItem;
+    miProgramma3140: TMenuItem;
     miVierkantpatroonLOGO1: TMenuItem;
     pnlLogo1: TPanel;
     Label12: TLabel;
@@ -191,15 +190,30 @@ type
     Label27: TLabel;
     Label28: TLabel;
     Label29: TLabel;
-    procedure Diagonaalweb1Click(Sender: TObject);
-    procedure MoireeeffectClick(Sender: TObject);
-    procedure DriehoekenClick(Sender: TObject);
-    procedure Zeshoeken1Click(Sender: TObject);
-    procedure Diagonalenhoeken1Click(Sender: TObject);
-    procedure Ingeschrevenvierkanten1Click(Sender: TObject);
-    procedure Grafiekvaneencontinuefunctie1Click(Sender: TObject);
-    procedure Sinuskrommen1Click(Sender: TObject);
-    procedure ParaboolStelselClick(Sender: TObject);
+    miRoofdierprooidierecosysteem: TMenuItem;
+    pnlEco: TPanel;
+    Label30: TLabel;
+    Label31: TLabel;
+    Label32: TLabel;
+    Label33: TLabel;
+    Label34: TLabel;
+    Label35: TLabel;
+    seProoi: TSpinEdit;
+    seRoof: TSpinEdit;
+    edGroeiP: TEdit;
+    edAfnameP: TEdit;
+    edGroeiR: TEdit;
+    edAfnameR: TEdit;
+    btnGrafiek: TButton;
+    procedure miDiagonaalwebClick(Sender: TObject);
+    procedure miMoireeeffectClick(Sender: TObject);
+    procedure miDriehoekenClick(Sender: TObject);
+    procedure miZeshoekenClick(Sender: TObject);
+    procedure miDiagonalenhoekenClick(Sender: TObject);
+    procedure miIngeschrevenvierkantenClick(Sender: TObject);
+    procedure miGrafiekvaneencontinuefunctieClick(Sender: TObject);
+    procedure miSinuskrommenClick(Sender: TObject);
+    procedure miParaboolStelselClick(Sender: TObject);
     procedure miOppKrommeClick(Sender: TObject);
     procedure miWillekeurigeFunctieClick(Sender: TObject);
     procedure miBloemClick(Sender: TObject);
@@ -215,7 +229,7 @@ type
     procedure miKubusmetachtvlakClick(Sender: TObject);
     procedure miKubusmetzadelvlakClick(Sender: TObject);
     procedure miCylindersenkegelsClick(Sender: TObject);
-    procedure Bol1Click(Sender: TObject);
+    procedure miBolClick(Sender: TObject);
     procedure miDraaiendprismaClick(Sender: TObject);
     procedure miIkosaederClick(Sender: TObject);
     procedure miGrafiekvanzfxyClick(Sender: TObject);
@@ -230,6 +244,7 @@ type
     procedure miHistogramClick(Sender: TObject);
     procedure miBrekingvanlichtClick(Sender: TObject);
     procedure miSpeldenworpvanBuffonClick(Sender: TObject);
+    procedure miRoofdierprooidierecosysteemClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
@@ -254,7 +269,7 @@ implementation
 
 {$R *.dfm}
 
-procedure TfrmMain.Bol1Click(Sender: TObject);
+procedure TfrmMain.miBolClick(Sender: TObject);
 var
   a, p, r, u, v, w0, xx, x1, x2, yy, y1, y2: Integer;
   c, k, p1, rd, r1, s, w, w1, x, y, z: Double;
@@ -329,7 +344,7 @@ begin
   until p=180;
 end;
 
-procedure TfrmMain.Diagonaalweb1Click(Sender: TObject);
+procedure TfrmMain.miDiagonaalwebClick(Sender: TObject);
 var
   a, b, h, i, j, n, y1, y2: Integer;
 begin
@@ -354,7 +369,7 @@ begin
   end;
 end;
 
-procedure TfrmMain.Diagonalenhoeken1Click(Sender: TObject);
+procedure TfrmMain.miDiagonalenhoekenClick(Sender: TObject);
 var
   a, b, n, i, j, u, v: Integer;
   w, w1: real;
@@ -459,12 +474,12 @@ begin
   pnlHistogram.Visible := False;
   pnlBreking.Visible := False;
   pnlSpelden.Visible := False;
-  //Memo1.Visible := False;
+  pnlEco.Visible := False;
   Label11.Visible := False;
   seFormule.Visible := False;
 end;
 
-procedure TfrmMain.Grafiekvaneencontinuefunctie1Click(Sender: TObject);
+procedure TfrmMain.miGrafiekvaneencontinuefunctieClick(Sender: TObject);
 var
   a, b, i, xx, yy, x1, x2, y1, y2: Integer;
   x, y, hp, lp, dx, kx, ky: Double;
@@ -601,7 +616,7 @@ begin
   end;
 end;
 
-procedure TfrmMain.Ingeschrevenvierkanten1Click(Sender: TObject);
+procedure TfrmMain.miIngeschrevenvierkantenClick(Sender: TObject);
 var
   h, j, k, n: Integer;
   a, b, x, y: Array[1..5] of Integer;
@@ -637,7 +652,7 @@ begin
   end;
 end;
 
-procedure TfrmMain.MoireeeffectClick(Sender: TObject);
+procedure TfrmMain.miMoireeeffectClick(Sender: TObject);
 var
   a, h, j: Integer;
 begin
@@ -1611,6 +1626,53 @@ begin
   end;
 end;
 
+procedure TfrmMain.miRoofdierprooidierecosysteemClick(Sender: TObject);
+var
+  v, x, x1, x2, y, y1, y2: Integer;
+  a, b, c, d, k, xp, yr: Single;
+begin
+  frmClear;
+  pnlEco.Visible := True;
+  pbMain.Canvas.Font.Size := 12;
+  pbMain.Canvas.Font.Color := clRed;
+  pbMain.Canvas.TextOut(30,50,'Hazen');
+  pbMain.Canvas.Font.Color := clBlue;
+  pbMain.Canvas.TextOut(30,100,'Vossen');
+  x := seProoi.Value;
+  y := seRoof.Value;
+  a := StrToFloat(edGroeiP.Text);
+  b := StrToFloat(edAfnameP.Text);
+  c := StrToFloat(edGroeiR.Text);
+  d := StrToFloat(edAfnameR.Text);
+  k := 0.9;
+  v := pbMain.Height;
+  x1 := 0;
+  while x1<=pbMain.Width do
+  begin
+    xp := x + (a * x - b * x * y);
+    yr := y + (c * x * y - d * y);
+    // pop.prooidieren tekenen
+    y1 := Round(v - k * x);
+    x2 := x1 + 8;
+    y2 := Round(v - k * xp);
+    if (y2<0) or (y2>=pbMain.Height) then Break;
+    pbMain.Canvas.Pen.Color := clRed;
+    pbMain.Canvas.MoveTo(x1,y1);
+    pbMain.Canvas.LineTo(x2,y2);
+    // pop.roofdieren
+    y1 := Round(v - k * y);
+    x2 := x1 + 8;
+    y2 := Round(v - k * yr);
+    if (y2<0) or (y2>pbMain.Height) then Break;
+    pbMain.Canvas.Pen.Color := clBlue;
+    pbMain.Canvas.MoveTo(x1,y1);
+    pbMain.Canvas.LineTo(x2,y2);
+    x := Trunc(xp);
+    y := Trunc(yr);
+    x1 := x1 + 8;
+  end;
+end;
+
 procedure TfrmMain.miSpeldenworpvanBuffonClick(Sender: TObject);
 var
   j, m, n, pbw, pbh, x1, x2, xm, y1, y2, ym: Integer;
@@ -1930,6 +1992,16 @@ begin
       a := 6;
       b := 1;
     end;
+  6:
+    begin
+      a := -10;
+      b := 5;
+    end;
+  7:
+    begin
+      a := 8;
+      b := -4;
+    end;
   end;
   c := seC.Value;
   for n := -c to c do
@@ -2025,7 +2097,7 @@ begin
   end;
 end;
 
-procedure TfrmMain.ParaboolStelselClick(Sender: TObject);
+procedure TfrmMain.miParaboolStelselClick(Sender: TObject);
 var
   k, u, v, x, xx, x1, x2, y, y1, y2: Integer;
   yy: Double;
@@ -2060,7 +2132,7 @@ begin
   until k>=v;
 end;
 
-procedure TfrmMain.Sinuskrommen1Click(Sender: TObject);
+procedure TfrmMain.miSinuskrommenClick(Sender: TObject);
 var
   f, j, k, n, v, x1, x2, y, y1, y2: Integer;
   c, p, x: Double;
@@ -2363,7 +2435,7 @@ begin
   end;
 end;
 
-procedure TfrmMain.DriehoekenClick(Sender: TObject);
+procedure TfrmMain.miDriehoekenClick(Sender: TObject);
 var
   j, k, x0, y0: Integer;
   a, b, x, y: Array[1..3] of Integer;
@@ -2439,7 +2511,7 @@ begin
   end;
 end;
 
-procedure TfrmMain.Zeshoeken1Click(Sender: TObject);
+procedure TfrmMain.miZeshoekenClick(Sender: TObject);
 var
   x, y, a, b: Array[1..7] of Integer;
   u, v, r, j, k, n: Integer;
