@@ -406,6 +406,7 @@ end;
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
   Randomize;
+  pbMain.Canvas.Pen.Color := clBlue;
 end;
 
 procedure TfrmMain.Formule(i: Integer; x: Double; var y: Double);
@@ -452,6 +453,7 @@ end;
 procedure TfrmMain.frmClear;
 begin
   pbMain.Canvas.FillRect(rect(0,0,pbMain.Width,pbMain.Height));
+  pbMain.Canvas.Pen.Width := 1;
   pnlDiagWeb.Visible := False;
   pnlDiagNHoek.Visible := False;
   pnlIngeschreven.Visible := False;

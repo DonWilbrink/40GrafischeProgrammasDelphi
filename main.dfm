@@ -11,10 +11,8 @@ object frmMain: TfrmMain
   Font.Name = 'Segoe UI'
   Font.Style = []
   Menu = MainMenu1
-  OldCreateOrder = True
   Position = poDesktopCenter
   OnCreate = FormCreate
-  PixelsPerInch = 96
   TextHeight = 15
   object pbMain: TPaintBox
     Left = 275
@@ -45,6 +43,7 @@ object frmMain: TfrmMain
     Font.Style = []
     ParentFont = False
     TabOrder = 0
+    ExplicitWidth = 928
   end
   object pnlSide: TPanel
     Left = 0
@@ -53,6 +52,7 @@ object frmMain: TfrmMain
     Height = 642
     Align = alLeft
     TabOrder = 1
+    ExplicitHeight = 633
     object Label11: TLabel
       Left = 17
       Top = 8
@@ -69,6 +69,7 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 0
       Visible = False
+      ExplicitHeight = 631
       object lblN: TLabel
         Left = 28
         Top = 24
@@ -96,6 +97,7 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 1
       Visible = False
+      ExplicitHeight = 631
       object lblBreed: TLabel
         Left = 8
         Top = 8
@@ -161,6 +163,7 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 2
       Visible = False
+      ExplicitHeight = 631
       object lblK: TLabel
         Left = 8
         Top = 16
@@ -194,6 +197,7 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 5
       Visible = False
+      ExplicitHeight = 631
       object rgFormule: TRadioGroup
         Left = 17
         Top = 21
@@ -236,6 +240,7 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 6
       Visible = False
+      ExplicitHeight = 631
       object lblGrootte: TLabel
         Left = 40
         Top = 40
@@ -295,6 +300,7 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 3
       Visible = False
+      ExplicitHeight = 631
       object lblLinker: TLabel
         Left = 8
         Top = 5
@@ -392,6 +398,7 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 7
       Visible = False
+      ExplicitHeight = 631
       object lblA: TLabel
         Left = 15
         Top = 16
@@ -486,6 +493,7 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 9
       Visible = False
+      ExplicitHeight = 631
       object lblKromme: TLabel
         Left = 34
         Top = 42
@@ -513,6 +521,7 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 8
       Visible = False
+      ExplicitHeight = 631
       object lblK1: TLabel
         Left = 17
         Top = 16
@@ -704,6 +713,7 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 4
       Visible = False
+      ExplicitHeight = 631
       object lblLinkergrensX: TLabel
         Left = 28
         Top = 45
@@ -799,6 +809,7 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 12
       Visible = False
+      ExplicitHeight = 631
       object Label3: TLabel
         Left = 17
         Top = 24
@@ -846,6 +857,7 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 13
       Visible = False
+      ExplicitHeight = 631
       object seBloem: TSpinEdit
         Left = 26
         Top = 70
@@ -877,6 +889,7 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 14
       Visible = False
+      ExplicitHeight = 631
       object rgZFXYhidden: TRadioGroup
         Left = 17
         Top = 37
@@ -922,6 +935,7 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 16
       Visible = False
+      ExplicitHeight = 631
       object Label12: TLabel
         Left = 23
         Top = 30
@@ -1024,6 +1038,7 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 17
       Visible = False
+      ExplicitHeight = 631
       object rgLogo2: TRadioGroup
         Left = 8
         Top = 67
@@ -1049,6 +1064,7 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 18
       Visible = False
+      ExplicitHeight = 631
       object Label17: TLabel
         Left = 38
         Top = 63
@@ -1115,6 +1131,7 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 19
       Visible = False
+      ExplicitHeight = 631
       object Label20: TLabel
         Left = 38
         Top = 63
@@ -1181,6 +1198,7 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 20
       Visible = False
+      ExplicitHeight = 631
       object Label23: TLabel
         Left = 23
         Top = 51
@@ -1208,6 +1226,7 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 21
       Visible = False
+      ExplicitHeight = 631
       object Label24: TLabel
         Left = 36
         Top = 58
@@ -1241,6 +1260,7 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 11
       Visible = False
+      ExplicitHeight = 631
       object rgSymFig: TRadioGroup
         Left = 16
         Top = 49
@@ -1271,6 +1291,7 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 22
       Visible = False
+      ExplicitHeight = 631
       object Label25: TLabel
         Left = 16
         Top = 42
@@ -1327,6 +1348,7 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 10
       Visible = False
+      ExplicitHeight = 631
       object Label1: TLabel
         Left = 18
         Top = 251
@@ -1373,6 +1395,7 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 23
       Visible = False
+      ExplicitHeight = 631
       object Label30: TLabel
         Left = 19
         Top = 24
