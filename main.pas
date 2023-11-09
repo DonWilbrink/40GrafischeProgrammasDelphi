@@ -869,6 +869,11 @@ begin
   l := seLengte.Value;
   r := seRadius.Value;
   dw := seDraaihoek.Value;
+  if dw=0 then
+  begin
+    ShowMessage('Draaihoek kan geen 0 zijn!');
+    Exit;
+  end;
   rd := pi/180;
   w1 := w * rd;
   xx := x1;
@@ -1044,8 +1049,9 @@ end;
 
 procedure TfrmMain.miFuncFPhiClick(Sender: TObject);
 var
-  a, b, cw, ch, fa, fz, i, lp, hp, w, wo, wn, x1, x2, y1, y2: Integer;
+  a, b, cw, ch, i, lp, hp, w, wo, wn, x1, x2, y1, y2: Integer;
   kx, ky, n, p, r, rd, t, x, y: Double;
+  fz, fa: Boolean;
 begin
   frmClear;
   pnlFuncFPhi.Visible := True;
@@ -1060,7 +1066,7 @@ begin
   kx := cw/(b-a);
   ky := ch/(hp-lp);
   rd := pi/180;
-  fa := 1;
+  fa := False;
   i := rgFuncFPhi.ItemIndex + 1;
   for w := wo to wn do
   begin
@@ -1078,33 +1084,33 @@ begin
         end;
     end;
     if n=0 then
-      fz := 1
+      fz := False
     else
     begin
       r := t/n;
       x := r * Cos(p);
       y := r * Sin(p);
-      if (Trunc(x)<a) or (Trunc(x)>b) or (Trunc(y)<lp) or (Trunc(y)>hp) then
-        fz := 1
+      if (Round(x)<a) or (Round(x)>b) or (Round(y)<lp) or (Round(y)>hp) then
+        fz := False
       else
-        fz := 0;
+        fz := True;
     end;
-      //if r<0 then
-        //fz := 1;
-    if fz=1 then
-      fa := 1
+    {if r<0 then
+      fz := 1;}
+    if  not fz then
+      fa := False
     else
     begin
-      if fa=1 then
+      if  not fa then
       begin
-        x1 := Trunc(kx*(x-a));
-        y1 := Trunc(ky*(hp-y));
-        fa := 0;
+        x1 := Round(kx*(x-a));
+        y1 := Round(ky*(hp-y));
+        fa := True;
       end
       else
       begin
-        x2 := Trunc(kx*(x-a));
-        y2 := Trunc(ky*(hp-y));
+        x2 := Round(kx*(x-a));
+        y2 := Round(ky*(hp-y));
         pbMain.Canvas.MoveTo(x1,y1);
         pbMain.Canvas.LineTo(x2,y2);
         x1 := x2;
@@ -1211,7 +1217,7 @@ begin
   4, 5:
     begin
       a := 90;
-      k1 := 50;
+      k1 := 80;
     end;
   end;
   u := Trunc(pbMain.Width/2);

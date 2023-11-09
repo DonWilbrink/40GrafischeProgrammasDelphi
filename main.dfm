@@ -11,8 +11,10 @@ object frmMain: TfrmMain
   Font.Name = 'Segoe UI'
   Font.Style = []
   Menu = MainMenu1
+  OldCreateOrder = True
   Position = poDesktopCenter
   OnCreate = FormCreate
+  PixelsPerInch = 96
   TextHeight = 15
   object pbMain: TPaintBox
     Left = 275
@@ -27,7 +29,7 @@ object frmMain: TfrmMain
     Font.Style = []
     ParentFont = False
     ExplicitLeft = 280
-    ExplicitTop = 55
+    ExplicitTop = 48
   end
   object pnlTop: TPanel
     Left = 0
@@ -43,7 +45,6 @@ object frmMain: TfrmMain
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    ExplicitWidth = 928
   end
   object pnlSide: TPanel
     Left = 0
@@ -52,7 +53,6 @@ object frmMain: TfrmMain
     Height = 642
     Align = alLeft
     TabOrder = 1
-    ExplicitHeight = 633
     object Label11: TLabel
       Left = 17
       Top = 8
@@ -69,7 +69,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 0
       Visible = False
-      ExplicitHeight = 631
       object lblN: TLabel
         Left = 28
         Top = 24
@@ -97,7 +96,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 1
       Visible = False
-      ExplicitHeight = 631
       object lblBreed: TLabel
         Left = 8
         Top = 8
@@ -163,7 +161,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 2
       Visible = False
-      ExplicitHeight = 631
       object lblK: TLabel
         Left = 8
         Top = 16
@@ -197,7 +194,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 5
       Visible = False
-      ExplicitHeight = 631
       object rgFormule: TRadioGroup
         Left = 17
         Top = 21
@@ -240,7 +236,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 6
       Visible = False
-      ExplicitHeight = 631
       object lblGrootte: TLabel
         Left = 40
         Top = 40
@@ -300,7 +295,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 3
       Visible = False
-      ExplicitHeight = 631
       object lblLinker: TLabel
         Left = 8
         Top = 5
@@ -390,101 +384,6 @@ object frmMain: TfrmMain
         OnClick = miGrafiekvaneencontinuefunctieClick
       end
     end
-    object pnlFuncFPhi: TPanel
-      Left = 1
-      Top = 1
-      Width = 273
-      Height = 640
-      Align = alClient
-      TabOrder = 7
-      Visible = False
-      ExplicitHeight = 631
-      object lblA: TLabel
-        Left = 15
-        Top = 16
-        Width = 98
-        Height = 15
-        Caption = 'Linkergrens voor X'
-      end
-      object lblB: TLabel
-        Left = 14
-        Top = 76
-        Width = 106
-        Height = 15
-        Caption = 'Rechtergrens voor X'
-      end
-      object lblHP: TLabel
-        Left = 17
-        Top = 130
-        Width = 99
-        Height = 15
-        Caption = 'Bovengrens voor Y'
-      end
-      object lblLP: TLabel
-        Left = 17
-        Top = 181
-        Width = 99
-        Height = 15
-        Caption = 'Ondergrens voor Y'
-      end
-      object rgFuncFPhi: TRadioGroup
-        Left = 8
-        Top = 251
-        Width = 249
-        Height = 105
-        Caption = 'Formules'
-        ItemIndex = 0
-        Items.Strings = (
-          '(Sin(3*p/2))/(1-2*Cos(p))'
-          '(4*Sin(1.5*p+2)/(Cos(p)*(1+(Cos(3*p))/3) ')
-        TabOrder = 0
-        OnClick = miFuncFPhiClick
-      end
-      object seA: TSpinEdit
-        Left = 17
-        Top = 37
-        Width = 56
-        Height = 24
-        MaxValue = -1
-        MinValue = -10
-        TabOrder = 1
-        Value = -2
-        OnChange = miFuncFPhiClick
-      end
-      object seB: TSpinEdit
-        Left = 17
-        Top = 97
-        Width = 56
-        Height = 24
-        MaxValue = 10
-        MinValue = 1
-        TabOrder = 2
-        Value = 2
-        OnChange = miFuncFPhiClick
-      end
-      object seHP: TSpinEdit
-        Left = 17
-        Top = 151
-        Width = 56
-        Height = 24
-        MaxValue = 10
-        MinValue = 1
-        TabOrder = 3
-        Value = 2
-        OnChange = miFuncFPhiClick
-      end
-      object seLP: TSpinEdit
-        Left = 17
-        Top = 202
-        Width = 56
-        Height = 24
-        MaxValue = -1
-        MinValue = -10
-        TabOrder = 4
-        Value = -2
-        OnChange = miFuncFPhiClick
-      end
-    end
     object pnlOppKromme: TPanel
       Left = 1
       Top = 1
@@ -493,7 +392,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 9
       Visible = False
-      ExplicitHeight = 631
       object lblKromme: TLabel
         Left = 34
         Top = 42
@@ -521,7 +419,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 8
       Visible = False
-      ExplicitHeight = 631
       object lblK1: TLabel
         Left = 17
         Top = 16
@@ -713,7 +610,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 4
       Visible = False
-      ExplicitHeight = 631
       object lblLinkergrensX: TLabel
         Left = 28
         Top = 45
@@ -809,7 +705,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 12
       Visible = False
-      ExplicitHeight = 631
       object Label3: TLabel
         Left = 17
         Top = 24
@@ -857,7 +752,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 13
       Visible = False
-      ExplicitHeight = 631
       object seBloem: TSpinEdit
         Left = 26
         Top = 70
@@ -889,7 +783,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 14
       Visible = False
-      ExplicitHeight = 631
       object rgZFXYhidden: TRadioGroup
         Left = 17
         Top = 37
@@ -935,7 +828,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 16
       Visible = False
-      ExplicitHeight = 631
       object Label12: TLabel
         Left = 23
         Top = 30
@@ -1030,99 +922,6 @@ object frmMain: TfrmMain
         OnChange = miVierkantpatroonLOGO1Click
       end
     end
-    object pnlLogo2: TPanel
-      Left = 1
-      Top = 1
-      Width = 273
-      Height = 640
-      Align = alClient
-      TabOrder = 17
-      Visible = False
-      ExplicitHeight = 631
-      object rgLogo2: TRadioGroup
-        Left = 8
-        Top = 67
-        Width = 226
-        Height = 178
-        Caption = 'Parameters'
-        ItemIndex = 0
-        Items.Strings = (
-          'A: W=90, S=5, DW=144, DS=3'
-          'B: W=90, S=5, DW=123, DS=2'
-          'C: W=90, S=-2, DW=92, DS=2'
-          'D: W=90, S=5, DW=72, DS=1'
-          'E: W=90, S=160, DW=145, DS=1')
-        TabOrder = 0
-        OnClick = miTurtlegrafiekLOGO2Click
-      end
-    end
-    object pnlLogo4: TPanel
-      Left = 1
-      Top = 1
-      Width = 273
-      Height = 640
-      Align = alClient
-      TabOrder = 18
-      Visible = False
-      ExplicitHeight = 631
-      object Label17: TLabel
-        Left = 38
-        Top = 63
-        Width = 63
-        Height = 15
-        Caption = 'Lengte steel'
-      end
-      object Label18: TLabel
-        Left = 38
-        Top = 130
-        Width = 98
-        Height = 15
-        Caption = 'Draaihoek linksom'
-      end
-      object Label19: TLabel
-        Left = 38
-        Top = 202
-        Width = 35
-        Height = 15
-        Caption = 'Radius'
-      end
-      object seLengte: TSpinEdit
-        Left = 38
-        Top = 88
-        Width = 51
-        Height = 24
-        Increment = 5
-        MaxValue = 300
-        MinValue = 90
-        TabOrder = 0
-        Value = 90
-        OnChange = miCirkelfiguur1LOGO4Click
-      end
-      object seDraaihoek: TSpinEdit
-        Left = 38
-        Top = 151
-        Width = 51
-        Height = 24
-        Increment = 5
-        MaxValue = 240
-        MinValue = 30
-        TabOrder = 1
-        Value = 170
-        OnChange = miCirkelfiguur1LOGO4Click
-      end
-      object seRadius: TSpinEdit
-        Left = 36
-        Top = 225
-        Width = 53
-        Height = 24
-        Increment = 5
-        MaxValue = 100
-        MinValue = 20
-        TabOrder = 2
-        Value = 20
-        OnChange = miCirkelfiguur1LOGO4Click
-      end
-    end
     object pnlLogo5: TPanel
       Left = 1
       Top = 1
@@ -1131,7 +930,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 19
       Visible = False
-      ExplicitHeight = 631
       object Label20: TLabel
         Left = 38
         Top = 63
@@ -1198,7 +996,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 20
       Visible = False
-      ExplicitHeight = 631
       object Label23: TLabel
         Left = 23
         Top = 51
@@ -1226,7 +1023,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 21
       Visible = False
-      ExplicitHeight = 631
       object Label24: TLabel
         Left = 36
         Top = 58
@@ -1260,7 +1056,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 11
       Visible = False
-      ExplicitHeight = 631
       object rgSymFig: TRadioGroup
         Left = 16
         Top = 49
@@ -1291,7 +1086,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 22
       Visible = False
-      ExplicitHeight = 631
       object Label25: TLabel
         Left = 16
         Top = 42
@@ -1348,7 +1142,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 10
       Visible = False
-      ExplicitHeight = 631
       object Label1: TLabel
         Left = 18
         Top = 251
@@ -1395,7 +1188,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 23
       Visible = False
-      ExplicitHeight = 631
       object Label30: TLabel
         Left = 19
         Top = 24
@@ -1491,13 +1283,198 @@ object frmMain: TfrmMain
         Value = 20
       end
       object btnGrafiek: TButton
-        Left = 23
+        Left = 24
         Top = 367
         Width = 97
         Height = 58
         Caption = 'Teken grafiek'
         TabOrder = 6
         OnClick = miRoofdierprooidierecosysteemClick
+      end
+    end
+    object pnlLogo2: TPanel
+      Left = 1
+      Top = 1
+      Width = 273
+      Height = 640
+      Align = alClient
+      TabOrder = 17
+      Visible = False
+      object rgLogo2: TRadioGroup
+        Left = 8
+        Top = 67
+        Width = 226
+        Height = 178
+        Caption = 'Parameters'
+        ItemIndex = 0
+        Items.Strings = (
+          'A: W=90, S=5, DW=144, DS=3'
+          'B: W=90, S=5, DW=123, DS=2'
+          'C: W=90, S=-2, DW=92, DS=2'
+          'D: W=90, S=5, DW=72, DS=1'
+          'E: W=90, S=160, DW=145, DS=1')
+        TabOrder = 0
+        OnClick = miTurtlegrafiekLOGO2Click
+      end
+    end
+    object pnlLogo4: TPanel
+      Left = 1
+      Top = 1
+      Width = 273
+      Height = 640
+      Align = alClient
+      TabOrder = 18
+      Visible = False
+      object Label17: TLabel
+        Left = 38
+        Top = 63
+        Width = 63
+        Height = 15
+        Caption = 'Lengte steel'
+      end
+      object Label18: TLabel
+        Left = 38
+        Top = 130
+        Width = 98
+        Height = 15
+        Caption = 'Draaihoek linksom'
+      end
+      object Label19: TLabel
+        Left = 38
+        Top = 202
+        Width = 35
+        Height = 15
+        Caption = 'Radius'
+      end
+      object seLengte: TSpinEdit
+        Left = 38
+        Top = 88
+        Width = 51
+        Height = 24
+        Increment = 5
+        MaxValue = 300
+        MinValue = 90
+        TabOrder = 0
+        Value = 90
+        OnChange = miCirkelfiguur1LOGO4Click
+      end
+      object seDraaihoek: TSpinEdit
+        Left = 38
+        Top = 151
+        Width = 51
+        Height = 24
+        Increment = 5
+        MaxValue = 240
+        MinValue = 60
+        TabOrder = 1
+        Value = 170
+        OnChange = miCirkelfiguur1LOGO4Click
+      end
+      object seRadius: TSpinEdit
+        Left = 36
+        Top = 225
+        Width = 53
+        Height = 24
+        Increment = 5
+        MaxValue = 100
+        MinValue = 20
+        TabOrder = 2
+        Value = 20
+        OnChange = miCirkelfiguur1LOGO4Click
+      end
+    end
+    object pnlFuncFPhi: TPanel
+      Left = 1
+      Top = 1
+      Width = 273
+      Height = 640
+      Align = alClient
+      TabOrder = 7
+      Visible = False
+      object lblA: TLabel
+        Left = 15
+        Top = 16
+        Width = 98
+        Height = 15
+        Caption = 'Linkergrens voor X'
+      end
+      object lblB: TLabel
+        Left = 14
+        Top = 76
+        Width = 106
+        Height = 15
+        Caption = 'Rechtergrens voor X'
+      end
+      object lblHP: TLabel
+        Left = 17
+        Top = 130
+        Width = 99
+        Height = 15
+        Caption = 'Bovengrens voor Y'
+      end
+      object lblLP: TLabel
+        Left = 17
+        Top = 181
+        Width = 99
+        Height = 15
+        Caption = 'Ondergrens voor Y'
+      end
+      object rgFuncFPhi: TRadioGroup
+        Left = 8
+        Top = 251
+        Width = 249
+        Height = 105
+        Caption = 'Formules'
+        ItemIndex = 0
+        Items.Strings = (
+          '(Sin(3*p/2))/(1-2*Cos(p))'
+          '(4*Sin(1.5*p+2)/(Cos(p)*(1+(Cos(3*p))/3) ')
+        TabOrder = 0
+        OnClick = miFuncFPhiClick
+      end
+      object seA: TSpinEdit
+        Left = 17
+        Top = 37
+        Width = 56
+        Height = 24
+        MaxValue = -1
+        MinValue = -10
+        TabOrder = 1
+        Value = -2
+        OnChange = miFuncFPhiClick
+      end
+      object seB: TSpinEdit
+        Left = 18
+        Top = 97
+        Width = 56
+        Height = 24
+        MaxValue = 10
+        MinValue = 1
+        TabOrder = 2
+        Value = 2
+        OnChange = miFuncFPhiClick
+      end
+      object seHP: TSpinEdit
+        Left = 16
+        Top = 151
+        Width = 56
+        Height = 24
+        MaxValue = 50
+        MinValue = 1
+        TabOrder = 3
+        Value = 2
+        OnChange = miFuncFPhiClick
+      end
+      object seLP: TSpinEdit
+        Left = 16
+        Top = 202
+        Width = 56
+        Height = 24
+        MaxValue = -1
+        MinValue = -50
+        TabOrder = 4
+        Value = -2
+        OnChange = miFuncFPhiClick
       end
     end
   end
