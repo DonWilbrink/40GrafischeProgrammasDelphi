@@ -228,65 +228,6 @@ object frmMain: TfrmMain
         OnClick = miBloemClick
       end
     end
-    object pnlSpiralen: TPanel
-      Left = 1
-      Top = 1
-      Width = 273
-      Height = 640
-      Align = alClient
-      TabOrder = 6
-      Visible = False
-      object lblGrootte: TLabel
-        Left = 40
-        Top = 40
-        Width = 77
-        Height = 15
-        Caption = 'Grootte spiraal'
-      end
-      object lblCenter: TLabel
-        Left = 40
-        Top = 97
-        Width = 65
-        Height = 15
-        Caption = 'Straal center'
-      end
-      object seGrootte: TSpinEdit
-        Left = 40
-        Top = 61
-        Width = 49
-        Height = 24
-        MaxValue = 7
-        MinValue = 1
-        TabOrder = 0
-        Value = 1
-        OnChange = miSpiralenClick
-      end
-      object seCenter: TSpinEdit
-        Left = 40
-        Top = 118
-        Width = 49
-        Height = 24
-        Increment = 5
-        MaxValue = 100
-        MinValue = 5
-        TabOrder = 1
-        Value = 5
-        OnChange = miSpiralenClick
-      end
-      object rgSpiralen: TRadioGroup
-        Left = 17
-        Top = 172
-        Width = 133
-        Height = 105
-        Caption = 'Soort spiraal'
-        ItemIndex = 0
-        Items.Strings = (
-          'Normaal'
-          'Logaritmisch')
-        TabOrder = 2
-        OnClick = miSpiralenClick
-      end
-    end
     object pnlContFunctie: TPanel
       Left = 1
       Top = 1
@@ -1475,6 +1416,65 @@ object frmMain: TfrmMain
         TabOrder = 4
         Value = -2
         OnChange = miFuncFPhiClick
+      end
+    end
+    object pnlSpiralen: TPanel
+      Left = 1
+      Top = 1
+      Width = 273
+      Height = 640
+      Align = alClient
+      TabOrder = 6
+      Visible = False
+      object lblGrootte: TLabel
+        Left = 40
+        Top = 40
+        Width = 77
+        Height = 15
+        Caption = 'Grootte spiraal'
+      end
+      object lblCenter: TLabel
+        Left = 40
+        Top = 97
+        Width = 65
+        Height = 15
+        Caption = 'Straal center'
+      end
+      object seGrootte: TSpinEdit
+        Left = 40
+        Top = 61
+        Width = 49
+        Height = 24
+        MaxValue = 7
+        MinValue = 1
+        TabOrder = 0
+        Value = 1
+        OnChange = miSpiralenClick
+      end
+      object seCenter: TSpinEdit
+        Left = 40
+        Top = 118
+        Width = 49
+        Height = 24
+        Increment = 5
+        MaxValue = 100
+        MinValue = 5
+        TabOrder = 1
+        Value = 5
+        OnChange = miSpiralenClick
+      end
+      object rgSpiralen: TRadioGroup
+        Left = 17
+        Top = 172
+        Width = 133
+        Height = 105
+        Caption = 'Soort spiraal'
+        ItemIndex = 0
+        Items.Strings = (
+          'Normaal'
+          'Logaritmisch')
+        TabOrder = 2
+        OnClick = miSpiralenClick
       end
     end
   end
